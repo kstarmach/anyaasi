@@ -42,7 +42,7 @@ This is the provided `.env.local.example` file, which you'll want to use to crea
 DATABASE_URL=
 
 NEXTAUTH_URL=http://localhost:3000
-NEXTAUTH_SECRET= # Linux: `openssl rand -hex 32` or go to https://generate-secret.now.sh/32
+NEXTAUTH_SECRET=e4c72eb33676a0e055e296546bab9863
 
 # https://next-auth.js.org/providers/github
 GITHUB_ID=
