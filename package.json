@@ -8,6 +8,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.8.0-rc.2",
+    "@apollo/experimental-nextjs-app-support": "^0.4.1",
     "@headlessui/react": "^1.7.16",
     "@heroicons/react": "^2.0.18",
     "@planetscale/database": "^1.10.0",
@@ -20,6 +22,7 @@
     "autoprefixer": "^10.4.14",
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.12",
+    "graphql": "^16.7.1",
     "js-cookie": "^3.0.5",
     "kysely": "^0.26.1",
     "kysely-planetscale": "^1.4.0",
