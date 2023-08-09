@@ -5,6 +5,7 @@ import { Card, Title } from "@tremor/react"
 import { UserCircleIcon } from "@heroicons/react/24/solid"
 import { Menu } from "@headlessui/react";
 import Image from 'next/image';
+import Router, { useRouter } from 'next/navigation';
 
 interface User {
     avatar: { medium: string };
@@ -17,6 +18,7 @@ export default function LoginPage() {
     const [search, setSearch] = useState('');
     const [user, setUserData] = useState<User | null>(null);
 
+    const router = useRouter()
     // Here we define our query as a multi-line string
     // Storing it in a separate .graphql/.gql file is also possible
     var query = `
@@ -66,6 +68,12 @@ query ($name: String) {
                 console.error('GraphQL Error:', error);
                 // setLoading(false);
             });
+    }
+
+    const handleSave = () => {
+        localStorage.setItem("user", JSON.stringify(user));
+        router.push('/')
+
     }
 
     return (
@@ -130,7 +138,7 @@ query ($name: String) {
                     </div>
                     <div className="flex-none">
                         <button
-                            // onClick={() => signOut()}
+                            onClick={() => handleSave()}
                             className="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800"
                         >
                             save
