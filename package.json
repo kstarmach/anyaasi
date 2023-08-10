@@ -1,46 +1,29 @@
 {
+  "name": "anyaasi",
   "private": true,
-  "license": "MIT",
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "@apollo/client": "^3.8.0-rc.2",
-    "@apollo/experimental-nextjs-app-support": "^0.4.1",
-    "@headlessui/react": "^1.7.16",
-    "@heroicons/react": "^2.0.18",
-    "@planetscale/database": "^1.10.0",
-    "@tremor/react": "^3.6.0",
-    "@types/js-cookie": "^3.0.3",
-    "@types/node": "20.4.8",
-    "@types/react": "18.2.0",
-    "@types/react-dom": "18.2.0",
-    "@vercel/analytics": "^1.0.1",
-    "autoprefixer": "^10.4.14",
-    "eslint": "8.46.0",
-    "eslint-config-next": "13.4.12",
-    "graphql": "^16.7.1",
-    "js-cookie": "^3.0.5",
-    "kysely": "^0.26.1",
-    "kysely-planetscale": "^1.4.0",
-    "next": "13.4.12",
-    "next-auth": "^4.22.3",
-    "postcss": "^8.4.27",
-    "prettier": "^3.0.1",
-    "prop-types": "^15.8.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "server-only": "^0.0.1",
-    "tailwindcss": "^3.3.3",
-    "typescript": "5.1.6"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
-  "prettier": {
-    "arrowParens": "always",
-    "singleQuote": true,
-    "tabWidth": 2,
-    "trailingComma": "none"
+  "devDependencies": {
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@vitejs/plugin-react": "^4.0.3",
+    "autoprefixer": "^10.4.14",
+    "eslint": "^8.45.0",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "postcss": "^8.4.27",
+    "tailwindcss": "^3.3.3",
+    "vite": "^4.4.5"
   }
 }
