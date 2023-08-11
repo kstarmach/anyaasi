@@ -1,7 +1,27 @@
+import { useState, useEffect } from 'react'; // Import useState and useEffect
 import { Link } from "react-router-dom";
 
-const Nav = ({user}) => {   
+const Nav = ({ user }) => {
+    const [menuOpen, setMenuOpen] = useState(false); // State to track menu open/close
 
+    useEffect(() => {
+        // Add a click event listener to the document
+        const handleClickOutside = (event) => {
+            const menu = document.getElementById('user-menu');
+            const button = document.getElementById('user-menu-button');
+
+            if (menu && button && !menu.contains(event.target) && !button.contains(event.target)) {
+                // Click was outside the menu and button, so close the menu
+                setMenuOpen(false);
+            }
+        };
+
+        document.addEventListener('click', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('click', handleClickOutside);
+        };
+    }, []); // Run only once when the component mounts
     return (
         <nav className="bg-white shadow-sm absolute top-0 left-0 w-screen">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -49,11 +69,10 @@ const Nav = ({user}) => {
                                     type="button"
                                     className="flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2"
                                     id="user-menu-button"
-                                    aria-expanded="false"
+                                    aria-expanded={menuOpen}
                                     aria-haspopup="true"
                                     onClick={() => {
-                                        const menu = document.getElementById('user-menu');
-                                        menu.classList.toggle('hidden');
+                                        setMenuOpen(!menuOpen); // Toggle menu open/close
                                     }}
                                 >
                                     <span className="absolute -inset-1.5"></span>
@@ -66,7 +85,8 @@ const Nav = ({user}) => {
                                 </button>
                                 <div
                                     id="user-menu"
-                                    className="absolute top-full right-0 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden"
+                                    className={`absolute top-full right-0 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ${menuOpen ? '' : 'hidden'
+                                        }`}
                                 >
                                     <a
                                         href="#"
