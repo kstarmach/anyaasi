@@ -2,11 +2,33 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
-import Nav from './components/Nav.jsx'
+
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import LoginForm from './components/LoginForm.jsx';
+import NewComponent from './components/NewComponent.jsx';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      {
+        path: "/login",
+        element: <LoginForm />,
+      },
+      {
+        path: "/",
+        element: <NewComponent />,
+      },
+    ],
+  }
+]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Nav />
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>,
 )

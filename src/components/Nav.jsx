@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { Link } from "react-router-dom";
 
-const Nav = () => {
-    const [user, setUser] = useState(null);
+const Nav = ({user}) => {   
 
     return (
         <nav className="bg-white shadow-sm absolute top-0 left-0 w-screen">
@@ -35,14 +34,14 @@ const Nav = () => {
                         <div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
 
 
-                            <a href="#" className="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" aria-current="page">Dashboard</a>
-                            <a href="#" className="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Team</a>
-                            <a href="#" className="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Projects</a>
-                            <a href="#" className="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Calendar</a>
+                            <Link to="/" className="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" aria-current="page">Dashboard</Link>
+                            <Link to="/" className="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Team</Link>
+                            <Link to="/" className="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Projects</Link>
+                            <Link to="/" className="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Calendar</Link>
                         </div>
                     </div>
                     {!user ?
-                        <a href="#" className="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" aria-current="page">Sign in</a>
+                        <Link to={`login`} className="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" aria-current="page">Sign in</Link>
                         :
                         <div className="hidden sm:ml-6 sm:flex sm:items-center relative">
                             <div className="relative ml-3">
