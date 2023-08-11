@@ -1,4 +1,8 @@
+import { useState } from "react";
+
 const Nav = () => {
+    const [user, setUser] = useState(null);
+
     return (
         <nav className="bg-white shadow-sm absolute top-0 left-0 w-screen">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -37,22 +41,64 @@ const Nav = () => {
                             <a href="#" className="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Calendar</a>
                         </div>
                     </div>
-                    <div className="hidden sm:ml-6 sm:flex sm:items-center">
-                        <div className="relative ml-3">
-                            <button type="button" className="flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-                                <span className="absolute -inset-1.5"></span>
-                                <span className="sr-only">Open user menu</span>
-                                <img className="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
-                            </button>
+                    {!user ?
+                        <a href="#" className="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" aria-current="page">Sign in</a>
+                        :
+                        <div className="hidden sm:ml-6 sm:flex sm:items-center relative">
+                            <div className="relative ml-3">
+                                <button
+                                    type="button"
+                                    className="flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2"
+                                    id="user-menu-button"
+                                    aria-expanded="false"
+                                    aria-haspopup="true"
+                                    onClick={() => {
+                                        const menu = document.getElementById('user-menu');
+                                        menu.classList.toggle('hidden');
+                                    }}
+                                >
+                                    <span className="absolute -inset-1.5"></span>
+                                    <span className="sr-only">Open user menu</span>
+                                    <img
+                                        className="h-8 w-8 rounded-full"
+                                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                        alt=""
+                                    />
+                                </button>
+                                <div
+                                    id="user-menu"
+                                    className="absolute top-full right-0 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden"
+                                >
+                                    <a
+                                        href="#"
+                                        className="flex w-full px-4 py-2 text-sm text-gray-700"
+                                        role="menuitem"
+                                        tabIndex="-1"
+                                    >
+                                        Your Profile
+                                    </a>
+                                    <a
+                                        href="#"
+                                        className="flex w-full px-4 py-2 text-sm text-gray-700"
+                                        role="menuitem"
+                                        tabIndex="-1"
+                                    >
+                                        Settings
+                                    </a>
+                                    <a
+                                        href="#"
+                                        className="flex w-full px-4 py-2 text-sm text-gray-700"
+                                        role="menuitem"
+                                        tabIndex="-1"
+                                    >
+                                        Sign out
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-{/* 
-                        <div className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
 
-                            <a href="#" className="flex w-full px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
-                            <a href="#" className="flex w-full px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
-                            <a href="#" className="flex w-full px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
-                        </div> */}
-                    </div>
+
+                    }
                 </div>
             </div>
         </nav>
