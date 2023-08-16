@@ -1,7 +1,29 @@
+import React, { useState } from 'react';
+import { useQuery } from '@apollo/client';
+import { gql } from 'graphql-tag';
+
+const GET_USER_DATA = gql`
+  query ($name: String) {
+    User(name: $name) {
+        id
+        name
+        avatar {
+          large
+        }
+      }
+  }
+`;
+
 const LoginForm = () => {
+    const [username, setUsername] = useState('');
+    const { loading, error, data } = useQuery(GET_USER_DATA, {
+        variables: { name: username },
+        skip: !username,
+    });
+
     const handleForm = (event) => {
         event.preventDefault();
-        console.log(event.target[0].value);
+        setUsername(event.target[0].value);
     }
     return (
         <>
@@ -57,15 +79,84 @@ const LoginForm = () => {
                             <button
                                 type="submit"
                                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                onChange={(e) => setUsername(e.target.value)}
                             >
                                 Find
                             </button>
                         </div>
                     </form>
                 </div>
-                <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-sm rounded-lg bg-white p-6 shadow-sm">
 
-                </div>
+                {username && (
+                    <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-sm rounded-lg bg-white p-6 shadow-sm space-y-6 ">
+                        <div className='grid grid-cols-1  gap-6'>
+                            <div className="">
+                                {loading && <p>Loading...</p>}
+                                {error && <p className="text-red-500">Error: {error.message}</p>}
+                                {data && data.User ? (
+                                    <div className="flex items-center justify-between space-x-4">
+                                        <div className="flex items-center space-x-4">
+                                            <img
+                                                className="h-8 w-8 rounded-full"
+                                                src={data.User.avatar.large}
+                                                alt="User Avatar"
+                                            />
+                                            <p className="text-lg font-semibold">{data.User.name}</p>
+                                        </div>
+                                        <img
+                                            className="mx-auto h-10 w-auto "
+                                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/AniList_logo.svg/512px-AniList_logo.svg.png"
+                                            alt="Your Company"
+                                        />
+                                        <button
+                                            type="button"
+                                            // onClick={onClick}
+                                            className="px-3 py-2 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                        >
+                                            Sign In
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <p>No user found.</p>
+                                )}
+                            </div>
+                            <div className="border-t border-gray-300"></div>
+
+                            <div className="">
+                                {loading && <p>Loading...</p>}
+                                {error && <p className="text-red-500">Error: {error.message}</p>}
+                                {data && data.User ? (
+                                    <div className="flex items-center justify-between space-x-4">
+                                        <div className="flex items-center space-x-4">
+                                            <img
+                                                className="h-8 w-8 rounded-full"
+                                                src={data.User.avatar.large}
+                                                alt="User Avatar"
+                                            />
+                                            <p className="text-lg font-semibold">{data.User.name}</p>
+                                        </div>
+                                        <img
+                                            className="mx-auto h-10 w-auto "
+                                            src="https://upload.wikimedia.org/wikipedia/commons/7/7a/MyAnimeList_Logo.png"
+                                            alt="Your Company"
+                                        />
+                                        <button
+                                            type="button"
+                                            // onClick={onClick}
+                                            className="px-3 py-2 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                        >
+                                            Sign In
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <p>No user found.</p>
+                                )}
+                            </div>
+                        </div>
+
+                    </div>
+                )}
+
             </div>
 
 
