@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'; // Import useState and useEffect
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useUserContext } from '../UserContext';
 
-const Nav = ({ user }) => {
+const Nav = () => {
+    const { user, setUser } = useUserContext();
     const [menuOpen, setMenuOpen] = useState(false); // State to track menu open/close
 
     useEffect(() => {
@@ -22,6 +24,14 @@ const Nav = ({ user }) => {
             document.removeEventListener('click', handleClickOutside);
         };
     }, []); // Run only once when the component mounts
+
+    const handleSignOut = () => {
+        localStorage.removeItem('user');
+        setUser(null);
+        window.location.href = '/';
+    }
+
+
     return (
         <nav className="bg-white shadow-sm absolute top-0 left-0 w-screen">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -79,7 +89,7 @@ const Nav = ({ user }) => {
                                     <span className="sr-only">Open user menu</span>
                                     <img
                                         className="h-8 w-8 rounded-full"
-                                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                        src={user.avatar.large}
                                         alt=""
                                     />
                                 </button>
@@ -109,6 +119,7 @@ const Nav = ({ user }) => {
                                         className="flex w-full px-4 py-2 text-sm text-gray-700"
                                         role="menuitem"
                                         tabIndex="-1"
+                                        onClick={handleSignOut}
                                     >
                                         Sign out
                                     </a>

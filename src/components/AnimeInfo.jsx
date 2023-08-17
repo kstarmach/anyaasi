@@ -1,6 +1,7 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { gql } from 'graphql-tag';
+import { useUserContext } from '../UserContext';
 
 const GET_ANIME_LIST = gql`
   query ($userId: Int) {
@@ -31,13 +32,17 @@ const GET_ANIME_LIST = gql`
   }
 `;
 
-const variables = {
-  userId: 444197,
-};
+
 
 function AnimeInfo() {
+  const { user } = useUserContext();
+
+  if (!user) {
+    return <p>You need to log in</p>;
+  }
+
   const { loading, error, data } = useQuery(GET_ANIME_LIST, {
-    variables,
+    variables: { userId: user.id },
   });
 
   if (loading) {

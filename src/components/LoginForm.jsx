@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { gql } from 'graphql-tag';
+import { useUserContext } from '../UserContext';
 
 const GET_USER_DATA = gql`
   query ($name: String) {
@@ -15,7 +16,9 @@ const GET_USER_DATA = gql`
 `;
 
 const LoginForm = () => {
+    const { setUser } = useUserContext();
     const [username, setUsername] = useState('');
+
     const { loading, error, data } = useQuery(GET_USER_DATA, {
         variables: { name: username },
         skip: !username,
@@ -25,6 +28,14 @@ const LoginForm = () => {
         event.preventDefault();
         setUsername(event.target[0].value);
     }
+
+    const handleSignIn = () => {
+        setUser(data.User);
+        localStorage.setItem('user', JSON.stringify(data.User));
+        
+    }
+
+
     return (
         <>
             <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -110,7 +121,8 @@ const LoginForm = () => {
                                         />
                                         <button
                                             type="button"
-                                            // onClick={onClick}
+                                            onClick={handleSignIn}
+                                            id="sign-in-button"
                                             className="px-3 py-2 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                         >
                                             Sign In
@@ -142,7 +154,7 @@ const LoginForm = () => {
                                         />
                                         <button
                                             type="button"
-                                            // onClick={onClick}
+                                            onClick={handleSignIn}
                                             className="px-3 py-2 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                         >
                                             Sign In
