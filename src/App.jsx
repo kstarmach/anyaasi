@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <Nav  />
-      <div id='outlet'>
+      <div id='outlet' >
         <Outlet />
       </div>
     </>
