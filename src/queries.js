@@ -28,3 +28,15 @@ export const GET_ANIME_LIST = gql`
     }
   }
 `;
+
+export const GET_USER_DATA = gql`
+  query ($name: String) {
+    User(name: $name) {
+        id
+        name
+        avatar {
+          large
+        }
+      }
+  }
+`;

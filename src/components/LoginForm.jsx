@@ -1,19 +1,8 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
-import { gql } from 'graphql-tag';
+import { GET_USER_DATA } from '../queries'
 import { useUserContext } from '../UserContext';
 
-const GET_USER_DATA = gql`
-  query ($name: String) {
-    User(name: $name) {
-        id
-        name
-        avatar {
-          large
-        }
-      }
-  }
-`;
 
 const LoginForm = () => {
     const { setUser } = useUserContext();
@@ -32,7 +21,7 @@ const LoginForm = () => {
     const handleSignIn = () => {
         setUser(data.User);
         localStorage.setItem('user', JSON.stringify(data.User));
-        
+
     }
 
 
