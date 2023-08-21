@@ -27,7 +27,7 @@ function AnimeInfo() {
   const animeLists = animeListCollection.lists;
 
   // Sort entries by progress in ascending order
-  const sortedEntries = animeLists.flatMap(list => list.entries).sort((a, b) => a.progress - b.progress);
+  const sortedEntries = animeLists.flatMap(list => list.entries).sort((a, b) => b.progress - a.progress);
 
 
 
