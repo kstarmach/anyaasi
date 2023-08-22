@@ -11,6 +11,7 @@ export const GET_ANIME_LIST = gql`
         entries {
           progress
           media {
+            id
             title {
               userPreferred
             }
@@ -39,4 +40,26 @@ export const GET_USER_DATA = gql`
         }
       }
   }
+`;
+
+export const GET_ANIME_DETAILS = gql`
+query($id: Int) {  
+    Media(id:$id)
+      {
+        title {
+          userPreferred
+        }
+        episodes
+        coverImage {
+          extraLarge
+        }
+        bannerImage
+        averageScore
+        popularity
+        nextAiringEpisode{
+          episode
+        }
+        description
+      }    
+  }    
 `;

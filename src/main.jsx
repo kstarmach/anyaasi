@@ -10,6 +10,7 @@ import LoginForm from './components/LoginForm.jsx';
 import NewComponent from './components/NewComponent.jsx';
 import AnimeInfo from './components/AnimeInfo.jsx';
 import { UserProvider } from './UserContext';
+import AnimeDetails from './components/AnimeDetails';
 
 
 
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: '/aninfo',
         element: <AnimeInfo />,
+      },
+      {
+        path: "anime/:animeId",
+        element: <AnimeDetails />,
       },
     ],
   },

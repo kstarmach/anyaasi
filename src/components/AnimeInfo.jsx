@@ -3,6 +3,7 @@ import { useQuery } from '@apollo/client';
 import { useUserContext } from '../UserContext';
 import { GET_ANIME_LIST } from '../queries';
 import AnimeListEntry from './AnimeListEntry';
+import { Link } from 'react-router-dom';
 
 function AnimeInfo() {
   const { user } = useUserContext();
@@ -35,7 +36,9 @@ function AnimeInfo() {
   return (
     <div className="inline-grid xl:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 gap-4">
       {sortedEntries.map((entry) => (
-        <AnimeListEntry key={entry.media.title.userPreferred} entry={entry} />
+        <Link to={`/anime/${entry.media.id}`} key={entry.media.title.userPreferred}>
+          <AnimeListEntry entry={entry} />
+        </Link>
       ))}
     </div>
   );
