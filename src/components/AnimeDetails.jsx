@@ -79,7 +79,7 @@ const AnimeDetails = () => {
 
     return (
         <>
-            <div className="flex space-x-4 mt-40">
+            <div className="flex space-x-4 md:max-lg:flex">
                 <div className="w-1/4">
                     <div className="mb-4">
                         <img src={coverImage.extraLarge} alt={title.userPreferred} className="rounded-md shadow-md" />
