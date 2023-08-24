@@ -1,49 +1,142 @@
 import React, { useState } from 'react';
 const mockEpisodeData = [
-    // ... previous mockEpisodeData
     {
-        episodeNumber: 31,
-        episodeTitle: "Episode 31 Title",
-        commentsCount: 18,
-        links: {
-            magnetLink: "magnet:?...",
-            downloadLink: "https://example.com/episode31.torrent",
-        },
-        size: "280 MB",
-        date: "2023-09-01",
-        seedCount: 75,
-        leechCount: 8,
-        downloads: 1200,
+        provider: "Erai -raws",
+        episodes: [
+            // ... previous episodes
+            {
+                episodeNumber: 35,
+                episodeTitle: "Episode 35 Title",
+                commentsCount: 28,
+                links: {
+                    magnetLink: "magnet:?...",
+                    downloadLink: "https://example.com/episode35.torrent",
+                },
+                size: "290 MB",
+                date: "2023-09-29",
+                seedCount: 70,
+                leechCount: 11,
+                downloads: 1300,
+            },
+            {
+                episodeNumber: 36,
+                episodeTitle: "Episode 36 Title",
+                commentsCount: 20,
+                links: {
+                    magnetLink: "magnet:?...",
+                    downloadLink: "https://example.com/episode36.torrent",
+                },
+                size: "300 MB",
+                date: "2023-10-06",
+                seedCount: 85,
+                leechCount: 9,
+                downloads: 1500,
+            },
+        ]
     },
     {
-        episodeNumber: 32,
-        episodeTitle: "Episode 32 Title",
-        commentsCount: 22,
-        links: {
-            magnetLink: "magnet:?...",
-            downloadLink: "https://example.com/episode32.torrent",
-        },
-        size: "310 MB",
-        date: "2023-09-08",
-        seedCount: 90,
-        leechCount: 12,
-        downloads: 1600,
+        provider: "Anime Time",
+        episodes: [
+            // ... previous episodes
+            {
+                episodeNumber: 33,
+                episodeTitle: "Episode 33 Title",
+                commentsCount: 30,
+                links: {
+                    magnetLink: "magnet:?...",
+                    downloadLink: "https://example.com/episode33.torrent",
+                },
+                size: "290 MB",
+                date: "2023-09-15",
+                seedCount: 80,
+                leechCount: 14,
+                downloads: 1400,
+            },
+            {
+                episodeNumber: 34,
+                episodeTitle: "Episode 34 Title",
+                commentsCount: 25,
+                links: {
+                    magnetLink: "magnet:?...",
+                    downloadLink: "https://example.com/episode34.torrent",
+                },
+                size: "270 MB",
+                date: "2023-09-22",
+                seedCount: 70,
+                leechCount: 10,
+                downloads: 1100,
+            },
+        ]
     },
     {
-        episodeNumber: 33,
-        episodeTitle: "Episode 33 Title",
-        commentsCount: 30,
-        links: {
-            magnetLink: "magnet:?...",
-            downloadLink: "https://example.com/episode33.torrent",
-        },
-        size: "290 MB",
-        date: "2023-09-15",
-        seedCount: 80,
-        leechCount: 14,
-        downloads: 1400,
+        provider: "SubsPlease",
+        episodes: [
+            // ... previous episodes
+            {
+                episodeNumber: 37,
+                episodeTitle: "Episode 37 Title",
+                commentsCount: 26,
+                links: {
+                    magnetLink: "magnet:?...",
+                    downloadLink: "https://example.com/episode37.torrent",
+                },
+                size: "280 MB",
+                date: "2023-10-13",
+                seedCount: 75,
+                leechCount: 12,
+                downloads: 1200,
+            },
+            {
+                episodeNumber: 38,
+                episodeTitle: "Episode 38 Title",
+                commentsCount: 19,
+                links: {
+                    magnetLink: "magnet:?...",
+                    downloadLink: "https://example.com/episode38.torrent",
+                },
+                size: "290 MB",
+                date: "2023-10-20",
+                seedCount: 85,
+                leechCount: 11,
+                downloads: 1300,
+            },
+        ]
     },
-    // ... add more episodes
+    {
+        provider: "ToonsHub",
+        episodes: [
+            // ... previous episodes
+            {
+                episodeNumber: 35,
+                episodeTitle: "Episode 35 Title",
+                commentsCount: 22,
+                links: {
+                    magnetLink: "magnet:?...",
+                    downloadLink: "https://example.com/episode35.torrent",
+                },
+                size: "260 MB",
+                date: "2023-09-29",
+                seedCount: 65,
+                leechCount: 8,
+                downloads: 1000,
+            },
+            {
+                episodeNumber: 36,
+                episodeTitle: "Episode 36 Title",
+                commentsCount: 18,
+                links: {
+                    magnetLink: "magnet:?...",
+                    downloadLink: "https://example.com/episode36.torrent",
+                },
+                size: "270 MB",
+                date: "2023-10-06",
+                seedCount: 75,
+                leechCount: 9,
+                downloads: 1100,
+            },
+        ]
+    },
+    // ... add more providers and episodes
 ];
 
 
@@ -51,16 +144,36 @@ const mockEpisodeData = [
 const ITEMS_PER_PAGE = 5;
 
 const DownloadSection = () => {
+
     const [currentPage, setCurrentPage] = useState(1);
+    const [selectedProvider, setSelectedProvider] = useState(mockEpisodeData[0].provider);
 
     const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
     const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
 
-
     const paginate = pageNumber => setCurrentPage(pageNumber);
-    const currentItems = mockEpisodeData.slice(indexOfFirstItem, indexOfLastItem);
+
+    const providers = mockEpisodeData.map(item => item.provider);
+
+    // Filter episodes based on the selected provider
+    const selectedProviderData = mockEpisodeData.find(item => item.provider === selectedProvider);
+    const currentItems = selectedProviderData ? selectedProviderData.episodes.slice(indexOfFirstItem, indexOfLastItem) : [];
+
     return (
         <div className="bg-white shadow-sm rounded-md p-6 text-left">
+            {/* Tabs for Providers */}
+            <div className="flex space-x-4 mb-4">
+                {providers.map(provider => (
+                    <button
+                        key={provider}
+                        className={`px-3 py-2 rounded-md  ${selectedProvider === provider ? 'bg-indigo-600   text-white' : 'bg-gray-300  text-gray-600'}`}
+                        onClick={() => setSelectedProvider(provider)}
+                    >
+                        {provider}
+                    </button>
+                ))}
+            </div>
+
             <table className="w-full border-collapse table-auto">
                 <thead>
                     <tr className="bg-gray-100 rounded-md">

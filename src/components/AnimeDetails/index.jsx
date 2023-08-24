@@ -41,7 +41,7 @@ const AnimeDetails = () => {
                         coverImage={coverImage.extraLarge}
                         title={title.userPreferred}
                         episodes={episodes}
-                        nextAiringEpisode={nextAiringEpisode.episode}
+                        nextAiringEpisode={nextAiringEpisode?.episode}
                         averageScore={averageScore}
                         popularity={popularity}
                     />
