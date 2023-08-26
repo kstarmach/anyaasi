@@ -6,12 +6,12 @@ import { Outlet } from 'react-router-dom'
 function App() {
 
   return (
-    <>
+    <div className=''>
       <Nav  />
-      <div id='outlet'  className='2xl:mx-96'>
+      <div id='outlet'  className='2xl:mx-96 my-40'>
         <Outlet />
       </div>
-    </>
+    </div>
   )
 }
 
