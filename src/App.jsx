@@ -8,7 +8,7 @@ function App() {
   return (
     <div className=''>
       <Nav  />
-      <div id='outlet'  className='2xl:mx-96 my-40'>
+      <div id='outlet'>
         <Outlet />
       </div>
     </div>

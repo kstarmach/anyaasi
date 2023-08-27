@@ -125,7 +125,7 @@ const UserOptions = () => {
                                 src={user.avatar.large}
                                 alt=""
                             />
-                            <span className='ml-3 mb-2'>
+                            <span className='ml-3 mb-1 text-base'>
                                 {user.name}
                             </span>
                             <span className='ml-3'>
@@ -153,7 +153,7 @@ const UserOptions = () => {
 
 const Nav = () => {
     return (
-        <nav className="absolute top-20 left-0 w-screen">
+        <nav className=" top-20 left-0 w-screen my-20">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="flex h-16 justify-between">
                     <div className="flex">
@@ -185,7 +185,7 @@ const Nav = () => {
 
 
                             <Link to="/" className="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 inline-flex items-center px-1 pt-1 border-b-2  " aria-current="page">Home</Link>
-                            <Link to="/aninfo" className="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 inline-flex items-center px-1 pt-1 border-b-2 ">Popular</Link>
+                            <Link to="/popular" className="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 inline-flex items-center px-1 pt-1 border-b-2 ">Popular</Link>
                             <Link to="/" className="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 inline-flex items-center px-1 pt-1 border-b-2  ">Anime News</Link>
                             <Link to="/" className="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 inline-flex items-center px-1 pt-1 border-b-2 ">Help</Link>
                         </div>
