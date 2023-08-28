@@ -19,7 +19,7 @@ function AnimeListEntry({ entry }) {
 
     return (
         <div
-            className="relative anime-entry "
+            className="relative anime-entry mb-60"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >

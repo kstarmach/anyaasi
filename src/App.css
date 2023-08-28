@@ -43,5 +43,19 @@
 } */
 
 .anime-entry {
-  height: 600px; /* Set a fixed height for consistent entry size */
+  height: 650px;
+  width: 460px; /* Set a fixed height for consistent entry size */
+}
+.carousel-item {
+  max-width: 100px; /* Set your desired maximum width here */
+  /* You can also add other styling properties here if needed */
+}
+.carousel-container {
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  /* Other styles */
+}
+.scroll-smooth {
+  scroll-behavior: smooth;
 }
