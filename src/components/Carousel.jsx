@@ -41,14 +41,11 @@ const Carousel = ({ data }) => {
         }
     }, [currentIndex, data]);
 
-    console.log(data.length);
-    console.log(currentIndex);
-
 
     return (
         <div className="carousel my-12 mx-auto ">
             <div className='flex mb-5 mr-20'>
-                <p className='text-2xl font-semibold  flex-grow pl-8'>Recently Added</p>
+                <p className='text-2xl font-semibold  flex-grow pl-40'>Recently Added</p>
                 <div className='flex gap-4 '>
                     <button
                         onClick={movePrev}
@@ -94,7 +91,7 @@ const Carousel = ({ data }) => {
             <div className="relative overflow-hidden ">
                 <div
                     ref={carousel}
-                    className="carousel-container relative flex gap-8 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0 pl-8"
+                    className="carousel-container relative flex gap-8 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0 px-40"
                 >
                     {data.map((entry, index) => {
                         return (
