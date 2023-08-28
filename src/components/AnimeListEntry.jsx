@@ -15,40 +15,42 @@ function AnimeListEntry({ entry }) {
         setIsHovered(false);
     };
 
-    const { coverImage, nextAiringEpisode, episodes, title } = entry.media;
+    const { coverImage, nextAiringEpisode, episodes, title, averageScore, genres } = entry.media;
 
     return (
         <div
-            className="relative anime-entry"
+            className="relative anime-entry "
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
-            <div className="relative h-96">
+            <div className="h-full w-auto">
                 <img
                     src={coverImage.extraLarge}
                     alt="Anime Cover"
-                    className="rounded-xl h-full w-full object-cover shadow-md"
+                    className="rounded-xl h-full w-full object-cover  shadow-2xl"
                 />
                 {nextAiringEpisode && nextAiringEpisode.episode > 0 && (
                     <BadgeIndicator
                         episodeDifference={nextAiringEpisode.episode - entry.progress - 1}
                     />
                 )}
-                {isHovered && (
+                {/* {isHovered && (
                     <>
                         <TopTitle
                             nextAiringEpisode={nextAiringEpisode}
                             progress={entry.progress}
                             totalEpisodes={episodes}
                         />
-                        <BottomTitle
-                            title={title.userPreferred}
-                            hasNewNextAiringEpisode={!!nextAiringEpisode}
-                            progress={entry.progress}
-                            totalEpisodes={episodes}
-                        />
                     </>
-                )}
+                )} */}
+                <BottomTitle
+                    title={title.userPreferred}
+                    hasNewNextAiringEpisode={!!nextAiringEpisode}
+                    progress={entry.progress}
+                    totalEpisodes={episodes}
+                    averageScore={averageScore}
+                    genres={genres}
+                />
             </div>
         </div>
     );

@@ -36,9 +36,9 @@ function Popular() {
   return (
     <div className='ml-20'>
       <p className='text-2xl font-semibold mb-5'>Popular</p>
-      <div className="grid grid-cols-4 gap-8 ">
+      <div className="grid 2xl:grid-cols-5 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-12 ">
         {sortedEntries.map((entry) => (
-          <Link to={`/anime/${entry.media.id}`} key={entry.media.title.userPreferred}>
+          <Link to={`/anime/${entry.media.id}`} key={entry.media.title.userPreferred} className=''>
             <AnimeListEntry entry={entry} />
           </Link>
         ))}

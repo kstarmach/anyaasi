@@ -17,12 +17,16 @@ export const GET_ANIME_LIST = gql`
             }
             coverImage {
               extraLarge
+              medium
+              large
             }
             episodes
             nextAiringEpisode {
               episode
               timeUntilAiring
             }
+            averageScore
+            genres
           }
         }
       }
