@@ -154,8 +154,8 @@ const UserOptions = () => {
 const Nav = () => {
     return (
         <nav className=" top-20 left-0 w-screen my-20">
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div className="flex h-16 justify-between">
+            <div className="mx-20 ">
+                <div className="flex  justify-between">
                     <div className="flex">
 
                         <div className="flex flex-shrink-0 items-center mr-20">
