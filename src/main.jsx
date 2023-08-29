@@ -2,15 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/client';
+import { UserProvider } from './UserContext';
 import client from './apollo'; // Import your Apollo Client instance
-import App from './App.jsx';
 import './index.css';
 
+import App from './App.jsx';
 import LoginForm from './components/LoginForm.jsx';
-import NewComponent from './components/NewComponent.jsx';
-import { UserProvider } from './UserContext';
 import AnimeDetails from './components/AnimeDetails';
 import Popular from './components/Popular';
+import Home from './components/Home';
 
 
 
@@ -29,7 +29,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/',
-        element: <NewComponent />,
+        element: <Home />,
       },
       {
         path: '/popular',

@@ -1,8 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import AnimeListEntry from './AnimeListEntry';
+import Card from './Card';
 
-const Carousel = ({ data }) => {
+const Carousel = ({ data, title,height, width }) => {
     const itemWidth = useRef(0); // Reference to store the width of a single item.
     const [currentIndex, setCurrentIndex] = useState(0);
     const carousel = useRef(null);
@@ -43,9 +42,9 @@ const Carousel = ({ data }) => {
 
 
     return (
-        <div className="carousel my-12 mx-auto ">
+        <div className="carousel  mx-auto ">
             <div className='flex mb-5 mr-20'>
-                <p className='text-2xl font-semibold  flex-grow pl-20'>Recently Added</p>
+                <p className='text-2xl font-semibold  flex-grow pl-20'>{title}</p>
                 <div className='flex gap-4 '>
                     <button
                         onClick={movePrev}
@@ -91,11 +90,16 @@ const Carousel = ({ data }) => {
             <div className="relative overflow-hidden ">
                 <div
                     ref={carousel}
-                    className="carousel-container relative flex gap-8 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0 px-20 "
+                    className="carousel-container relative flex gap-10 overflow-hidden  px-20 "
                 >
                     {data.map((entry, index) => {
                         return (
-                            <AnimeListEntry entry={entry} />
+                            <Card 
+                            entry={entry}  
+                            key={`${entry.media.id}-${index}`}
+                            height={height}
+                            width={width}
+                            />
                         );
                     })}
                 </div>

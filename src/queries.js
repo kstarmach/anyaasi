@@ -20,6 +20,7 @@ export const GET_ANIME_LIST = gql`
               medium
               large
             }
+            bannerImage
             episodes
             nextAiringEpisode {
               episode

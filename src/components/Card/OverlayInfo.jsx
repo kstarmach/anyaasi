@@ -1,6 +1,6 @@
 import React from 'react';
 
-function BottomTitle({ title, averageScore, genres }) {
+function OverlayInfo({ title, averageScore, genres }) {
     var tensDigit = Math.floor(averageScore / 10); // Get the tens digit
     var onesDigit = averageScore % 10; // Get the ones digit
     return (
@@ -30,4 +30,4 @@ function BottomTitle({ title, averageScore, genres }) {
 
 }
 
-export default BottomTitle;
+export default OverlayInfo;
