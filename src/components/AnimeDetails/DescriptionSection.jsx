@@ -4,7 +4,7 @@ const DescriptionSection = ({ title, description, coverImage, genres, seasonYear
     var tensDigit = Math.floor(averageScore / 10); // Get the tens digit
     var onesDigit = averageScore % 10; // Get the ones digit
     return (
-        <div className="bg-white shadow-sm rounded-xl p-8 mb-4 flex gap-8">
+        <div className="bg-white shadow-sm rounded-xl p-8 mb-8 flex gap-8">
             <img src={coverImage} alt={title} className="rounded-xl h-96 w-auto" />
             <div >
                 <div className="flex items-center justify-center"> {/* Updated line */}

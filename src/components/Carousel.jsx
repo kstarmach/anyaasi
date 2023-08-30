@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import Card from './Card';
 
-const Carousel = ({ data, title,height, width }) => {
+
+const Carousel = ({ data, title, height, width }) => {
     const itemWidth = useRef(0); // Reference to store the width of a single item.
     const [currentIndex, setCurrentIndex] = useState(0);
     const carousel = useRef(null);
@@ -45,14 +46,14 @@ const Carousel = ({ data, title,height, width }) => {
         <div className="carousel  mx-auto ">
             <div className='flex mb-5 mr-20'>
                 <p className='text-2xl font-semibold  flex-grow pl-20'>{title}</p>
-                <div className='flex gap-4 '>
+                <div className='flex gap-4 items-center'>
                     <button
                         onClick={movePrev}
-                        className='bg-white color-black rounded-md p-1 flex items-center'
+                        className='bg-white color-black rounded-xl p-2 flex items-center'
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            className="h-6 w-10"
+                            className="h-5 w-5"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -68,11 +69,11 @@ const Carousel = ({ data, title,height, width }) => {
 
                     <button
                         onClick={moveNext}
-                        className='bg-white color-black rounded-md p-1 flex items-center'
+                        className='bg-white color-black rounded-xl p-2 flex items-center'
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            className="h-6 w-10"
+                            className="h-5 w-5"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -94,11 +95,11 @@ const Carousel = ({ data, title,height, width }) => {
                 >
                     {data.map((entry, index) => {
                         return (
-                            <Card 
-                            entry={entry}  
-                            key={`${entry.media.id}-${index}`}
-                            height={height}
-                            width={width}
+                            <Card
+                                entry={entry}
+                                key={`${entry.media.id}-${index}`}
+                                height={height}
+                                width={width}
                             />
                         );
                     })}
