@@ -7,7 +7,7 @@ const SearchOption = () => {
     };
 
     return (
-        <div className="flex items-center  bg-white rounded-xl ">
+        <div className="flex items-center  bg-white rounded-xl mr-1 p-3">
             <button
                 className="sm:ml-6 sm:flex sm:items-center relative mr-5"
                 onClick={handleButtonClick}
@@ -21,7 +21,7 @@ const SearchOption = () => {
                     {/* <p>Enter your search:</p> */}
                     <input
                         type="text"
-                        className="bg-white rounded-xl p-2"
+                        className="bg-white rounded-xl "
                         placeholder="Enter your search"
                     />
                 </div>

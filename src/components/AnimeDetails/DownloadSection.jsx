@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { mockEpisodeData } from './mockData';
 import { Link } from 'react-router-dom';
 
-const ITEMS_PER_PAGE = 5;
-
 const DownloadSection = () => {
     const [selectedProvider, setSelectedProvider] = useState(mockEpisodeData[0].provider);
 
@@ -12,7 +10,7 @@ const DownloadSection = () => {
 
     // Filter episodes based on the selected provider
     const selectedProviderData = mockEpisodeData.find(item => item.provider === selectedProvider);
-    const currentItems = selectedProviderData ? selectedProviderData.episodes: [];
+    const currentItems = selectedProviderData ? selectedProviderData.episodes : [];
 
     return (
         <div className='mb-8'>
@@ -30,10 +28,7 @@ const DownloadSection = () => {
                     ))}
                 </div>
                 <div className='flex gap-4 items-center'>
-                    <button
-
-                        className='bg-white color-black rounded-xl p-2 flex items-center'
-                    >
+                    <button className='bg-white color-black rounded-xl p-2 flex items-center'>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="h-5 w-5"
@@ -50,10 +45,7 @@ const DownloadSection = () => {
                         </svg>
                     </button>
 
-                    <button
-
-                        className='bg-white color-black rounded-xl p-2 flex items-center'
-                    >
+                    <button className='bg-white color-black rounded-xl p-2 flex items-center'>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="h-5 w-5"

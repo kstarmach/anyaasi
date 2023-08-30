@@ -1,11 +1,12 @@
 import { useUserContext } from '../../UserContext';
 import { useState, useEffect } from 'react'; // Import useState and useEffect
 import { Link, useNavigate } from "react-router-dom";
+
 const UserMenu = ({ handleSignOut, menuOpen }) => {
     return (
         <div
             id="user-menu"
-            className={`absolute top-full right-0 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ${menuOpen ? '' : 'hidden'
+            className={`absolute z-10 top-full right-0 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ${menuOpen ? '' : 'hidden'
                 }`}
         >
             <a
@@ -72,7 +73,7 @@ const UserOptions = () => {
                 <div className=" ">
                     <button
                         type="button"
-                        className="bg-white rounded-xl p-3 flex items-center justify-center text-md focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2"
+                        className="bg-white rounded-xl p-3 flex items-center justify-center text-md "
                         id="user-menu-button"
                         aria-expanded={menuOpen}
                         aria-haspopup="true"
@@ -109,7 +110,7 @@ const UserOptions = () => {
         )
     }
 
-    return (<Link to={`login`} className="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" aria-current="page">Sign in</Link>)
+    return (<Link to={`login`} className="font-medium border-transparent text-gray-400 hover:text-black hover:border-blue-700 inline-flex items-center px-1 pt-1 border-b-2" aria-current="page">Sign in</Link>)
 }
 
 export default UserOptions;

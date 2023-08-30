@@ -33,15 +33,16 @@ const Nav = () => {
                             </svg> */}
                         </div>
                         <div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
-                            <Link to="/" className="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 inline-flex items-center px-1 pt-1 border-b-2  " aria-current="page">Home</Link>
-                            <Link to="/popular" className="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 inline-flex items-center px-1 pt-1 border-b-2 ">Popular</Link>
-                            <Link to="/" className="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 inline-flex items-center px-1 pt-1 border-b-2  ">Anime News</Link>
-                            <Link to="/" className="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 inline-flex items-center px-1 pt-1 border-b-2 ">Help</Link>
+                            <Link to="/" className="font-medium border-transparent text-gray-400 hover:text-black hover:border-blue-700 inline-flex items-center px-1 pt-1 border-b-2  " aria-current="page">Home</Link>
+                            <Link to="/popular" className="font-medium border-transparent text-gray-400 hover:text-black hover:border-blue-700 inline-flex items-center px-1 pt-1 border-b-2 ">Popular</Link>
+                            <Link to="/" className="font-medium border-transparent text-gray-400 hover:text-black hover:border-blue-700 inline-flex items-center px-1 pt-1 border-b-2  ">Anime News</Link>
+                            <Link to="/" className="font-medium border-transparent text-gray-400 hover:text-black hover:border-blue-700 inline-flex items-center px-1 pt-1 border-b-2 ">Help</Link>
                         </div>
                     </div>
-
-                    <SearchOption />
-                    <UserOptions />
+                    <div className="flex">
+                        <SearchOption />
+                        <UserOptions />
+                    </div>
                 </div>
             </div>
         </nav>
