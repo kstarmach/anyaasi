@@ -65,6 +65,8 @@ query($id: Int) {
           episode
         }
         description
+        genres
+        seasonYear
       }    
   }    
 `;

@@ -4,7 +4,7 @@ import UserOptions from './UserOptions';
 
 const Nav = () => {
     return (
-        <nav className=" top-20 left-0 w-screen my-20">
+        <nav className=" top-20 left-0 w-screen mt-20 mb-10">
             <div className="mx-20 ">
                 <div className="flex  justify-between">
                     <div className="flex">

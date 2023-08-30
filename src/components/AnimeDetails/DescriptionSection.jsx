@@ -1,17 +1,41 @@
+import React from "react";
 
-const DescriptionSection = ({ title, description, bannerImage }) => {
+const DescriptionSection = ({ title, description, coverImage, genres, seasonYear, averageScore }) => {
+    var tensDigit = Math.floor(averageScore / 10); // Get the tens digit
+    var onesDigit = averageScore % 10; // Get the ones digit
     return (
-        <>
-            <div className="bg-white shadow-sm rounded-md p-6 mb-4">
-                <h2 className="text-xl font-semibold mb-2">{title}</h2>
-                <div className="mb-4" dangerouslySetInnerHTML={{ __html: description }} />
+        <div className="bg-white shadow-sm rounded-xl p-8 mb-4 flex gap-8">
+            <img src={coverImage} alt={title} className="rounded-xl h-96 w-auto" />
+            <div >
+                <div className="flex items-center justify-center"> {/* Updated line */}
+                    <div className="flex-grow">
+                        <h1 className="text-3xl font-semibold mb-4">{title}</h1>
+                        <div className="mb-4">
+                            {seasonYear && (
+                                <span className="inline-flex items-center rounded-xl bg-gray-50 px-3 py-2 font-medium text-base text-gray-400 mr-3">
+                                    {seasonYear}
+                                </span>
+                            )}
+                            {genres.map((genre, idx) => (
+                                <span className="inline-flex items-center rounded-xl bg-gray-50 px-3 py-2 font-medium text-base text-gray-400 mr-3" key={idx}>
+                                    {genre}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                    <div className='flex items-center text-white bg-blue-700 rounded-xl p-2'>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512" className='fill-yellow-400 mr-2'>
+                            <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
+                        </svg>
+                        <h3 className="mr-2 text-lg">
+                            {tensDigit},{onesDigit}
+                        </h3>
+                    </div>
+                </div>
+
+                <div  dangerouslySetInnerHTML={{ __html: description }}  className="mt-4"/>
             </div>
-            {
-                bannerImage && (
-                    <img src={bannerImage} alt={title} className="rounded-md shadow-md mb-4" />
-                )
-            }
-        </>
+        </div>
     )
 }
 

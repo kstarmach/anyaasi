@@ -30,34 +30,32 @@ const AnimeDetails = () => {
         averageScore,
         popularity,
         nextAiringEpisode,
-        description
+        description,
+        genres,
+        seasonYear
     } = data.Media;
 
     return (
-        <>
-            <div className="flex space-x-4 md:max-lg:flex">
-                <div className="w-1/4">
-                    <StatisticsSection
-                        coverImage={coverImage.extraLarge}
-                        title={title.userPreferred}
-                        episodes={episodes}
-                        nextAiringEpisode={nextAiringEpisode?.episode}
-                        averageScore={averageScore}
-                        popularity={popularity}
-                    />
-                </div>
+        <div className="mx-20">
+            {/* <StatisticsSection
+                title={title.userPreferred}
+                episodes={episodes}
+                nextAiringEpisode={nextAiringEpisode?.episode}
+                averageScore={averageScore}
+                popularity={popularity}
+            /> */}
 
-                <div className="w-3/4">
-                    <DescriptionSection
-                        title={title.userPreferred}
-                        description={description}
-                        bannerImage={bannerImage}
-                    />
-
-                    <DownloadSection />
-                </div>
-            </div>
-        </>
+            <DescriptionSection
+                coverImage={coverImage.extraLarge}
+                title={title.userPreferred}
+                description={description}
+                bannerImage={bannerImage}
+                genres={genres}
+                seasonYear={seasonYear}
+                averageScore={averageScore}
+            />
+            <DownloadSection />
+        </div>
 
     );
 }
