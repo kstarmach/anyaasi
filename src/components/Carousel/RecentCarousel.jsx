@@ -1,11 +1,11 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { useUserContext } from '../UserContext';
-import { GET_ANIME_LIST } from '../queries';
-import Carousel from './Carousel';
+import { useUserContext } from '../../UserContext';
+import { GET_ANIME_LIST } from '../../queries';
+import Carousel from '.';
 
 
-function Recent() {
+function RecentCarousel() {
     const { user } = useUserContext();
 
     if (!user) {
@@ -48,9 +48,10 @@ function Recent() {
             title={"Recently Added"} 
             height={250}
             width={460}
+            carouselType="recent"
             />
         </>
     );
 }
 
-export default Recent;
+export default RecentCarousel;

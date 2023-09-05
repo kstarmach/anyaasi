@@ -1,11 +1,11 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { useUserContext } from '../UserContext';
-import { GET_ANIME_LIST } from '../queries';
-import Carousel from './Carousel';
+import { useUserContext } from '../../UserContext';
+import { GET_ANIME_LIST } from '../../queries';
+import Carousel from '.';
 
 
-function Popular() {
+function PopularCarousel() {
   const { user } = useUserContext();
 
   if (!user) {
@@ -40,9 +40,10 @@ function Popular() {
         title={"Popular"}
         height={400}
         width={300}
+        carouselType="popular" 
       />
     </>
   );
 }
 
-export default Popular;
+export default PopularCarousel;

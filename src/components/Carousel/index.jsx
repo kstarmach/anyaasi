@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
-import Card from './Card';
+import Card from '../Card';
 
 
-const Carousel = ({ data, title, height, width }) => {
+const Carousel = ({ data, title, height, width, carouselType }) => {
     const itemWidth = useRef(0); // Reference to store the width of a single item.
     const [currentIndex, setCurrentIndex] = useState(0);
     const carousel = useRef(null);
@@ -94,12 +94,21 @@ const Carousel = ({ data, title, height, width }) => {
                     className="carousel-container relative flex gap-10 overflow-hidden  px-20 "
                 >
                     {data.map((entry, index) => {
+                        let coverImage;
+       
+                        if (carouselType === "popular") {
+                            coverImage = entry.media.coverImage.extraLarge;
+                        } else if (carouselType === "recent") {
+                            coverImage = entry.media.bannerImage;
+                        }
+
                         return (
                             <Card
                                 entry={entry}
                                 key={`${entry.media.id}-${index}`}
                                 height={height}
                                 width={width}
+                                coverImage={coverImage}
                             />
                         );
                     })}

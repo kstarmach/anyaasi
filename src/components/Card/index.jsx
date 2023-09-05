@@ -1,9 +1,9 @@
-import BadgeIndicator from '../BadgeIndicator';
+import BadgeIndicator from './BadgeIndicator';
 import OverlayInfo from './OverlayInfo';
 import { Link } from 'react-router-dom';
 
-function Card({ entry,  height, width  }) {
-    const { coverImage, nextAiringEpisode, episodes, title, averageScore, genres, id } = entry.media;
+function Card({ entry, height, width, coverImage }) {
+    const { nextAiringEpisode, episodes, title, averageScore, genres, id } = entry.media;
     return (
         <div className='mb-16'>
             <Link to={`/anime/${id}`} >
@@ -13,7 +13,7 @@ function Card({ entry,  height, width  }) {
                 >
                     <div className="h-full w-auto">
                         <img
-                            src={coverImage.extraLarge}
+                            src={coverImage}
                             alt="Anime Cover"
                             className="rounded-xl h-full w-full object-cover  shadow-2xl"
                         />

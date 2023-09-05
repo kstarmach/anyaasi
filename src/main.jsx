@@ -7,11 +7,10 @@ import client from './apollo'; // Import your Apollo Client instance
 import './index.css';
 
 import App from './App.jsx';
-import LoginForm from './components/LoginForm.jsx';
+import LoginForm from './pages/LoginForm.jsx';
 import AnimeDetails from './components/AnimeDetails';
-import Popular from './components/Popular';
-import Home from './components/Home';
-
+import Home from './pages/Home';
+import Popular from './Pages/Popular';
 
 
 const router = createBrowserRouter([
