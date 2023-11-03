@@ -1,10 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { mockEpisodeData } from './mockData';
 import { Link } from 'react-router-dom';
-
+import axios from 'axios';
 const DownloadSection = () => {
     const [selectedProvider, setSelectedProvider] = useState(mockEpisodeData[0].provider);
-
+    const [rssData, setRssData] = useState([]);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('/fetchRss');
+                if (response.status === 200) {
+                    console.log(response.data); // Move this line here
+                    setRssData(response.data);
+                }
+            } catch (error) {
+                console.error('Error fetching RSS data:', error);
+            }
+        };
+    
+        fetchData();
+    }, []);
+    
 
     const providers = mockEpisodeData.map(item => item.provider);
 
@@ -70,7 +86,7 @@ const DownloadSection = () => {
                         <tr className="bg-gray-100 rounded-md">
                             <th className="py-2 px-4 text-left">Episode</th>
                             <th className="py-2 px-4 text-left">Title</th>
-                            {/* <th className="py-2 px-4 text-left">Comments Count</th> */}
+                            <th className="py-2 px-4 text-left">Comments Count</th>
                             <th className="py-2 px-4 text-left">Links</th>
                             <th className="py-2 px-4 text-left">Size</th>
                             <th className="py-2 px-4 text-left">Date</th>
@@ -80,26 +96,36 @@ const DownloadSection = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {currentItems.map((episode) => (
-                            <tr key={episode.episodeNumber}>
-                                <td className="py-2 px-4">{episode.episodeNumber}</td>
-                                <td className="py-2 px-4"><Link to="#">{episode.episodeTitle}</Link></td>
-                                {/* <td className="py-2 px-4">{episode.commentsCount}</td> */}
-                                <td className="py-2 px-4 flex gap-2">
-                                    <div>
-                                        <a href={episode.links.magnetLink} className="text-blue-500 hover:underline">M</a>
-                                    </div>
-                                    <div>
-                                        <a href={episode.links.downloadLink} className="text-blue-500 hover:underline">D</a>
-                                    </div>
-                                </td>
-                                <td className="py-2 px-4">{episode.size}</td>
-                                <td className="py-2 px-4">{episode.date}</td>
-                                <td className="py-2 px-4">{episode.seedCount}</td>
-                                <td className="py-2 px-4">{episode.leechCount}</td>
-                                <td className="py-2 px-4">{episode.downloads}</td>
+                        {rssData && rssData.length > 0 ? (
+                            rssData.map((episode, idx) => (
+                                <tr key={idx}>
+                                    <td className="py-2 px-4">{episode.episodeNumber}</td>
+                                    <td className="py-2 px-4">
+                                        <a href={episode.guid[0]._} target="_blank" rel="noopener noreferrer">
+                                            {episode.title[0]}
+                                        </a>
+                                    </td>
+                                    <td className="py-2 px-4">{episode['nyaa:comments'][0]}</td>
+                                    <td className="py-2 px-4 flex gap-2">
+                                        <div>
+                                            <a href={`magnet:${episode.link[0]}`} className="text-blue-500 hover:underline">M</a>
+                                        </div>
+                                        <div>
+                                            <a href={episode.link[0]} className="text-blue-500 hover:underline">D</a>
+                                        </div>
+                                    </td>
+                                    <td className="py-2 px-4">{episode['nyaa:size'][0]}</td>
+                                    <td className="py-2 px-4">{episode.pubDate}</td>
+                                    <td className="py-2 px-4">{episode['nyaa:seeders'][0]}</td>
+                                    <td className="py-2 px-4">{episode['nyaa:leechers'][0]}</td>
+                                    <td className="py-2 px-4">{episode['nyaa:downloads'][0]}</td>
+                                </tr>
+                            ))
+                        ) : (
+                            <tr>
+                                <td colSpan="9">No data available</td>
                             </tr>
-                        ))}
+                        )}
                     </tbody>
                 </table>
             </div>
@@ -108,3 +134,4 @@ const DownloadSection = () => {
 }
 
 export default DownloadSection;
+
