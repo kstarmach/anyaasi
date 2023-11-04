@@ -54,7 +54,7 @@ const AnimeDetails = () => {
                 seasonYear={seasonYear}
                 averageScore={averageScore}
             />
-            <DownloadSection />
+            <DownloadSection title={title.userPreferred} />
         </div>
 
     );

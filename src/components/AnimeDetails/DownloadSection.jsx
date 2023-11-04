@@ -1,32 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import { mockEpisodeData } from './mockData';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
-const DownloadSection = () => {
-    const [selectedProvider, setSelectedProvider] = useState(mockEpisodeData[0].provider);
+const DownloadSection = ({ title }) => {
+    const providers = ['Erai-raws', 'SubsPlease']
+    const [selectedProvider, setSelectedProvider] = useState(providers[0]);
     const [rssData, setRssData] = useState([]);
+
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('/fetchRss');
+                const response = await axios.get(`/fetchRss/${selectedProvider}?q=${title}+1080p`);
                 if (response.status === 200) {
-                    console.log(response.data); // Move this line here
+
                     setRssData(response.data);
                 }
             } catch (error) {
                 console.error('Error fetching RSS data:', error);
             }
         };
-    
+
         fetchData();
-    }, []);
-    
+    }, [selectedProvider]);
 
-    const providers = mockEpisodeData.map(item => item.provider);
-
-    // Filter episodes based on the selected provider
-    const selectedProviderData = mockEpisodeData.find(item => item.provider === selectedProvider);
-    const currentItems = selectedProviderData ? selectedProviderData.episodes : [];
 
     return (
         <div className='mb-8'>
@@ -84,7 +78,7 @@ const DownloadSection = () => {
                 <table className="w-full border-collapse table-auto">
                     <thead>
                         <tr className="bg-gray-100 rounded-md">
-                            <th className="py-2 px-4 text-left">Episode</th>
+                            {/* <th className="py-2 px-4 text-left">Episode</th> */}
                             <th className="py-2 px-4 text-left">Title</th>
                             <th className="py-2 px-4 text-left">Comments Count</th>
                             <th className="py-2 px-4 text-left">Links</th>
@@ -99,7 +93,7 @@ const DownloadSection = () => {
                         {rssData && rssData.length > 0 ? (
                             rssData.map((episode, idx) => (
                                 <tr key={idx}>
-                                    <td className="py-2 px-4">{episode.episodeNumber}</td>
+                                    {/* <td className="py-2 px-4">{episode.episodeNumber}</td> */}
                                     <td className="py-2 px-4">
                                         <a href={episode.guid[0]._} target="_blank" rel="noopener noreferrer">
                                             {episode.title[0]}

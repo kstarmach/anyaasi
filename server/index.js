@@ -7,9 +7,14 @@ const port = 3000;
 
 app.use(express.json());
 
-app.get('/fetchRss', async (req, res) => {
+app.get('/fetchRss/:u', async (req, res) => {
   try {
-    const response = await axios.get('https://nyaa.si/?page=rss&q=%5BSubsPlease%5D+Spy+x+Family+-+%281080p%29&c=1_0&f=2');
+    const u = req.params.u;
+    const q = req.query.q;
+    const c = '1_0';
+    const f = 2;
+
+    const response = await axios.get(`https://nyaa.si/?page=rss&u=${u}&q=${q}&c=${c}&f=${f}`);
     if (response.status === 200) {
       // Parse the XML data using xml2js
       parseString(response.data, (err, result) => {
