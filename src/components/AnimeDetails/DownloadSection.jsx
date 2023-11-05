@@ -102,7 +102,7 @@ const DownloadSection = ({ title }) => {
                                     <td className="py-2 px-4">{episode['nyaa:comments'][0]}</td>
                                     <td className="py-2 px-4 flex gap-2">
                                         <div>
-                                            <a href={`magnet:${episode.link[0]}`} className="text-blue-500 hover:underline">M</a>
+                                            <a href={`magnet:?xt=urn:btih:${episode['nyaa:infoHash']}`} className="text-blue-500 hover:underline">M</a>
                                         </div>
                                         <div>
                                             <a href={episode.link[0]} className="text-blue-500 hover:underline">D</a>
