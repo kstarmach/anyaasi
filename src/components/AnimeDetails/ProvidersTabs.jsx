@@ -1,7 +1,11 @@
-const ChangePageButtons = () => {
+const ChangePageButtons = ({ currentPage, setCurrentPage, totalPages }) => {
     return (
         <div className='flex gap-4 items-center'>
-            <button className='bg-white color-black rounded-xl p-2 flex items-center'>
+            <button
+                onClick={() => setCurrentPage(currentPage - 1)}
+                disabled={currentPage === 1}
+                className='bg-white color-black rounded-xl p-2 flex items-center'
+            >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-5 w-5"
@@ -17,8 +21,12 @@ const ChangePageButtons = () => {
                     />
                 </svg>
             </button>
-
-            <button className='bg-white color-black rounded-xl p-2 flex items-center'>
+            <span>Page {currentPage}/{totalPages}</span>
+            <button
+                onClick={() => setCurrentPage(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className='bg-white color-black rounded-xl p-2 flex items-center'
+            >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-5 w-5"
@@ -38,7 +46,7 @@ const ChangePageButtons = () => {
     )
 }
 
-const ProvidersTabs = ({ selectedProvider, setSelectedProvider }) => {
+const ProvidersTabs = ({ selectedProvider, setSelectedProvider, currentPage, setCurrentPage, totalPages }) => {
     const providers = ['Erai-raws', 'SubsPlease'];
 
     return (
@@ -54,7 +62,11 @@ const ProvidersTabs = ({ selectedProvider, setSelectedProvider }) => {
                     </button>
                 ))}
             </div>
-            <ChangePageButtons />
+            <ChangePageButtons
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+                totalPages={totalPages}
+            />
         </div>
     )
 }
