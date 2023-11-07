@@ -5,12 +5,17 @@ import TableBody from './TableBody';
 import ProvidersTabs from './ProvidersTabs';
 import { CheckCircleIcon, ArrowDownCircleIcon, ArrowUpCircleIcon } from '@heroicons/react/24/solid'
 
-
+function parseDate(dateString) {
+    const [day, month, year, hours, minutes] = dateString.split(/[\s-:]/);
+    return new Date(year, month - 1, day, hours, minutes);
+}
 
 const Table = ({ title }) => {
     const [selectedProvider, setSelectedProvider] = useState('Erai-raws');
     const [rssData, setRssData] = useState([]);
-    const [sortDirection, setSortDirection] = useState('asc');
+    const [sortDirections, setSortDirections] = useState({pubDate: 'desc'});
+
+
     const [sortColumn, setSortColumn] = useState(null); // Track the currently sorted column
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(10);
@@ -23,23 +28,45 @@ const Table = ({ title }) => {
                     // Sort the data based on the selected sorting column and direction
                     let sortedData = [...response.data];
                     if (sortColumn) {
-                        console.log(sortColumn);
+                        if (sortColumn === 'title') {
+                            // Sort by title without localeCompare
+                            sortedData = sortedData.sort((a, b) => {
+                                const aValue = a[sortColumn];
+                                const bValue = b[sortColumn];
 
-                        sortedData = sortedData.sort((a, b) => {
-                            const aDownloads = parseInt(a[sortColumn][0], 10);
-                            const bDownloads = parseInt(b[sortColumn][0], 10);
+                                if (typeof aValue === 'string' && typeof bValue === 'string') {
+                                    return sortDirections[sortColumn] === 'asc'
+                                        ? aValue.localeCompare(bValue)
+                                        : bValue.localeCompare(aValue);
+                                } else {
+                                    // Handle cases where the values are not strings
+                                    if (sortDirections[sortColumn] === 'asc') {
+                                        return aValue < bValue ? -1 : 1;
+                                    } else {
+                                        return aValue < bValue ? 1 : -1;
+                                    }
+                                }
+                            });
+                        } else if (sortColumn === 'pubDate') {
+                            sortedData = sortedData.sort((a, b) => {
+                                const aValue = new Date(a[sortColumn]);
+                                const bValue = new Date(b[sortColumn]);
 
-                            return sortDirection === 'asc' ? aDownloads - bDownloads : bDownloads - aDownloads;
-                        });
+                                if (!isNaN(aValue) && !isNaN(bValue)) {
+                                    return sortDirections[sortColumn] === 'asc' ? aValue - bValue : bValue - aValue;
+                                } else {
+                                    // Handle other cases or decide how to sort invalid dates
+                                    return 0;
+                                }
+                            });
+                        } else {
+                            sortedData = sortedData.sort((a, b) => {
+                                const aDownloads = parseInt(a[sortColumn][0], 10);
+                                const bDownloads = parseInt(b[sortColumn][0], 10);
 
-                        // sortedData = sortedData.sort((a, b) => {
-                        //     const aValue = a[sortColumn];
-                        //     const bValue = b[sortColumn];
-                        //     if (aValue && bValue) {
-                        //         return sortDirection === 'asc' ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
-                        //     }
-                        //     return 0; // Leave the order unchanged if either value is undefined
-                        // });
+                                return sortDirections[sortColumn] === 'asc' ? aDownloads - bDownloads : bDownloads - aDownloads;
+                            });
+                        }
                     }
 
                     setRssData(sortedData);
@@ -50,18 +77,22 @@ const Table = ({ title }) => {
         };
 
         fetchData();
-    }, [selectedProvider, title, sortDirection, sortColumn]);
+    }, [selectedProvider, title, sortDirections, sortColumn]);  // Include sortDirection and sortColumn in the dependencies
+
 
     const handleSort = (columnKey) => {
-        // Toggle the sort direction when the user clicks the sorting button
-        setSortDirection((prevSortDirection) => (prevSortDirection === 'asc' ? 'desc' : 'asc'));
+        // Toggle the sort direction for the clicked column
+        setSortDirections((prevSortDirections) => ({
+            [columnKey]: prevSortDirections[columnKey] === 'asc' ? 'desc' : 'asc',
+        }));
+
         setSortColumn(columnKey);
     };
 
 
     const columns = [
-        { key: 'title', label: 'Title', sortable: false },
-        { key: 'comments', label: '', sortable: false },
+        { key: 'title', label: 'Title', sortable: true },
+        { key: 'nyaa:comments', label: '', sortable: true },
         { key: 'links', label: 'Links', sortable: false },
         { key: 'nyaa:size', label: 'Size', sortable: true },
         { key: 'pubDate', label: 'Date', sortable: true },
@@ -89,7 +120,7 @@ const Table = ({ title }) => {
                     <TableHeader
                         columns={columns}
                         onSort={handleSort}
-                        sortDirection={sortDirection}
+                        sortDirections={sortDirections}
                     />
                     <TableBody rssData={paginatedData} />
                 </table>
