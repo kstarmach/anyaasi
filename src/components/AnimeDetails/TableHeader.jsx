@@ -11,8 +11,8 @@ const TableHeader = ({ columns, sortDirections, onSort }) => {
                         onClick={column.sortable ? () => onSort(column.key) : null}
                     >
                         <div className="flex items-center">
-                            <span>{column.label}</span>
-                            <div className='ml-auto'>
+                            {column.label}
+                            <div>
                                 {
                                     column.sortable && (
                                         sortDirections[column.key] ? (
@@ -24,8 +24,6 @@ const TableHeader = ({ columns, sortDirections, onSort }) => {
                                         )
                                     )
                                 }
-
-
                             </div>
                         </div>
                     </th>

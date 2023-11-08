@@ -3,7 +3,7 @@ import axios from 'axios';
 import TableHeader from './TableHeader';
 import TableBody from './TableBody';
 import ProvidersTabs from './ProvidersTabs';
-import { CheckCircleIcon, ArrowDownCircleIcon, ArrowUpCircleIcon } from '@heroicons/react/24/solid'
+import { CheckCircleIcon, ArrowDownCircleIcon, ArrowUpCircleIcon, ChatBubbleLeftRightIcon } from '@heroicons/react/24/solid'
 
 function parseDate(dateString) {
     const [day, month, year, hours, minutes] = dateString.split(/[\s-:]/);
@@ -13,7 +13,7 @@ function parseDate(dateString) {
 const Table = ({ title }) => {
     const [selectedProvider, setSelectedProvider] = useState('Erai-raws');
     const [rssData, setRssData] = useState([]);
-    const [sortDirections, setSortDirections] = useState({pubDate: 'desc'});
+    const [sortDirections, setSortDirections] = useState({ pubDate: 'desc' });
 
 
     const [sortColumn, setSortColumn] = useState(null); // Track the currently sorted column
@@ -91,14 +91,14 @@ const Table = ({ title }) => {
 
 
     const columns = [
-        { key: 'title', label: 'Title', sortable: true },
-        { key: 'nyaa:comments', label: '', sortable: true },
+        { key: 'title', label: <span className='mr-auto'>Title</span>, sortable: true },
+        { key: 'nyaa:comments', label: <ChatBubbleLeftRightIcon className="h-6 w-6" />, sortable: true },
         { key: 'links', label: 'Links', sortable: false },
-        { key: 'nyaa:size', label: 'Size', sortable: true },
-        { key: 'pubDate', label: 'Date', sortable: true },
-        { key: 'nyaa:seeders', label: <ArrowUpCircleIcon className="h-6 w-6" />, sortable: true },
-        { key: 'nyaa:leechers', label: <ArrowDownCircleIcon className="h-6 w-6" />, sortable: true },
-        { key: 'nyaa:downloads', label: <CheckCircleIcon className="h-6 w-6" />, sortable: true }
+        { key: 'nyaa:size', label: <span className='mr-auto'>Size</span>, sortable: true },
+        { key: 'pubDate', label: <span className='mr-auto'>Date</span>, sortable: true },
+        { key: 'nyaa:seeders', label: <ArrowUpCircleIcon className="h-6 w-6 m-auto" />, sortable: true },
+        { key: 'nyaa:leechers', label: <ArrowDownCircleIcon className="h-6 w-6 m-auto" />, sortable: true },
+        { key: 'nyaa:downloads', label: <CheckCircleIcon className="h-6 w-6 m-auto" />, sortable: true }
 
     ];
 
@@ -116,7 +116,7 @@ const Table = ({ title }) => {
                 totalPages={Math.ceil(rssData.length / itemsPerPage)}
             />
             <div className="bg-white shadow-sm rounded-r-lg rounded-b-lg p-8 ">
-                <table className="w-full border-collapse table-auto">
+                <table className="w-full border-collapse table-auto ">
                     <TableHeader
                         columns={columns}
                         onSort={handleSort}
