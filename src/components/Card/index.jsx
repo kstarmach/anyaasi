@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 function Card({ entry, height, width, coverImage }) {
     const { nextAiringEpisode, episodes, title, averageScore, genres, id } = entry.media;
     return (
-        <div className='mb-16'>
+        <div className='mb-16 ' >
             <Link to={`/anime/${id}`} >
                 <div
                     className="relative"

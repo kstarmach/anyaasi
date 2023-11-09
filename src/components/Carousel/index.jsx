@@ -1,12 +1,24 @@
 import { useState, useRef, useEffect } from 'react';
 import Card from '../Card';
-
+import { ChevronRightIcon, ChevronLeftIcon } from '@heroicons/react/24/solid'
 
 const Carousel = ({ data, title, height, width, carouselType }) => {
     // We use the useRef hook to get a reference to the slider container
     const sliderRef = useRef(null);
-    const scrollAmount = 320; // The amount to scroll when clicking the navigation buttons
+    const imageWidth = 300; // Width of one image
+    const padding = 20; // Padding added to the images-container
 
+    const scroll = (direction) => {
+        const container = sliderRef.current;
+        const maxScrollLeft =
+            container.scrollWidth - container.clientWidth + padding * 2;
+
+        if (direction === "left" && container.scrollLeft > 0) {
+            container.scrollLeft -= imageWidth + padding;
+        } else if (direction === "right" && container.scrollLeft < maxScrollLeft) {
+            container.scrollLeft += imageWidth + padding;
+        }
+    };
 
     return (
         <div className="carousel  mx-auto ">
@@ -14,55 +26,25 @@ const Carousel = ({ data, title, height, width, carouselType }) => {
                 <p className='text-2xl font-semibold  flex-grow pl-20'>{title}</p>
                 <div className='flex gap-4 items-center'>
                     <button
-                        onClick={() => {
-                            const container = sliderRef.current;
-                            container.scrollLeft -= scrollAmount; // Scroll left by the specified amount
-                        }}
+                        onClick={() => scroll("left")}
                         className='bg-white color-black rounded-xl p-2 flex items-center '
                     >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-5 w-5"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            strokeWidth={2}
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M15 19l-7-7 7-7"
-                            />
-                        </svg>
+                        <ChevronLeftIcon className="h-5 w-5" />
+
                     </button>
 
                     <button
-                        onClick={() => {
-                            const container = sliderRef.current;
-                            container.scrollLeft += scrollAmount; // Scroll right by the specified amount
-                        }}
+                        onClick={() => scroll("right")}
                         className='bg-white color-black rounded-xl p-2 flex items-center'
                     >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-5 w-5"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            strokeWidth={2}
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M9 5l7 7-7 7"
-                            />
-                        </svg>
+                        <ChevronRightIcon className="h-5 w-5" />
+
                     </button>
                 </div>
             </div>
 
             {/* Image container */}
-            <div className="images-container relative flex gap-10 overflow-hidden  " ref={sliderRef}>
+            <div className="images-container relative flex gap-10 overflow-hidden px-20" ref={sliderRef}>
                 {data.map((entry, index) => {
                     let coverImage;
 

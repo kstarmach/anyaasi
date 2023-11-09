@@ -13,10 +13,5 @@
   transition: scroll 0.3s ease-in-out;
 }
 
-.image {
-  width: 200px;
-  height: 200px;
-  margin: 5px;
-  border-radius: 8px;
-}
+
 
