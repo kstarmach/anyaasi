@@ -1,5 +1,6 @@
 import { useUserContext } from '../../UserContext'
-
+import { useQuery } from '@apollo/client';
+import { GET_USER_DATA } from '../../queries'
 
 const UserData = ({ data, type, handleSignIn }) => {
     return (
@@ -45,28 +46,34 @@ const UserData = ({ data, type, handleSignIn }) => {
     )
 }
 
-const UserResult = ({ data, loading, error }) => {
+const UserResult = ({ username }) => {
     const { setUser } = useUserContext();
+    const { loading, error, data: anilistData } = useQuery(GET_USER_DATA, {
+        variables: { name: username },
+        skip: !username,
+    });
+
+    
 
     const handleSignIn = () => {
-        setUser(data.User);
-        localStorage.setItem('user', JSON.stringify(data.User));
+        setUser(anilistData.User);
+        localStorage.setItem('user', JSON.stringify(anilistData.User));
 
     }
 
-    if (data) {
+    if (anilistData) {
         return (
             <>
 
                 <UserData
                     type={'anilist'}
-                    data={data}
+                    data={anilistData}
                     handleSignIn={handleSignIn}
                 />
 
                 <UserData
                     type={'mal'}
-                    data={data}
+                    data={anilistData}
                     handleSignIn={handleSignIn}
                 />
             </>
