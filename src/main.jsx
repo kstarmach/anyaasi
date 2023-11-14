@@ -7,7 +7,7 @@ import client from './apollo'; // Import your Apollo Client instance
 import './index.css';
 
 import App from './App.jsx';
-import LoginForm from './pages/LoginForm.jsx';
+import Login from './pages/Login.jsx';
 import AnimeDetails from './components/AnimeDetails';
 import Home from './pages/Home';
 import Popular from './Pages/Popular';
@@ -24,7 +24,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/login',
-        element: <LoginForm />,
+        element: <Login />,
       },
       {
         path: '/',
