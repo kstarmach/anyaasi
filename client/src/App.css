@@ -1,0 +1,17 @@
+.anime-entry {
+  /* height: 650px; */
+  /* width: 460px; Set a fixed height for consistent entry size */
+  height: 325px;
+  width: 230px;
+}
+
+
+
+.images-container {
+  display: flex; 
+  scroll-behavior: smooth;
+  transition: scroll 0.3s ease-in-out;
+}
+
+
+
