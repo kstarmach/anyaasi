@@ -1,8 +1,6 @@
 import { useUserContext } from '../../UserContext'
 import axios from 'axios';
 import { useState, useEffect  } from 'react';
-import { useQuery } from '@apollo/client';
-import { GET_USER_DATA } from '../../queries'
 
 const UserData = ({ data, type, handleSignIn }) => {
     return (
