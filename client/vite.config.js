@@ -6,7 +6,9 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/rss/': 'http://localhost:3000', // Change this to the address of your Node server
+      '/api/': 'http://localhost:3000', // Change this to the address of your Node server
+      '/anilist/': 'http://localhost:3000', // Change this to the address of your Node server
+      '/myanimelist/': 'http://localhost:3000', // Change this to the address of your Node server
     },
   },
 })

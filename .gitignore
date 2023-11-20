@@ -32,3 +32,4 @@ logs/
 /jspm_packages/
 /pnpm-lock.yaml
 /yarn-error.log
+.env
