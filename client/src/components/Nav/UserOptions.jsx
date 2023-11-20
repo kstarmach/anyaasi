@@ -85,7 +85,7 @@ const UserOptions = () => {
                         <div className="flex items-center">
                             <img
                                 className="h-8 w-8 rounded-full"
-                                src={user.avatar.large}
+                                src={user.avatar}
                                 alt=""
                             />
                             <span className='ml-3 mb-1 text-base'>
