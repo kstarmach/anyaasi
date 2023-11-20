@@ -1,4 +1,6 @@
 import { useUserContext } from '../../UserContext'
+import axios from 'axios';
+import { useState, useEffect  } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_USER_DATA } from '../../queries'
 
@@ -12,10 +14,10 @@ const UserData = ({ data, type, handleSignIn }) => {
                     <div className="flex items-center space-x-4">
                         <img
                             className="h-8 w-8 rounded-full"
-                            src={data.User.avatar.large}
+                            src={data.avatar}
                             alt="User Avatar"
                         />
-                        <p className="text-lg font-semibold">{data.User.name}</p>
+                        <p className="text-lg font-semibold">{data.name}</p>
                     </div>
 
                     {type === 'mal' ?
@@ -47,33 +49,43 @@ const UserData = ({ data, type, handleSignIn }) => {
 }
 
 const UserResult = ({ username }) => {
+    const [userData, setUserData] = useState(null);
     const { setUser } = useUserContext();
-    const { loading, error, data: anilistData } = useQuery(GET_USER_DATA, {
-        variables: { name: username },
-        skip: !username,
-    });
 
-    
+    useEffect(() => {
+        const anilistData = async () => {
+            try {
+                const response = await axios.get(`/anilist/${username}`);
+                setUserData(response.data);
+            } catch (error) {
+                console.error('Error fetching data:', error.message);
+            }
+        };
+
+        // Fetch data when the component mounts or when the username changes
+        anilistData();
+    }, [username]);
 
     const handleSignIn = () => {
-        setUser(anilistData.User);
-        localStorage.setItem('user', JSON.stringify(anilistData.User));
+
+        setUser(userData);
+        localStorage.setItem('user', JSON.stringify(userData));
 
     }
 
-    if (anilistData) {
+    if (userData) {
         return (
             <>
 
                 <UserData
                     type={'anilist'}
-                    data={anilistData}
+                    data={userData}
                     handleSignIn={handleSignIn}
                 />
 
                 <UserData
                     type={'mal'}
-                    data={anilistData}
+                    data={userData}
                     handleSignIn={handleSignIn}
                 />
             </>
