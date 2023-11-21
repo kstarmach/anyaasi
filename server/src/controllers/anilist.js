@@ -2,8 +2,8 @@ const anilistRouter = require('express').Router();
 const { ApolloClient, InMemoryCache, gql } = require('@apollo/client/core');
 // Import the GraphQL client setup
 const client = new ApolloClient({
-    uri: 'https://graphql.anilist.co', // Replace with your GraphQL API endpoint
-    cache: new InMemoryCache(),
+  uri: 'https://graphql.anilist.co', // Replace with your GraphQL API endpoint
+  cache: new InMemoryCache(),
 });
 
 // Define your GraphQL query
@@ -22,24 +22,24 @@ const GET_USER_DATA = gql`
 // Define the route to fetch user data from the GraphQL API
 anilistRouter.get('/:username', async (req, res) => {
 
-    try {
-        const { username } = req.params;
+  try {
+    const { username } = req.params;
 
-        // Make a request to your GraphQL API using Apollo Client
-        const { data } = await client.query({
-            query: GET_USER_DATA,
-            variables: { name: username },
-        });
+    // Make a request to your GraphQL API using Apollo Client
+    const { data } = await client.query({
+      query: GET_USER_DATA,
+      variables: { name: username },
+    });
 
-        const { id, name, avatar: { large } } = data.User;
-        const userJson = { id, name, avatar: large };
+    const { id, name, avatar: { large } } = data.User;
+    const userJson = { id, name, avatar: large };
 
 
-        res.json(userJson);
-    } catch (error) {
-        console.error(error);
-        res.status(500).send(error.message);
-    }
+    res.json(userJson);
+  } catch (error) {
+    console.error(error);
+    //res.status(500).send(error.message);
+  }
 });
 
 module.exports = anilistRouter;

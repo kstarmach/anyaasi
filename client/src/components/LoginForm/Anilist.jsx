@@ -1,5 +1,8 @@
-const LoginForm = ({ handleForm, setUsername }) => {
+import React, { useState } from 'react';
 
+import UserResult from "./UserResult"
+
+const AnilistForm = ({ handleForm, setUsername }) => {
     return (
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm rounded-lg bg-white p-6 shadow-sm">
             <form className="space-y-6" onSubmit={handleForm}>
@@ -33,4 +36,35 @@ const LoginForm = ({ handleForm, setUsername }) => {
     )
 }
 
-export default LoginForm;
+const Anilist = () => {
+    const [username, setUsername] = useState('');
+    const handleForm = (event) => {
+        event.preventDefault();
+        setUsername(event.target[0].value);
+    }
+
+    return (
+        <div className="flex-1 justify-center px-6 py-12 lg:px-8 mt-40">
+
+            <div className="grow">
+                <img
+                    className="mx-auto h-16 w-auto grow"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/AniList_logo.svg/512px-AniList_logo.svg.png"
+                    alt="Your Company"
+                />
+            </div>
+
+            <AnilistForm
+                setUsername={setUsername}
+                handleForm={handleForm}
+            />
+            {username ?
+                <UserResult
+                    username={username}
+                />
+                : ''}
+        </div>
+    )
+}
+
+export default Anilist

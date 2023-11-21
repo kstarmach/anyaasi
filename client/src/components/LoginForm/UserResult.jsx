@@ -1,8 +1,8 @@
 import { useUserContext } from '../../UserContext'
 import axios from 'axios';
-import { useState, useEffect  } from 'react';
+import { useState, useEffect } from 'react';
 
-const UserData = ({ data, type, handleSignIn }) => {
+const UserData = ({ data, handleSignIn }) => {
     return (
         <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-sm rounded-lg bg-white p-6 shadow-sm space-y-6 ">
 
@@ -18,19 +18,13 @@ const UserData = ({ data, type, handleSignIn }) => {
                         <p className="text-lg font-semibold">{data.name}</p>
                     </div>
 
-                    {type === 'mal' ?
-                        <img
-                            className="mx-auto h-10 w-auto "
-                            src="https://upload.wikimedia.org/wikipedia/commons/7/7a/MyAnimeList_Logo.png"
-                            alt="Your Company"
-                        />
-                        :
-                        <img
-                            className="mx-auto h-10 w-auto "
-                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/AniList_logo.svg/512px-AniList_logo.svg.png"
-                            alt="Your Company"
-                        />
-                    }
+
+                    <img
+                        className="mx-auto h-10 w-auto "
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/AniList_logo.svg/512px-AniList_logo.svg.png"
+                        alt="Your Company"
+                    />
+
 
                     <button
                         type="button"
@@ -51,12 +45,16 @@ const UserResult = ({ username }) => {
     const { setUser } = useUserContext();
 
     useEffect(() => {
+        setUserData(null);
         const anilistData = async () => {
             try {
                 const response = await axios.get(`/anilist/${username}`);
                 setUserData(response.data);
             } catch (error) {
                 console.error('Error fetching data:', error.message);
+
+                // Set user data to null in case of an error
+                setUserData(null);
             }
         };
 
@@ -65,35 +63,27 @@ const UserResult = ({ username }) => {
     }, [username]);
 
     const handleSignIn = () => {
-
-        setUser(userData);
-        localStorage.setItem('user', JSON.stringify(userData));
-
-    }
+        if (userData) {
+            setUser(userData);
+            localStorage.setItem('user', JSON.stringify(userData));
+        }
+    };
 
     if (userData) {
         return (
             <>
-
-                <UserData
-                    type={'anilist'}
-                    data={userData}
-                    handleSignIn={handleSignIn}
-                />
-
-                <UserData
-                    type={'mal'}
-                    data={userData}
-                    handleSignIn={handleSignIn}
-                />
+                <UserData data={userData} handleSignIn={handleSignIn} />
             </>
-
-
-
+        );
+    } else {
+        // Display 'Not Found' when userData is null (i.e., an error occurred)
+        return (
+            <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-sm rounded-lg bg-white p-6 shadow-sm space-y-6 ">
+                <p className="text-lg font-semibold">Not Found</p>
+            </div >
         )
     }
+};
 
-    return '';
-}
 
 export default UserResult;

@@ -1,37 +1,20 @@
 import React, { useState } from 'react';
-
-
-import Header from '../components/LoginForm/Header';
-import UserResult from '../components/LoginForm/UserResult';
-import LoginForm from '../components/LoginForm';
-
-
+import Anilist from '../components/LoginForm/Anilist';
+import MyAnimeList from '../components/LoginForm/MyAnimeList';
 
 const Login = () => {
-
-    const [username, setUsername] = useState('');
-    const handleForm = (event) => {
-        event.preventDefault();
-        setUsername(event.target[0].value);
-    }
-
-
-
-
     return (
         <>
-            <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 mt-40">
-                <Header />
+            <h2 className="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+                Select your account
+            </h2>
+            <div className='flex flex-wrap'>
+                <div className='flex-1'></div>
+                <Anilist />
 
-                <LoginForm setUsername={setUsername} handleForm={handleForm} />
-
-                <UserResult
-                    username={username}
-                />
-
+                <MyAnimeList />
+                <div className='flex-1'></div>
             </div>
-
-
         </>
     )
 }
