@@ -16,12 +16,6 @@ function RecentCarousel({ animeLists }) {
         })
         .filter(entry => entry.media.nextAiringEpisode.episode - 1 > entry.progress);
 
-    // Now sortedEntries contains entries that meet the condition
-
-    sortedEntries.forEach(entry => {
-        console.log(`Progress: ${entry.progress}, Episode: ${entry.media.nextAiringEpisode.episode - 1}`);
-    });
-
     return (
         <>
             <Carousel
