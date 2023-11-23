@@ -10,7 +10,7 @@ function getNewCodeVerifier() {
 }
 // Store the code verifier and access token globally or in a database
 let globalCodeVerifier = null;
-
+let redirectUri = 'http://localhost:3000/myanimelist/oauth/callback';
 // Configure session middleware
 malRouter.use(session({
     secret: 'your-secret-key', // Change this to a secure secret
@@ -18,15 +18,15 @@ malRouter.use(session({
     saveUninitialized: true,
 }));
 
-malRouter.get('/myanimelist/:username', async (req, res) => {
+
+malRouter.get('/login', async (req, res) => {
     try {
         globalCodeVerifier = getNewCodeVerifier(); // Store the code verifier
 
-        const { username } = req.params;
+        // const { username } = req.params;
 
         // Replace these values with your actual client ID, code challenge, and redirect URI
         const clientId = process.env.CLIENT_ID;
-        const redirectUri = 'http://localhost:3000/user/oauth/callback';
 
         // Additional optional parameters
         const responseType = 'code';
@@ -69,7 +69,6 @@ malRouter.get('/oauth/callback', async (req, res) => {
         // Replace these values with your actual client ID, client secret, and redirect URI
         const clientId = process.env.CLIENT_ID;
         const clientSecret = process.env.CLIENT_SECRET; // Omit if your application doesn't have a client secret
-        const redirectUri = 'http://localhost:3000/user/oauth/callback';
 
         // Define the URL and parameters for token request
         const baseUrlToken = 'https://myanimelist.net/v1/oauth2/token';
@@ -84,16 +83,29 @@ malRouter.get('/oauth/callback', async (req, res) => {
 
         // Make the POST request using Axios
         const response = await axios.post(baseUrlToken, new URLSearchParams(paramsToken));
+        //console.log(response.data.access_token);
         req.session.accessToken = response.data.access_token;
 
-        res.json(response.data.access_token);
+        const userData = await axios.get('https://api.myanimelist.net/v2/users/@me', {
+            headers: {
+                'Authorization': `Bearer ${response.data.access_token}`
+            }
+        });
+
+        let userJson = {
+            token: response.data,
+            user: userData.data
+        };
+        console.log(userJson);
+
+        res.json(userJson);
     } catch (error) {
         console.error('Error:', error.message);
         res.status(500).send(error.message);
     }
 });
 
-malRouter.get('/username/data', async (req, res) => {
+malRouter.get('/user', async (req, res) => {
     try {
         console.log('Retrieving access token from session:', req.session.accessToken);
         res.json(req.session.accessToken);
