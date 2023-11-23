@@ -10,7 +10,7 @@ function getNewCodeVerifier() {
 }
 // Store the code verifier and access token globally or in a database
 let globalCodeVerifier = null;
-let redirectUri = 'http://localhost:3000/myanimelist/oauth/callback';
+let redirectUri = 'http://localhost:3000/myanimelist/oauth/callback/';
 // Configure session middleware
 malRouter.use(session({
     secret: 'your-secret-key', // Change this to a secure secret
@@ -98,7 +98,8 @@ malRouter.get('/oauth/callback', async (req, res) => {
         };
         console.log(userJson);
 
-        res.json(userJson);
+        //res.json(userJson);
+        res.redirect(`http://localhost:5173/?access_token=${response.data.access_token}`)
     } catch (error) {
         console.error('Error:', error.message);
         res.status(500).send(error.message);
@@ -121,7 +122,7 @@ malRouter.get('/:username', async (req, res) => {
         const { username } = req.params;
         const response = await axios.get(`https://api.myanimelist.net/v2/users/${username}/animelist?fields=list_status&limit=25&status=watching`, {
             headers: {
-                'X-MAL-CLIENT-ID': 'd395b1923f5da0bd3acc7e49c38efdf9'
+                'X-MAL-CLIENT-ID': process.env.CLIENT_ID
             }
         });
 

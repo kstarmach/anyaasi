@@ -9,6 +9,11 @@ export default defineConfig({
       '/rss/': 'http://localhost:3000', // Change this to the address of your Node server
       '/anilist/': 'http://localhost:3000', // Change this to the address of your Node server
       '/myanimelist/': 'http://localhost:3000', // Change this to the address of your Node server
+      '/api': {
+        target: 'https://api.myanimelist.net',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
     },
   },
 })

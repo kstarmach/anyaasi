@@ -1,5 +1,7 @@
 import axios from 'axios';
+import { useUserContext } from '../../UserContext'
 import { useEffect, useState } from 'react';
+
 
 const MyAnimeListForm = ({ handleLogin, redirectUrl }) => {
     return (
@@ -22,7 +24,52 @@ const MyAnimeListForm = ({ handleLogin, redirectUrl }) => {
 }
 
 const MyAnimeList = () => {
+    const { setUser } = useUserContext();
     const [loginUrl, setLoginUrl] = useState(null);
+
+    // Initialize state for access token
+    const [accessToken, setAccessToken] = useState(null);
+
+    useEffect(() => {
+        const getAccessTokenFromUrl = async () => {
+            const { access_token } = Object.fromEntries(new URLSearchParams(window.location.search));
+
+            if (access_token) {
+
+                try {
+                    const { data } = await axios.get('/api/v2/users/@me', {
+                        headers: { 'Authorization': `Bearer ${access_token}` }
+                    });
+
+                    const userData = {
+                        id: data.id,
+                        name: data.name,
+                        avatar: data.picture,
+                        type: 'myanimelist'
+                    };
+
+                    setUser(userData);
+                    localStorage.setItem('user', JSON.stringify(userData));
+                } catch (error) {
+                    console.error('Error fetching user data:', error);
+                }
+            }
+        };
+
+        getAccessTokenFromUrl();
+
+    // Cleanup code to remove parameters from the current URL
+    const removeParamsFromUrl = () => {
+        const urlWithoutParams = window.location.origin + window.location.pathname;
+        window.history.replaceState({}, document.title, urlWithoutParams);
+    };
+
+    return () => {
+        removeParamsFromUrl();
+        // Additional cleanup code if needed
+    };
+    }, []);
+
 
     const handleLogin = async (event) => {
         event.preventDefault();
