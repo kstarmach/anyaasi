@@ -12,6 +12,7 @@ const Home = () => {
   const { loading, error, data, refetch } = useQuery(GET_ANIME_LIST, {
     variables: { userId: user?.id },
     skip: !user?.id, // Skip the query if user.id is falsy
+    skip: user?.type === 'myanimelist'
   });
 
   // useEffect to refetch data when user.id becomes available
@@ -27,6 +28,9 @@ const Home = () => {
     return <Login />;
   }
 
+  if(user.type === 'myanimelist'){
+    return <p>MYANIMELIST</p>
+  }
   if (loading) {
     return <p>Loading...</p>;
   }
