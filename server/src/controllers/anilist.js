@@ -32,7 +32,7 @@ anilistRouter.get('/:username', async (req, res) => {
     });
 
     const { id, name, avatar: { large } } = data.User;
-    const userJson = { id, name, avatar: large };
+    const userJson = { id, name, avatar: large, type: 'anilist' };
 
 
     res.json(userJson);
