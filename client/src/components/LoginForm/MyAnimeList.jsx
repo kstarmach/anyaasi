@@ -45,7 +45,7 @@ const MyAnimeList = () => {
                         id: data.id,
                         name: data.name,
                         avatar: data.picture,
-                        type: 'myanimelist'
+                        provider: 'myanimelist'
                     };
 
                     setUser(userData);

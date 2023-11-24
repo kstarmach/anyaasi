@@ -4,16 +4,29 @@ import { useUserContext } from "../UserContext";
 import { useQuery } from "@apollo/client";
 import { GET_ANIME_LIST } from "../queries";
 import Login from './Login';
-
+import axios from 'axios';
 import { useEffect } from 'react';
 
 const Home = () => {
   const { user } = useUserContext();
+
+  useEffect(() => {
+    const getMyAnimeList = async () => {
+      if (user) {
+        const result = await axios.get(`/myanimelist/${user.name}`);
+        console.log(result);
+      }
+    }
+    getMyAnimeList();
+  }, [user])
+
+
+
   const { loading, error, data, refetch } = useQuery(GET_ANIME_LIST, {
     variables: { userId: user?.id },
-    skip: !user?.id, // Skip the query if user.id is falsy
-    skip: user?.type === 'myanimelist'
+    skip: !user?.id || user?.type !== 'myanimelist', // Skip the query if user.id is falsy or user.type is not 'myanimelist'
   });
+
 
   // useEffect to refetch data when user.id becomes available
   useEffect(() => {
@@ -28,7 +41,7 @@ const Home = () => {
     return <Login />;
   }
 
-  if(user.type === 'myanimelist'){
+  if (user.type === 'myanimelist') {
     return <p>MYANIMELIST</p>
   }
   if (loading) {
