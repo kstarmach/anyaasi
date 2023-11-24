@@ -5,45 +5,13 @@ import { useQuery } from "@apollo/client";
 import { GET_ANIME_LIST } from "../queries";
 import Login from './Login';
 import axios from 'axios';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
-const Home = () => {
-  const { user } = useUserContext();
-
-  useEffect(() => {
-    const getMyAnimeList = async () => {
-      if (user) {
-        const result = await axios.get(`/myanimelist/${user.name}`);
-        console.log(result);
-      }
-    }
-    getMyAnimeList();
-  }, [user])
-
-
-
+const Anilist = ({ userId }) => {
   const { loading, error, data, refetch } = useQuery(GET_ANIME_LIST, {
-    variables: { userId: user?.id },
-    skip: !user?.id || user?.type !== 'myanimelist', // Skip the query if user.id is falsy or user.type is not 'myanimelist'
+    variables: { userId: userId },
   });
 
-
-  // useEffect to refetch data when user.id becomes available
-  useEffect(() => {
-    if (user?.id) {
-      refetch({ userId: user.id });
-    }
-  }, [user?.id, refetch]);
-
-  // Check if user.id exists before rendering or using data
-  if (!user?.id) {
-    // Handle the case when user.id is not available
-    return <Login />;
-  }
-
-  if (user.type === 'myanimelist') {
-    return <p>MYANIMELIST</p>
-  }
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -51,16 +19,63 @@ const Home = () => {
   if (error) {
     return <p>Error: {error.message}</p>;
   }
+  return (
+    <>
+      <PopularCarousel animeLists={data.MediaListCollection.lists} />
+      <RecentCarousel animeLists={data.MediaListCollection.lists} />
+    </>
+  )
+}
 
-  const animeListCollection = data.MediaListCollection;
-  const animeLists = animeListCollection.lists;
+const MyAnimeList = ({ username }) => {
+  const [list, setList] = useState(null);
+
+  useEffect(() => {
+    const getMyAnimeList = async () => {
+      try {
+        const result = await axios.get(`/myanimelist/${username}`);
+
+        setList(result.data);
+      } catch (error) {
+        console.error('Error fetching anime list:', error);
+        // Handle the error as needed
+      }
+    };
+
+    getMyAnimeList();
+  }, [username]);
+
 
   return (
     <>
-      <PopularCarousel animeLists={animeLists} />
-      <RecentCarousel animeLists={animeLists} />
+      <p>My Anime List</p>
+      {list !== null ? (
+        list.map((item) => (
+          <p key={item.node.id}>{item.node.title}</p>
+        ))
+      ) : (
+        <p>Loading...</p>
+      )}
     </>
   );
+};
+
+const Home = () => {
+  const { user } = useUserContext();
+
+
+  if (!user) {
+    return <Login />
+  }
+
+  if (user.provider === 'anilist') {
+    return <Anilist userId={user.id} />
+  }
+
+  if (user.provider === 'myanimelist') {
+    return <MyAnimeList username={user.name} />
+  }
+
 };
 
 
