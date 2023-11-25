@@ -4,6 +4,37 @@ const axios = require('axios');
 const session = require('express-session');
 const crypto = require('crypto');
 const fs = require('fs');
+const { ApolloClient, InMemoryCache, gql } = require('@apollo/client/core');
+// Import the GraphQL client setup
+const client = new ApolloClient({
+    uri: 'https://graphql.anilist.co', // Replace with your GraphQL API endpoint
+    cache: new InMemoryCache(),
+});
+
+// Define your GraphQL query
+const GET_ANIME_DETAILS = gql`
+query($id: Int) {  
+    Media(idMal: $id, type:ANIME)
+      {
+        title {
+          userPreferred
+        }
+        episodes
+        coverImage {
+          extraLarge
+        }
+        bannerImage
+        averageScore
+        popularity
+        nextAiringEpisode{
+          episode
+        }
+        description
+        genres
+        seasonYear
+      }    
+  }    
+`;
 
 function getNewCodeVerifier() {
     const token = crypto.randomBytes(64).toString('base64').replace(/\W/g, '');
@@ -127,32 +158,52 @@ malRouter.get('/:username', async (req, res) => {
             }
         });
 
+        const result = []
 
-        // Read JSON data from a file
-        const jsonDataPath = '../server/src/sync/anime-list-full.json';
-        const jsonData = JSON.parse(fs.readFileSync(jsonDataPath, 'utf8'));
-
-
-        const mal_ids_list = [];
-
-        // Assuming `response` is your API response containing the data
         for (let i = 0; i < response.data.data.length; i++) {
-            mal_ids_list.push(response.data.data[i].node.id);
+
+            // Make a request to your GraphQL API using Apollo Client
+            const { loading, error, data } = await client.query({
+                query: GET_ANIME_DETAILS,
+                variables: { id: response.data.data[i].id }, // Use response.data.data[i].id
+            });
+
+            // Add progress property to data.Media
+            const mediaWithProgress = {
+                ...data.Media,
+                progress: response.data.data[i].list_status.num_episodes_watched,
+            };
+
+            result.push(mediaWithProgress);
         }
 
-        // Assuming `jsonData` is your JSON data array
-        const new_mal_ids = mal_ids_list.map(id => {
-            const foundItem = jsonData.find(item => item.mal_id === id);
-            return foundItem
-                ? {
-                    id: foundItem.anilist_id,
-                    progress: response.data.data.find(
-                        entry => entry.node.id === id
-                    ).list_status.num_episodes_watched,
-                }
-                : null;
-        });
-        res.json(new_mal_ids);
+
+        // // Read JSON data from a file
+        // const jsonDataPath = '../server/src/sync/anime-list-full.json';
+        // const jsonData = JSON.parse(fs.readFileSync(jsonDataPath, 'utf8'));
+
+
+        // const mal_ids_list = [];
+
+        // // Assuming `response` is your API response containing the data
+        // for (let i = 0; i < response.data.data.length; i++) {
+        //     mal_ids_list.push(response.data.data[i].node.id);
+        // }
+
+        // // Assuming `jsonData` is your JSON data array
+        // const new_mal_ids = mal_ids_list.map(id => {
+        //     const foundItem = jsonData.find(item => item.mal_id === id);
+        //     return foundItem
+        //         ? {
+        //             id: foundItem.anilist_id,
+        //             progress: response.data.data.find(
+        //                 entry => entry.node.id === id
+        //             ).list_status.num_episodes_watched,
+        //         }
+        //         : null;
+        // });
+
+        res.json(result);
         //res.json(response.data.data);
 
     } catch (error) {
