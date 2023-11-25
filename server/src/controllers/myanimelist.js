@@ -15,24 +15,25 @@ const client = new ApolloClient({
 const GET_ANIME_DETAILS = gql`
 query($id: Int) {  
     Media(idMal: $id, type:ANIME)
-      {
+    {
+        id
         title {
           userPreferred
         }
-        episodes
         coverImage {
           extraLarge
+          medium
+          large
         }
         bannerImage
-        averageScore
-        popularity
-        nextAiringEpisode{
+        episodes
+        nextAiringEpisode {
           episode
+          timeUntilAiring
         }
-        description
+        averageScore
         genres
-        seasonYear
-      }    
+      }  
   }    
 `;
 
@@ -148,13 +149,18 @@ malRouter.get('/user', async (req, res) => {
     }
 });
 
-malRouter.get('/:username', async (req, res) => {
+malRouter.get('/:access_token', async (req, res) => {
     try {
 
-        const { username } = req.params;
-        const response = await axios.get(`https://api.myanimelist.net/v2/users/${username}/animelist?fields=list_status&limit=25&status=watching`, {
+        const { access_token } = req.params;
+        // const response = await axios.get(`https://api.myanimelist.net/v2/users/${username}/animelist?fields=list_status&limit=25&status=watching`, {
+        //     headers: {
+        //         'X-MAL-CLIENT-ID': process.env.CLIENT_ID
+        //     }
+        // });
+        const response = await axios.get(`https://api.myanimelist.net/v2/users/@me/animelist?fields=list_status&limit=25&status=watching`, {
             headers: {
-                'X-MAL-CLIENT-ID': process.env.CLIENT_ID
+                'Authorization': `Bearer ${access_token}`
             }
         });
 
@@ -165,7 +171,7 @@ malRouter.get('/:username', async (req, res) => {
             // Make a request to your GraphQL API using Apollo Client
             const { loading, error, data } = await client.query({
                 query: GET_ANIME_DETAILS,
-                variables: { id: response.data.data[i].id }, // Use response.data.data[i].id
+                variables: { id: response.data.data[i].node.id }, // Use response.data.data[i].id
             });
 
             // Add progress property to data.Media
