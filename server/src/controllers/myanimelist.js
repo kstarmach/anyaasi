@@ -3,6 +3,7 @@ const malRouter = require('express').Router();
 const axios = require('axios');
 const session = require('express-session');
 const crypto = require('crypto');
+const fs = require('fs');
 
 function getNewCodeVerifier() {
     const token = crypto.randomBytes(64).toString('base64').replace(/\W/g, '');
@@ -126,8 +127,33 @@ malRouter.get('/:username', async (req, res) => {
             }
         });
 
+
+        // Read JSON data from a file
+        const jsonDataPath = '../server/src/sync/anime-list-full.json';
+        const jsonData = JSON.parse(fs.readFileSync(jsonDataPath, 'utf8'));
+
+
+        const mal_ids_list = [];
+
+        // Assuming `response` is your API response containing the data
+        for (let i = 0; i < response.data.data.length; i++) {
+            mal_ids_list.push(response.data.data[i].node.id);
+        }
+
+        // Assuming `jsonData` is your JSON data array
+        const new_mal_ids = mal_ids_list.map(id => {
+            const foundItem = jsonData.find(item => item.mal_id === id);
+            return foundItem
+                ? {
+                    id: foundItem.anilist_id,
+                    progress: response.data.data.find(
+                        entry => entry.node.id === id
+                    ).list_status.num_episodes_watched,
+                }
+                : null;
+        });
+        res.json(new_mal_ids);
         //res.json(response.data.data);
-        res.json(response.data.data);
 
     } catch (error) {
         res.status(500).send(error);
