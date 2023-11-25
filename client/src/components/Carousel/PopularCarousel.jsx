@@ -4,9 +4,10 @@ import Carousel from '.';
 
 function PopularCarousel({ animeLists }) {
   // Sort entries by progress in ascending order
-
-  const sortedEntries = animeLists.flatMap(list => list.entries).sort((a, b) => b.progress - a.progress);
-
+  //const sortedEntries = animeLists.flatMap(list => list.entries).sort((a, b) => b.progress - a.progress);
+  const sortedEntries = animeLists.map(a => a).sort((a, b) => b.progress - a.progress);
+  
+  //console.log(sortedEntries);
   return (
     <>
       <Carousel

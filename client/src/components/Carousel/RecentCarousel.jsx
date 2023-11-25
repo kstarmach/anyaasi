@@ -5,17 +5,28 @@ import Carousel from '.';
 function RecentCarousel({ animeLists }) {
 
     // Sort entries by progress in ascending order
+    // const sortedEntries = animeLists
+    //     .flatMap(list => list.entries)
+    //     .filter(entry => entry.media.nextAiringEpisode) // Filter out entries with null nextAiringEpisode
+    //     .sort((a, b) => {
+    //         const airingA = a.media.nextAiringEpisode;
+    //         const airingB = b.media.nextAiringEpisode;
+
+    //         return airingB.timeUntilAiring - airingA.timeUntilAiring;
+    //     })
+    //     .filter(entry => entry.media.nextAiringEpisode.episode - 1 > entry.progress);
     const sortedEntries = animeLists
-        .flatMap(list => list.entries)
-        .filter(entry => entry.media.nextAiringEpisode) // Filter out entries with null nextAiringEpisode
+        .map(list => list)
+        .filter(entry => entry.nextAiringEpisode) // Filter out entries with null nextAiringEpisode
         .sort((a, b) => {
-            const airingA = a.media.nextAiringEpisode;
-            const airingB = b.media.nextAiringEpisode;
+            const airingA = a.nextAiringEpisode;
+            const airingB = b.nextAiringEpisode;
 
             return airingB.timeUntilAiring - airingA.timeUntilAiring;
         })
-        .filter(entry => entry.media.nextAiringEpisode.episode - 1 > entry.progress);
+        .filter(entry => entry.nextAiringEpisode.episode - 1 > entry.progress);
 
+        console.log(animeLists);
     return (
         <>
             <Carousel

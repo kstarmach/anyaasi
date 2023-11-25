@@ -3,7 +3,8 @@ import OverlayInfo from './OverlayInfo';
 import { Link } from 'react-router-dom';
 
 function Card({ entry, height, width, coverImage }) {
-    const { nextAiringEpisode, episodes, title, averageScore, genres, id } = entry.media;
+    //const { nextAiringEpisode, episodes, title, averageScore, genres, id } = entry.media;
+    const { nextAiringEpisode, episodes, title, averageScore, genres, id } = entry;
     return (
         <div className='mb-16 ' >
             <Link to={`/anime/${id}`} >

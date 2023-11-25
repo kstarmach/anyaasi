@@ -49,15 +49,18 @@ const Carousel = ({ data, title, height, width, carouselType }) => {
                     let coverImage;
 
                     if (carouselType === "popular") {
-                        coverImage = entry.media.coverImage.extraLarge;
+                        coverImage = entry.coverImage.extraLarge;
+                       // coverImage = entry.media.coverImage.extraLarge;
                     } else if (carouselType === "recent") {
-                        coverImage = entry.media.bannerImage;
+                        //coverImage = entry.media.bannerImage;
+                        coverImage = entry.bannerImage;
                     }
 
                     return (
                         <Card
                             entry={entry}
-                            key={`${entry.media.id}-${index}`}
+                            //key={`${entry.media.id}-${index}`}
+                            key={`${entry.id}-${index}`}
                             height={height}
                             width={width}
                             coverImage={coverImage}

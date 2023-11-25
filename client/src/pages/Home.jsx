@@ -19,21 +19,29 @@ const Anilist = ({ userId }) => {
   if (error) {
     return <p>Error: {error.message}</p>;
   }
+  let mediaWithProgress = [];
+  for (let i = 0; i < data.MediaListCollection.lists[0].entries.length; i++) {
+    const newObj = {
+      ...data.MediaListCollection.lists[0].entries[i].media,
+      progress: data.MediaListCollection.lists[0].entries[i].progress,
+    };
+    mediaWithProgress.push(newObj);
+  }
   return (
     <>
-      <PopularCarousel animeLists={data.MediaListCollection.lists} />
-      <RecentCarousel animeLists={data.MediaListCollection.lists} />
+      <PopularCarousel animeLists={mediaWithProgress} />
+      <RecentCarousel animeLists={mediaWithProgress} />
     </>
   )
 }
 
-const MyAnimeList = ({ username }) => {
+const MyAnimeList = ({ accessToken }) => {
   const [list, setList] = useState(null);
 
   useEffect(() => {
     const getMyAnimeList = async () => {
       try {
-        const result = await axios.get(`/myanimelist/${username}`);
+        const result = await axios.get(`/myanimelist/${accessToken}`);
 
         setList(result.data);
       } catch (error) {
@@ -43,21 +51,16 @@ const MyAnimeList = ({ username }) => {
     };
 
     getMyAnimeList();
-  }, [username]);
+  }, [accessToken]);
 
-
-  return (
-    <>
-      <p>My Anime List</p>
-      {list !== null ? (
-        list.map((item) => (
-          <p key={item.node.id}>{item.node.title}</p>
-        ))
-      ) : (
-        <p>Loading...</p>
-      )}
-    </>
-  );
+  if (list) {
+    return (
+      <>
+        <PopularCarousel animeLists={list} />
+        <RecentCarousel animeLists={list} />
+      </>
+    );
+  }
 };
 
 const Home = () => {
@@ -73,7 +76,7 @@ const Home = () => {
   }
 
   if (user.provider === 'myanimelist') {
-    return <MyAnimeList username={user.name} />
+    return <MyAnimeList accessToken={user.accessToken} />
   }
 
 };
