@@ -70,3 +70,25 @@ query($id: Int) {
       }    
   }    
 `;
+
+export const SEARCH_ANIME = gql`
+query($q: String){
+  Page(page: 0, perPage: 5) {
+    media(search: $q, sort:POPULARITY_DESC, type:ANIME) {
+      id
+      title {
+        userPreferred
+      }
+      startDate {
+        year
+        month
+        day
+      }
+      coverImage{
+        large
+      }
+      averageScore
+      format
+    }
+  }
+}`
