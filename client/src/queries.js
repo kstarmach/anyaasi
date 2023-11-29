@@ -92,3 +92,28 @@ query($q: String){
     }
   }
 }`
+
+export const GET_POPULAR_ANIME = gql`
+query($season: MediaSeason, $seasonYear: Int){
+  Page(page: 0, perPage: 25) {
+    media(type: ANIME, sort: SCORE_DESC, season: $season, seasonYear: $seasonYear) {
+      id
+      title {
+        userPreferred
+      }
+      coverImage {
+        extraLarge
+        medium
+        large
+      }
+      bannerImage
+      episodes
+      nextAiringEpisode {
+        episode
+        timeUntilAiring
+      }
+      averageScore
+      genres
+    }
+  }
+}`
