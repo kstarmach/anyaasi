@@ -48,10 +48,10 @@ const Carousel = ({ data, title, height, width, carouselType }) => {
                 {data.map((entry, index) => {
                     let coverImage;
 
-                    if (carouselType === "popular") {
+                    if (carouselType === "normal") {
                         coverImage = entry.coverImage.extraLarge;
-                       // coverImage = entry.media.coverImage.extraLarge;
-                    } else if (carouselType === "recent") {
+                        // coverImage = entry.media.coverImage.extraLarge;
+                    } else if (carouselType === "wide") {
                         //coverImage = entry.media.bannerImage;
                         coverImage = entry.bannerImage;
                     }
