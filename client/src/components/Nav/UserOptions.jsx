@@ -1,15 +1,16 @@
 import { useUserContext } from '../../UserContext';
 import { useState, useEffect } from 'react'; // Import useState and useEffect
 import { Link, useNavigate } from "react-router-dom";
+import { ArrowLeftOnRectangleIcon } from '@heroicons/react/24/solid'
 
 const UserMenu = ({ handleSignOut, menuOpen }) => {
     return (
         <div
             id="user-menu"
-            className={`absolute z-10 top-full right-0 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ${menuOpen ? '' : 'hidden'
+            className={` absolute z-10 top-full right-0 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ${menuOpen ? '' : 'hidden'
                 }`}
         >
-            <a
+            {/* <a
                 href="#"
                 className="flex w-full px-4 py-2 text-sm text-gray-700"
                 role="menuitem"
@@ -24,14 +25,15 @@ const UserMenu = ({ handleSignOut, menuOpen }) => {
                 tabIndex="-1"
             >
                 Settings
-            </a>
+            </a> */}
             <a
                 href="#"
-                className="flex w-full px-4 py-2 text-sm text-gray-700"
+                className="flex w-full px-4 py-2 text-sm text-gray-700 text-right"
                 role="menuitem"
                 tabIndex="-1"
                 onClick={handleSignOut}
             >
+                <ArrowLeftOnRectangleIcon className='w-5 h-5 mr-2' />
                 Sign out
             </a>
         </div>
