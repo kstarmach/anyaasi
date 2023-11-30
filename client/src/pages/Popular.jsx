@@ -2,9 +2,7 @@ import Card from "../components/Card";
 import { GET_POPULAR_ANIME } from "../queries";
 import { useQuery } from "@apollo/client";
 const Popular = () => {
-    const { loading, error, data } = useQuery(GET_POPULAR_ANIME, {
-        variables: { season: "FALL", seasonYear: 2023 },
-    });
+    const { loading, error, data } = useQuery(GET_POPULAR_ANIME);
 
     if (loading) return <p>Loading...</p>;
 

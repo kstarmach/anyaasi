@@ -94,9 +94,9 @@ query($q: String){
 }`
 
 export const GET_POPULAR_ANIME = gql`
-query($season: MediaSeason, $seasonYear: Int){
+query{
   Page(page: 0, perPage: 25) {
-    media(type: ANIME, sort: SCORE_DESC, season: $season, seasonYear: $seasonYear) {
+    media(type: ANIME, sort: TRENDING_DESC) {
       id
       title {
         userPreferred
