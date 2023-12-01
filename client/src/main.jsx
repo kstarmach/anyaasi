@@ -11,7 +11,7 @@ import Login from './pages/Login.jsx';
 import AnimeDetails from './components/AnimeDetails';
 import Home from './pages/Home';
 import Popular from './pages/Popular';
-import About from './pages/About.jsx';
+
 
 
 const router = createBrowserRouter([
@@ -34,10 +34,6 @@ const router = createBrowserRouter([
       {
         path: '/popular',
         element: <Popular />,
-      },
-      {
-        path: '/about',
-        element: <About />,
       },
       {
         path: "anime/:animeId",
