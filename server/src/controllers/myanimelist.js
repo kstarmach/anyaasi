@@ -130,9 +130,9 @@ malRouter.get('/oauth/callback', async (req, res) => {
             user: userData.data
         };
         console.log(userJson);
-
+        const client_url = env.process.CLIENT_URL;
         //res.json(userJson);
-        res.redirect(`${env.process.CLIENT_URL}/?access_token=${response.data.access_token}`)
+        res.redirect(`${client_url}/?access_token=${response.data.access_token}`)
     } catch (error) {
         console.error('Error:', error.message);
         res.status(500).send(error.message);
