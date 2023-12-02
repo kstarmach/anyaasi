@@ -37,7 +37,7 @@ const router = createBrowserRouter([
         element: <Popular />,
       },
       {
-        path: "anime/:animeId",
+        path: "/anime/:animeId",
         element: <AnimeDetails />,
       },
     ],
