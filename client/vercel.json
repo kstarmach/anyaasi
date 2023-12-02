@@ -1,8 +1,16 @@
 {
     "rewrites": [
         {
-            "source": "/myanimelist/login/:match*",
-            "destination": "https://anyaasi-server.onrender.com/myanimelist/login/:match*"
+            "source": "/rss/:match*",
+            "destination": "https://anyaasi-server.onrender.com/rss/:match*"
+        },
+        {
+            "source": "/anilist/:match*",
+            "destination": "https://anyaasi-server.onrender.com/anilist/:match*"
+        },
+        {
+            "source": "/myanimelist/:match*",
+            "destination": "https://anyaasi-server.onrender.com/myanimelist/:match*"
         }
     ]
 }
