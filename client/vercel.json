@@ -2,7 +2,7 @@
     "rewrites": [
         {
             "source": "/myanimelist/login/:match*",
-            "destination": "https://anyaasi-server.onrender.com/:match*"
+            "destination": "https://anyaasi-server.onrender.com/myanimelist/login/:match*"
         }
     ]
 }
