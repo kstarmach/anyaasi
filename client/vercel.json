@@ -17,8 +17,8 @@
             "destination": "https://api.myanimelist.net/:match*"
         },
         {
-            "source": "/anime/:match*",
-            "destination": "/:match*"
+            "source": "/anime/:animeId*",
+            "destination": "/anime/:animeId*"
         }
     ]
 }
