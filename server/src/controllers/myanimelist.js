@@ -43,7 +43,7 @@ function getNewCodeVerifier() {
 }
 // Store the code verifier and access token globally or in a database
 let globalCodeVerifier = null;
-let redirectUri = 'http://localhost:3000/myanimelist/oauth/callback/';
+let redirectUri = 'https://anyaasi-server.onrender.com/myanimelist/oauth/callback/';
 // Configure session middleware
 malRouter.use(session({
     secret: 'your-secret-key', // Change this to a secure secret
@@ -132,7 +132,7 @@ malRouter.get('/oauth/callback', async (req, res) => {
         console.log(userJson);
 
         //res.json(userJson);
-        res.redirect(`http://localhost:5173/?access_token=${response.data.access_token}`)
+        res.redirect(`${env.process.CLIENT_URL}/?access_token=${response.data.access_token}`)
     } catch (error) {
         console.error('Error:', error.message);
         res.status(500).send(error.message);
@@ -153,11 +153,7 @@ malRouter.get('/:access_token', async (req, res) => {
     try {
 
         const { access_token } = req.params;
-        // const response = await axios.get(`https://api.myanimelist.net/v2/users/${username}/animelist?fields=list_status&limit=25&status=watching`, {
-        //     headers: {
-        //         'X-MAL-CLIENT-ID': process.env.CLIENT_ID
-        //     }
-        // });
+
         const response = await axios.get(`https://api.myanimelist.net/v2/users/@me/animelist?fields=list_status&limit=25&status=watching`, {
             headers: {
                 'Authorization': `Bearer ${access_token}`
@@ -183,34 +179,8 @@ malRouter.get('/:access_token', async (req, res) => {
             result.push(mediaWithProgress);
         }
 
-
-        // // Read JSON data from a file
-        // const jsonDataPath = '../server/src/sync/anime-list-full.json';
-        // const jsonData = JSON.parse(fs.readFileSync(jsonDataPath, 'utf8'));
-
-
-        // const mal_ids_list = [];
-
-        // // Assuming `response` is your API response containing the data
-        // for (let i = 0; i < response.data.data.length; i++) {
-        //     mal_ids_list.push(response.data.data[i].node.id);
-        // }
-
-        // // Assuming `jsonData` is your JSON data array
-        // const new_mal_ids = mal_ids_list.map(id => {
-        //     const foundItem = jsonData.find(item => item.mal_id === id);
-        //     return foundItem
-        //         ? {
-        //             id: foundItem.anilist_id,
-        //             progress: response.data.data.find(
-        //                 entry => entry.node.id === id
-        //             ).list_status.num_episodes_watched,
-        //         }
-        //         : null;
-        // });
-
         res.json(result);
-        //res.json(response.data.data);
+
 
     } catch (error) {
         res.status(500).send(error);
