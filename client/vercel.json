@@ -15,6 +15,10 @@
         {
             "source": "/api/:match*",
             "destination": "https://api.myanimelist.net/:match*"
+        },
+        {
+            "source": "/anime/:match*",
+            "destination": "/anime/:match*"
         }
     ]
 }
