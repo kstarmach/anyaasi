@@ -7,8 +7,9 @@ import client from './apollo'; // Import your Apollo Client instance
 import './index.css';
 
 import App from './App.jsx';
-import Login from './pages/Login.jsx';
 import AnimeDetails from './components/AnimeDetails';
+
+import Login from './pages/Login.jsx';
 import Home from './pages/Home';
 import Popular from './pages/Popular';
 
