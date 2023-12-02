@@ -11,6 +11,10 @@
         {
             "source": "/myanimelist/:match*",
             "destination": "https://anyaasi-server.onrender.com/myanimelist/:match*"
+        },
+        {
+            "source": "/api/:match*",
+            "destination": "https://api.myanimelist.net/:match*"
         }
     ]
 }
