@@ -1,9 +1,8 @@
 {
-    "routes": [
+    "rewrites": [
         {
-            "src": "/[^.]+",
-            "dest": "/",
-            "status": 200
+            "source": "/myanimelist/login/:match*",
+            "destination": "https://anyaasi-server.onrender.com/:match*"
         }
     ]
 }
