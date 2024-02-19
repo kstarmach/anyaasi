@@ -1,24 +1,5 @@
 {
     "rewrites": [
-        {
-            "source": "/rss/:match*",
-            "destination": "https://anyaasi-server.onrender.com/rss/:match*"
-        },
-        {
-            "source": "/anilist/:match*",
-            "destination": "https://anyaasi-server.onrender.com/anilist/:match*"
-        },
-        {
-            "source": "/myanimelist/:match*",
-            "destination": "https://anyaasi-server.onrender.com/myanimelist/:match*"
-        },
-        {
-            "source": "/api/:match*",
-            "destination": "https://api.myanimelist.net/:match*"
-        },
-        {
-            "source": "/anime/:animeId*",
-            "destination": "/anime/:animeId*"
-        }
+
     ]
 }

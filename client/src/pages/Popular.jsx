@@ -13,7 +13,7 @@ const Popular = () => {
     return (
         <div className="mx-20">
             <p className='text-2xl font-semibold  flex-grow mb-10'>Popular</p>
-            <div className="grid grid-cols-5 gap-4">
+            <div className="flex flex-wrap justify-center gap-4">
 
                 {entries.map((entry, idx) => (
                     <Card

@@ -11,10 +11,10 @@ const Login = () => {
             <div className='flex flex-wrap '>
                 <div className='flex-1'></div>
                 <Anilist />
-
+{/* 
                 <ArrowsRightLeftIcon className="w-16 h-auto   " />
 
-                <MyAnimeList />
+                <MyAnimeList /> */}
                 <div className='flex-1'></div>
             </div>
         </>

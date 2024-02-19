@@ -8,7 +8,7 @@ const Nav = () => {
             <div className="mx-20 flex items-center justify-normal">
                 <div className="flex mr-40">
                     <img
-                        src="https://th.bing.com/th/id/OIG.fkGumdEcGVSW.4XnY_V8?pid=ImgGn&w=1024&h=1024&rs=1"
+                        src="./Website_Logo.jpg"
                         alt="Anime Cover"
                         className="rounded-xl object-cover  shadow-2xl mx-auto h-32 w-auto "
                     />

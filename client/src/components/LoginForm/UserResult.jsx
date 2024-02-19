@@ -21,8 +21,8 @@ const UserData = ({ data, handleSignIn }) => {
 
                     <img
                         className="mx-auto h-10 w-auto "
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/AniList_logo.svg/512px-AniList_logo.svg.png"
-                        alt="Your Company"
+                        src="./AniList_logo.svg.png"
+                        alt="Anilist logo"
                     />
 
 

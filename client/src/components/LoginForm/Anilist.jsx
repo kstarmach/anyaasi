@@ -7,13 +7,14 @@ const AnilistForm = ({ handleForm, setUsername }) => {
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm rounded-lg bg-white p-6 shadow-sm">
             <form className="space-y-6" onSubmit={handleForm}>
                 <div>
-                    <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+                    <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">
                         Username
                     </label>
 
                     <input
                         id="username"
                         name="username"
+                        autoComplete='username'
                         min={3}
                         required
                         className="block w-full rounded-md border-0 py-1.5 px-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -49,8 +50,8 @@ const Anilist = () => {
             <div className="grow">
                 <img
                     className="mx-auto h-16 w-auto grow"
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/AniList_logo.svg/512px-AniList_logo.svg.png"
-                    alt="Your Company"
+                    src="AniList_logo.svg.png"
+                    alt="Anilist logo"
                 />
             </div>
 
