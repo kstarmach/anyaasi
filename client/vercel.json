@@ -1,5 +1,12 @@
 {
     "rewrites": [
-
+        {
+            "source": "/rss/:match*",
+            "destination": "https://anyaasi-api.vercel.app/rss/:match*"
+        },
+        {
+            "source": "/anilist/:match*",
+            "destination": "https://anyaasi-api.vercel.app/anilist/:match*"
+        }
     ]
 }
