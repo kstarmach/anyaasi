@@ -9,8 +9,8 @@
             "destination": "https://anyaasi-api.vercel.app/anilist/:match*"
         },
         {
-            "source": "/popular",
-            "destination": "/popular"
+            "source": "/(.*)",
+            "destination": "/"
         }
     ]
 }
