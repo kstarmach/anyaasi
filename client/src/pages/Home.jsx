@@ -1,11 +1,11 @@
+import { useQuery } from "@apollo/client";
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useUserContext } from "../UserContext";
-import { useQuery } from "@apollo/client";
 import { GET_ANIME_LIST } from "../queries";
-import axios from 'axios';
 
-import Login from './Login';
 import Carousel from "../components/Carousel";
+import Login from './Login';
 
 function recentlyAddedFilter(animeList) {
   return animeList
@@ -25,7 +25,7 @@ function currentWatchingFilter(animeList) {
 }
 
 const Anilist = ({ userId }) => {
-  const { loading, error, data, refetch } = useQuery(GET_ANIME_LIST, {
+  const { loading, error, data } = useQuery(GET_ANIME_LIST, {
     variables: { userId: userId },
   });
 

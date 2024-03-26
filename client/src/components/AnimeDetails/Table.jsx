@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import TableHeader from './TableHeader';
 import TableBody from './TableBody';
 import ProvidersTabs from './ProvidersTabs';
 import { CheckCircleIcon, ArrowDownCircleIcon, ArrowUpCircleIcon, ChatBubbleLeftRightIcon } from '@heroicons/react/24/solid'
 
-function parseDate(dateString) {
-    const [day, month, year, hours, minutes] = dateString.split(/[\s-:]/);
-    return new Date(year, month - 1, day, hours, minutes);
-}
+// function parseDate(dateString) {
+//     const [day, month, year, hours, minutes] = dateString.split(/[\s-:]/);
+//     return new Date(year, month - 1, day, hours, minutes);
+// }
 
 const Table = ({ title }) => {
     const [selectedProvider, setSelectedProvider] = useState('Erai-raws');
@@ -18,7 +18,8 @@ const Table = ({ title }) => {
 
     const [sortColumn, setSortColumn] = useState(null); // Track the currently sorted column
     const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage, setItemsPerPage] = useState(10);
+    //const [itemsPerPage, setItemsPerPage] = useState(10);
+    const itemsPerPage = 10;
 
     useEffect(() => {
         const fetchData = async () => {

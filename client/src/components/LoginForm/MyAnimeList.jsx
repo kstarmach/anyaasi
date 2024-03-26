@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { useUserContext } from '../../UserContext'
 import { useEffect, useState } from 'react';
+import { useUserContext } from '../../UserContext';
 
 
-const MyAnimeListForm = ({ handleLogin, redirectUrl }) => {
+const MyAnimeListForm = ({ redirectUrl }) => {
     return (
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm rounded-lg bg-white p-6 shadow-sm">
             <div className="space-y-6"  >
@@ -28,7 +28,7 @@ const MyAnimeList = () => {
     const [loginUrl, setLoginUrl] = useState(null);
 
     // Initialize state for access token
-    const [accessToken, setAccessToken] = useState(null);
+    // const [accessToken, setAccessToken] = useState(null);
 
     useEffect(() => {
         const getAccessTokenFromUrl = async () => {
@@ -59,17 +59,17 @@ const MyAnimeList = () => {
 
         getAccessTokenFromUrl();
 
-    // Cleanup code to remove parameters from the current URL
-    const removeParamsFromUrl = () => {
-        const urlWithoutParams = window.location.origin + window.location.pathname;
-        window.history.replaceState({}, document.title, urlWithoutParams);
-    };
+        // Cleanup code to remove parameters from the current URL
+        const removeParamsFromUrl = () => {
+            const urlWithoutParams = window.location.origin + window.location.pathname;
+            window.history.replaceState({}, document.title, urlWithoutParams);
+        };
 
-    return () => {
-        removeParamsFromUrl();
-        // Additional cleanup code if needed
-    };
-    }, []);
+        return () => {
+            removeParamsFromUrl();
+            // Additional cleanup code if needed
+        };
+    }, [setUser]);
 
 
     const handleLogin = async (event) => {

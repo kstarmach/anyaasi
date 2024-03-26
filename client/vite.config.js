@@ -1,13 +1,14 @@
+'client';
+import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite';
 
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
 
-
-import dotenv from 'dotenv'
+import dotenv from 'dotenv';
 
 dotenv.config()
 
 
+// eslint-disable-next-line no-undef
 const proxy = process.env.SERVER_URI;
 //const proxy = 'http://localhost:3000/';
 

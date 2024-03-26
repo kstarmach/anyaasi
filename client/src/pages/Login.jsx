@@ -1,7 +1,4 @@
-import React, { useState } from 'react';
 import Anilist from '../components/LoginForm/Anilist';
-import MyAnimeList from '../components/LoginForm/MyAnimeList';
-import { ArrowsRightLeftIcon } from '@heroicons/react/24/solid'
 const Login = () => {
     return (
         <>
@@ -11,7 +8,7 @@ const Login = () => {
             <div className='flex flex-wrap '>
                 <div className='flex-1'></div>
                 <Anilist />
-{/* 
+                {/* 
                 <ArrowsRightLeftIcon className="w-16 h-auto   " />
 
                 <MyAnimeList /> */}

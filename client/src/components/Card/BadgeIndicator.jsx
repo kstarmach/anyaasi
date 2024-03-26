@@ -1,5 +1,3 @@
-import React from 'react';
-
 function BadgeIndicator({ episodeDifference }) {
     if (episodeDifference > 0) {
         return (

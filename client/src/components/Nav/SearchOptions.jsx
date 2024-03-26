@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import { useQuery } from '@apollo/client';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import AsyncSelect from 'react-select/async';
 import { SEARCH_ANIME } from '../../queries';
-import { useQuery } from '@apollo/client';
-import { Link } from 'react-router-dom';
 
 const SearchOption = () => {
 
@@ -11,7 +11,7 @@ const SearchOption = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [newData, setNewData] = useState([]);
 
-    const { loading, error, data } = useQuery(SEARCH_ANIME, {
+    const { loading, data } = useQuery(SEARCH_ANIME, {
         variables: { q: searchTerm },
         skip: searchTerm.length <= 2,
     });
@@ -30,7 +30,7 @@ const SearchOption = () => {
         }
     }, [loading, data])
 
-    const handleLoadOptions = async (inputValue) => {
+    const handleLoadOptions = async () => {
 
 
         if (newData.length > 0) {

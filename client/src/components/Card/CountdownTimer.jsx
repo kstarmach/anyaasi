@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import moment from 'moment';
 
 function CountdownTimer({ nextEpisodeTime, nextEpisodeNumber }) {
@@ -17,7 +17,7 @@ function CountdownTimer({ nextEpisodeTime, nextEpisodeNumber }) {
         return () => {
             clearInterval(interval);
         };
-    }, []);
+    }, [nextEpisodeTime]);
 
     const daysRemaining = Math.floor(timeRemaining / 86400);
     const hoursRemaining = Math.floor((timeRemaining % 86400) / 3600);

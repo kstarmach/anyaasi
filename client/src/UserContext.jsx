@@ -3,6 +3,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 
 const UserContext = createContext();
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useUserContext() {
     return useContext(UserContext);
 }

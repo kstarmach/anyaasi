@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-import UserResult from "./UserResult"
+import UserResult from "./UserResult";
 
 const AnilistForm = ({ handleForm, setUsername }) => {
     return (

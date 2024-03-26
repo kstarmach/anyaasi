@@ -1,5 +1,3 @@
-import React from "react";
-
 const Header = ({ title, genres, seasonYear, averageScore }) => {
     var tensDigit = Math.floor(averageScore / 10); // Get the tens digit
     var onesDigit = averageScore % 10; // Get the ones digit

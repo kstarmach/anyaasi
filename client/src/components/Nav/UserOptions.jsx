@@ -1,7 +1,7 @@
+import { ArrowLeftOnRectangleIcon } from '@heroicons/react/24/solid';
+import { useEffect, useState } from 'react'; // Import useState and useEffect
+import { Link } from "react-router-dom";
 import { useUserContext } from '../../UserContext';
-import { useState, useEffect } from 'react'; // Import useState and useEffect
-import { Link, useNavigate } from "react-router-dom";
-import { ArrowLeftOnRectangleIcon } from '@heroicons/react/24/solid'
 
 const UserMenu = ({ handleSignOut, menuOpen }) => {
     return (

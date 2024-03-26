@@ -1,10 +1,9 @@
 
-import { useParams } from "react-router-dom";
 import { useQuery } from '@apollo/client';
+import { useParams } from "react-router-dom";
 import { GET_ANIME_DETAILS } from "../../queries";
-import DownloadSection from './DownloadSection';
-import StatisticsSection from './StatisticsSection';
 import DescriptionSection from './DescriptionSection';
+import DownloadSection from './DownloadSection';
 
 
 const AnimeDetails = () => {
@@ -24,12 +23,12 @@ const AnimeDetails = () => {
 
     const {
         title,
-        episodes,
+        // episodes,
         coverImage,
         bannerImage,
         averageScore,
-        popularity,
-        nextAiringEpisode,
+        // popularity,
+        // nextAiringEpisode,
         description,
         genres,
         seasonYear
