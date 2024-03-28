@@ -13,13 +13,13 @@ const Popular = () => {
     return (
         <div className="mx-20">
             <p className='text-2xl font-semibold  flex-grow mb-10'>Popular</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 min-[2000px]:grid-cols-6  min-[2300px]:grid-cols-7 justify-center gap-4">
+            <div className="flex flex-wrap justify-between gap-2">
 
                 {entries.map((entry, idx) => (
                     <Card
                         entry={entry}
-                        height={400}
-                        width={300}
+                        height={450}
+                        width={350}
                         coverImage={entry.coverImage.extraLarge}
                         key={idx}
                     />
