@@ -1,6 +1,6 @@
-import { ArrowLeftOnRectangleIcon } from '@heroicons/react/24/solid';
+import { ArrowRightStartOnRectangleIcon } from '@heroicons/react/24/solid';
 import { useEffect, useState } from 'react'; // Import useState and useEffect
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useUserContext } from '../../UserContext';
 
 const UserMenu = ({ handleSignOut, menuOpen }) => {
@@ -28,13 +28,13 @@ const UserMenu = ({ handleSignOut, menuOpen }) => {
             </a> */}
             <a
                 href="#"
-                className="flex w-full px-4 py-2 text-sm text-gray-700 text-right"
+                className="flex justify-between w-full px-4 py-2 text-sm text-gray-700 text-right"
                 role="menuitem"
                 tabIndex="-1"
                 onClick={handleSignOut}
             >
-                <ArrowLeftOnRectangleIcon className='w-5 h-5 mr-2' />
                 Sign out
+                <ArrowRightStartOnRectangleIcon className='w-5 h-5 mr-2' />
             </a>
         </div>
     )
@@ -75,7 +75,7 @@ const UserOptions = () => {
                 <div className=" ">
                     <button
                         type="button"
-                        className="bg-white rounded-xl p-3 flex items-center justify-center text-md "
+                        className=" p-3 flex items-center justify-center text-md "
                         id="user-menu-button"
                         aria-expanded={menuOpen}
                         aria-haspopup="true"
@@ -86,16 +86,16 @@ const UserOptions = () => {
                         <span className="sr-only">Open user menu</span>
                         <div className="flex items-center">
                             <img
-                                className="h-8 w-8 rounded-full"
+                                className="h-10 w-10 rounded-full"
                                 src={user.avatar}
                                 alt=""
                             />
-                            <span className='ml-3 mb-1 text-base'>
+                            {/* <span className='ml-3 mb-1 text-base'>
                                 {user.name}
                             </span>
                             <span className='ml-3  css-1xc3v61-indicatorContainer'>
                                 <svg height="20" width="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false" className="css-tj5bde-Svg"><path d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"></path></svg>
-                            </span>
+                            </span> */}
                         </div>
                     </button>
 
@@ -110,7 +110,7 @@ const UserOptions = () => {
         )
     }
 
-    return (<Link to={`login`} className="font-medium border-transparent text-gray-400 hover:text-black hover:border-blue-700 inline-flex items-center px-1 pt-1 border-b-2" aria-current="page">Sign in</Link>)
+    return (<NavLink to={`login`} className="bg-indigo-600 text-white  rounded-xl p-3 flex items-center justify-center text-md " aria-current="page">Sign in</NavLink>)
 }
 
 export default UserOptions;
