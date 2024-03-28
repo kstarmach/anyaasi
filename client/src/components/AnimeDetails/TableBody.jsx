@@ -28,7 +28,8 @@ const TableBody = ({ rssData }) => {
         <tbody>
             {rssData && rssData.length > 0 ? (
                 rssData.map((episode, idx) => (
-                    <tr key={idx}>
+                    <tr className="odd:bg-white even:bg-gray-50  border-b hover:bg-gray-200
+                    " key={idx}>
                         {/* <td className="py-2 px-4">{episode.episodeNumber}</td> */}
                         <td className="py-2 px-4 text-left">
                             <a href={episode.guid[0]._} target="_blank" rel="noopener noreferrer">
@@ -44,12 +45,14 @@ const TableBody = ({ rssData }) => {
                             ) : null}
                         </td>
 
-                        <td className="py-2 px-4 flex gap-2 text-center">
-                            <div>
-                                <a href={`magnet:?xt=urn:btih:${episode['nyaa:infoHash']}`} className="text-blue-500 hover:underline">   <InboxArrowDownIcon className="h-5 w-5" /></a>
-                            </div>
-                            <div>
-                                <a href={episode.link[0]} className="text-blue-500 hover:underline"><DocumentArrowDownIcon className='h-5 w-5' /></a>
+                        <td className="py-2 px-4  gap-2 text-center">
+                            <div className='flex'>
+                                <div>
+                                    <a href={`magnet:?xt=urn:btih:${episode['nyaa:infoHash']}`} className="text-blue-500 hover:underline">   <InboxArrowDownIcon className="h-5 w-5" /></a>
+                                </div>
+                                <div>
+                                    <a href={episode.link[0]} className="text-blue-500 hover:underline"><DocumentArrowDownIcon className='h-5 w-5' /></a>
+                                </div>
                             </div>
                         </td>
                         <td className="py-2 px-4 text-center">{episode['nyaa:size'][0]}</td>
