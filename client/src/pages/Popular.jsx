@@ -1,8 +1,9 @@
 import Card from "../components/Card";
+import { Title } from "../components/ui/Title";
 import { GET_POPULAR_ANIME } from "../queries";
 import { useQuery } from "@apollo/client";
 const Popular = () => {
-    const { loading, error, data } = useQuery(GET_POPULAR_ANIME);
+    const { loading, error, data } = useQuery(GET_POPULAR_ANIME, { variables: { perPage: 48 } });
 
     if (loading) return <p>Loading...</p>;
 
@@ -11,8 +12,8 @@ const Popular = () => {
     const entries = data.Page.media;
 
     return (
-        <div className="mx-20">
-            <p className='text-2xl font-semibold  flex-grow mb-10'>Popular</p>
+        <div className=" flex flex-col gap-4">
+            <Title text={'Popular'} />
             <div className="flex flex-wrap justify-between gap-2">
 
                 {entries.map((entry, idx) => (

@@ -1,6 +1,7 @@
 import { useUserContext } from '../../UserContext'
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { UserAvatar } from '../ui/UserAvatar';
 
 const UserData = ({ data, handleSignIn }) => {
     return (
@@ -10,11 +11,7 @@ const UserData = ({ data, handleSignIn }) => {
 
                 <div className="flex items-center justify-between space-x-4">
                     <div className="flex items-center space-x-4">
-                        <img
-                            className="h-8 w-8 rounded-full"
-                            src={data.avatar}
-                            alt="User Avatar"
-                        />
+                        <UserAvatar avatar={data.avatar} />
                         <p className="text-lg font-semibold">{data.name}</p>
                     </div>
 

@@ -7,7 +7,7 @@ function App() {
   return (
     <div className='font-poppins'>
       <Nav />
-      <div id='outlet'>
+      <div id='outlet' className='sm:mx-20'>
         <Outlet />
       </div>
     </div>

@@ -94,8 +94,8 @@ query($q: String){
 }`
 
 export const GET_POPULAR_ANIME = gql`
-query{
-  Page(page: 0, perPage: 25) {
+query($perPage: Int){
+  Page(page: 0, perPage:  $perPage) {
     media(type: ANIME, sort: TRENDING_DESC) {
       id
       title {

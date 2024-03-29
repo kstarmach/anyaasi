@@ -1,23 +1,11 @@
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
+import { ChevronLeftButton, ChevronRightButton } from "../ui/Chevrons";
 
 const ChangePageButtons = ({ currentPage, setCurrentPage, totalPages }) => {
     return (
         <div className='flex gap-4 items-center'>
-            <button
-                onClick={() => setCurrentPage(currentPage - 1)}
-                disabled={currentPage === 1}
-                className='bg-white color-black rounded-xl p-2 flex items-center'
-            >
-                <ChevronLeftIcon className="w-5 h-auto" />
-            </button>
+            <ChevronLeftButton onClickHandler={() => setCurrentPage(currentPage - 1)} />
             <span>Page {currentPage}/{totalPages}</span>
-            <button
-                onClick={() => setCurrentPage(currentPage + 1)}
-                disabled={currentPage === totalPages}
-                className='bg-white color-black rounded-xl p-2 flex items-center'
-            >
-                <ChevronRightIcon className="w-5 h-auto" />
-            </button>
+            <ChevronRightButton onClickHandler={() => setCurrentPage(currentPage + 1)} />
         </div>
     )
 }

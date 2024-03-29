@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import Card from '../Card';
-import { ChevronRightIcon, ChevronLeftIcon } from '@heroicons/react/24/solid'
+import { ChevronLeftButton, ChevronRightButton } from '../ui/Chevrons'
+import { Title } from '../ui/Title';
 
 const Carousel = ({ data, title, height, width, carouselType }) => {
     // We use the useRef hook to get a reference to the slider container
@@ -21,30 +22,18 @@ const Carousel = ({ data, title, height, width, carouselType }) => {
     };
 
     return (
-        <div className="carousel  mx-auto ">
-            <div className='flex mb-5 mr-20'>
-                <p className='text-2xl font-semibold  flex-grow pl-20'>{title}</p>
+        <div className="carousel flex flex-col gap-6">
+            <div className='flex justify-between'>
+                <Title text={title} />
                 <div className='flex gap-4 items-center'>
-                    <button
-                        onClick={() => scroll("left")}
-                        className='bg-white color-black rounded-xl p-2 flex items-center '
-                    >
-                        <ChevronLeftIcon className="h-5 w-5" />
+                    <ChevronLeftButton onClickHandler={() => scroll("left")} />
 
-                    </button>
-
-                    <button
-                        onClick={() => scroll("right")}
-                        className='bg-white color-black rounded-xl p-2 flex items-center'
-                    >
-                        <ChevronRightIcon className="h-5 w-5" />
-
-                    </button>
+                    <ChevronRightButton onClickHandler={() => scroll("right")} />
                 </div>
             </div>
 
             {/* Image container */}
-            <div className="images-container relative flex gap-10 overflow-hidden px-20" ref={sliderRef}>
+            <div className="images-container relative flex gap-10 overflow-hidden " ref={sliderRef}>
                 {data.map((entry, index) => {
                     let coverImage;
 

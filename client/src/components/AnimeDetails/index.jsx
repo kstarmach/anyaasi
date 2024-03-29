@@ -4,8 +4,9 @@ import { useParams } from "react-router-dom";
 import { GET_ANIME_DETAILS } from "../../queries";
 import DescriptionSection from './DescriptionSection';
 
-import { ArrowLongLeftIcon } from '@heroicons/react/24/solid';
+
 import Table from './Table';
+import { BackButton } from '../ui/Buttons';
 const AnimeDetails = () => {
 
     const { animeId } = useParams();
@@ -35,18 +36,11 @@ const AnimeDetails = () => {
         seasonYear
     } = data.Media;
 
-    const handleGoBack = () => {
-        window.history.back();
-    };
+
 
     return (
-        <div className="mx-20 flex flex-col gap-8">
-            <button
-                className='bg-white color-black rounded-full p-2 self-start max-w-max'
-                onClick={handleGoBack}
-            >
-                <ArrowLongLeftIcon className="h-5 w-5" />
-            </button>
+        <div className="flex flex-col gap-8">
+            <BackButton />
 
             <DescriptionSection
                 coverImage={coverImage.extraLarge}
