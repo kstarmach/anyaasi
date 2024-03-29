@@ -34,7 +34,7 @@ const Header = ({ title, genres, seasonYear, averageScore }) => {
 const DescriptionSection = ({ description, coverImage, title, genres, seasonYear, averageScore }) => {
 
     return (
-        <div className="bg-white shadow-sm rounded-xl p-8 mb-8 flex gap-8">
+        <div className="bg-white shadow-sm rounded-xl p-8 flex gap-8">
             <img src={coverImage} alt={title} className="rounded-xl h-96 w-auto" />
             <div className="flex-1">
                 <Header

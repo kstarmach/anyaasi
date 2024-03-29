@@ -108,7 +108,7 @@ const Table = ({ title }) => {
     const paginatedData = rssData.slice(startIndex, endIndex);
 
     return (
-        <>
+        <div>
             <ProvidersTabs
                 selectedProvider={selectedProvider}
                 setSelectedProvider={setSelectedProvider}
@@ -126,7 +126,7 @@ const Table = ({ title }) => {
                     <TableBody rssData={paginatedData} />
                 </table>
             </div>
-        </>
+        </div>
     )
 }
 

@@ -1,3 +1,5 @@
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
+
 const ChangePageButtons = ({ currentPage, setCurrentPage, totalPages }) => {
     return (
         <div className='flex gap-4 items-center'>
@@ -6,20 +8,7 @@ const ChangePageButtons = ({ currentPage, setCurrentPage, totalPages }) => {
                 disabled={currentPage === 1}
                 className='bg-white color-black rounded-xl p-2 flex items-center'
             >
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                >
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M15 19l-7-7 7-7"
-                    />
-                </svg>
+                <ChevronLeftIcon className="w-5 h-auto" />
             </button>
             <span>Page {currentPage}/{totalPages}</span>
             <button
@@ -27,20 +16,7 @@ const ChangePageButtons = ({ currentPage, setCurrentPage, totalPages }) => {
                 disabled={currentPage === totalPages}
                 className='bg-white color-black rounded-xl p-2 flex items-center'
             >
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                >
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M9 5l7 7-7 7"
-                    />
-                </svg>
+                <ChevronRightIcon className="w-5 h-auto" />
             </button>
         </div>
     )
