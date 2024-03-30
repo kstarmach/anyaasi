@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import DescriptionSection from './DescriptionSection';
 import Table from './Table';
 import { BackButton } from '../ui/Buttons';
-import { DescriptionSkeleton } from '../ui/skeletons';
+import { DescriptionSkeleton, TableSkeleton } from '../ui/skeletons';
 
 const AnimeDetails = () => {
     const { animeId } = useParams();
@@ -23,9 +23,11 @@ const AnimeDetails = () => {
                     onTitleReceived={handleTitleReceived}
                 />
             </Suspense>
-            <Table
-                title={title}
-            />
+            <Suspense fallback={<TableSkeleton />} >
+                <Table
+                    title={title}
+                />
+            </Suspense>
         </div>
     );
 }

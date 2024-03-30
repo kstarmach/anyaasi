@@ -1,4 +1,4 @@
-import { StarIcon } from "@heroicons/react/24/solid";
+import { ArrowUpCircleIcon, StarIcon, ArrowDownCircleIcon, CheckCircleIcon } from "@heroicons/react/24/solid";
 import { BackButton } from "./Buttons";
 
 export function BadgesSkeleton() {
@@ -137,4 +137,116 @@ export function PopularSkeleton() {
             />
         </div>
     )
+}
+
+
+// export function TableHeaderSkeleton() {
+//     return(
+
+//     )
+// }
+
+// export function TableBodySkeleton() {
+//     return(
+
+//     )
+// }
+
+// export function TableProvidersSkeleton() {
+//     return(
+
+//     )
+// }
+
+// export function TableSkeleton() {
+//     return(
+
+//     )
+// }
+
+
+export function TableRowSkeleton() {
+    return (
+        <tr className="leading-relaxed animate-pulse w-full border-b border-gray-100 last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg">
+            {/* Customer Name and Image */}
+            <td className="relative overflow-hidden whitespace-nowrap py-3 pl-6 pr-3">
+                <div className="flex items-center gap-3">
+                    <div className="h-6 w-24 rounded bg-gray-100"></div>
+                </div>
+            </td>
+            {/* Actions */}
+            <td className="whitespace-nowrap py-3 pl-6 pr-3">
+                <div className="flex justify-start gap-3">
+                    <div className="h-[38px] w-[38px] rounded bg-gray-100"></div>
+                    <div className="h-[38px] w-[38px] rounded bg-gray-100"></div>
+                </div>
+            </td>
+            {/* Amount */}
+            <td className="whitespace-nowrap px-3 py-3">
+                <div className="h-6 w-16 rounded bg-gray-100"></div>
+            </td>
+            {/* Date */}
+            <td className="whitespace-nowrap px-3 py-3">
+                <div className="h-6 w-16 rounded bg-gray-100"></div>
+            </td>
+            {/* Stats */}
+            <td className="whitespace-nowrap px-3 py-3">
+                <div className="h-6 w-16 rounded bg-gray-100"></div>
+            </td>
+            <td className="whitespace-nowrap px-3 py-3">
+                <div className="h-6 w-16 rounded bg-gray-100"></div>
+            </td>
+            <td className="whitespace-nowrap px-3 py-3">
+                <div className="h-6 w-16 rounded bg-gray-100"></div>
+            </td>
+        </tr>
+    );
+}
+
+
+
+export function TableSkeleton() {
+    return (
+
+        <div className=" min-w-full align-middle">
+            <div className="rounded-xl bg-gray-100  md:pt-0">
+
+                <table className="hidden min-w-full text-gray-900 md:table">
+                    <thead className="rounded-lg text-left text-sm font-normal">
+                        <tr>
+                            <th scope="col" className="px-4 py-5 font-medium sm:pl-6">
+                                Title
+                            </th>
+                            <th scope="col" className="px-3 py-5 font-medium">
+                                Links
+                            </th>
+                            <th scope="col" className="px-3 py-5 font-medium">
+                                Size
+                            </th>
+                            <th scope="col" className="px-3 py-5 font-medium">
+                                Date
+                            </th>
+                            <th scope="col" className="px-3 py-5 font-medium">
+                                <ArrowUpCircleIcon className="h-5 w-5 " />
+                            </th>
+                            <th scope="col" className="px-3 py-5 font-medium">
+                                <ArrowDownCircleIcon className="h-5 w-5 " />
+                            </th>
+                            <th scope="col" className="px-3 py-5 font-medium">
+                                <CheckCircleIcon className="h-5 w-5 " />
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody className="bg-white">
+                        <TableRowSkeleton />
+                        <TableRowSkeleton />
+                        <TableRowSkeleton />
+                        <TableRowSkeleton />
+                        <TableRowSkeleton />
+                        <TableRowSkeleton />
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
 }
