@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { useParams } from "react-router-dom";
 import { GET_ANIME_DETAILS } from "../../queries";
@@ -13,19 +12,8 @@ const AnimeDetails = () => {
     const { loading, error, data } = useQuery(GET_ANIME_DETAILS, {
         variables: { id: animeId },
     });
-    const [isLoading, setIsLoading] = useState(true);
 
-    useEffect(() => {
-        if (!loading) {
-            const delay = setTimeout(() => {
-                setIsLoading(false);
-            }, 3000); // Adjust delay time as needed (in milliseconds)
-
-            return () => clearTimeout(delay);
-        }
-    }, [loading]);
-
-    if (loading || isLoading) {
+    if (loading) {
         return <AnimeDetailsSkeleton />; // Render skeleton component while loading
     }
 
