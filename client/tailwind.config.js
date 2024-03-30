@@ -9,7 +9,14 @@ export default {
       fontFamily: {
         "lato": ['Lato', 'sans-serif'],
         "poppins": ['Poppins', 'sans-serif']
-      }
+      },
+      keyframes: {
+        shimmer: {
+          '100%': {
+            transform: 'translateX(100%)',
+          },
+        },
+      },
     },
   },
   plugins: [],
