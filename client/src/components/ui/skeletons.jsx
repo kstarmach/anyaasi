@@ -8,7 +8,7 @@ export function BadgesSkeleton() {
 }
 export function StarSkeleton() {
     return (
-        <div className="flex items-center rounded-xl bg-blue-200 p-3  h-12 w-20" >
+        <div className="flex items-center rounded-full bg-blue-200 p-3  h-12 w-20" >
             <StarIcon className="w-8 h-8 fill-slate-400 ml-2 mr-6 " />
         </div>
     )

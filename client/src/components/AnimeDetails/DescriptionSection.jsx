@@ -50,9 +50,9 @@ const DescriptionSection = ({ animeId, onTitleReceived }) => {
 
                         </div>
                     </div>
-                    <div className='flex items-center text-white bg-blue-700 rounded-xl p-2'>
-                        <StarIcon className="w-8 h-8 fill-yellow-400 mx-2" />
-                        <h3 className="mr-2 text-lg">
+                    <div className='flex items-center text-white bg-blue-500 rounded-full p-2'>
+                        <StarIcon className="w-8 h-8 fill-yellow-300 mx-2" />
+                        <h3 className="mr-2 text-lg font-bold">
                             {tensDigit},{onesDigit}
                         </h3>
                     </div>
