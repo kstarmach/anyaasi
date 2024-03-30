@@ -1,22 +1,6 @@
-import { ChatBubbleLeftRightIcon } from '@heroicons/react/24/outline'
 import { DocumentArrowDownIcon, InboxArrowDownIcon } from '@heroicons/react/24/solid'
+import { formatDateToLocal } from '../../lib/utils'
 
-function formatDateTime(inputDateString) {
-    // Step 1: Parse the input date string into a Date object
-    const inputDate = new Date(inputDateString);
-
-    // Step 2: Format the Date object into the desired output format
-    const year = inputDate.getFullYear();
-    const month = String(inputDate.getMonth() + 1).padStart(2, '0');
-    const day = String(inputDate.getDate()).padStart(2, '0');
-    const hours = String(inputDate.getHours()).padStart(2, '0');
-    const minutes = String(inputDate.getMinutes()).padStart(2, '0');
-
-    // Create the desired output format
-    const outputDateString = `${day}-${month}-${year} ${hours}:${minutes}`;
-
-    return outputDateString;
-}
 
 
 
@@ -25,46 +9,48 @@ const TableBody = ({ rssData }) => {
 
 
     return (
-        <tbody>
+        <tbody className="bg-white ">
             {rssData && rssData.length > 0 ? (
                 rssData.map((episode, idx) => (
-                    <tr className="odd:bg-white even:bg-gray-50  border-b hover:bg-gray-200
-                    " key={idx}>
+                    <tr className="w-full border-b border-gray-100 last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg text-sm" key={idx}>
                         {/* <td className="py-2 px-4">{episode.episodeNumber}</td> */}
-                        <td className="py-2 px-4 text-left">
+                        <td className="relative overflow-hidden  py-3 pl-6 pr-3">
                             <a href={episode.guid[0]._} target="_blank" rel="noopener noreferrer">
                                 {episode.title[0]}
                             </a>
                         </td>
-                        <td className="py-2 px-4 text-center">
+                        {/* <td className="whitespace-nowrap py-3 pl-6 pr-3">
                             {episode['nyaa:comments'][0] > 0 ? (
                                 <div className="flex">
                                     <ChatBubbleLeftRightIcon className="h-5 w-5" />
                                     <p className="ml-1">{episode['nyaa:comments'][0]}</p>
                                 </div>
                             ) : null}
-                        </td>
+                        </td> */}
 
-                        <td className="py-2 px-4  gap-2 text-center">
-                            <div className='flex'>
-                                <div>
-                                    <a href={`magnet:?xt=urn:btih:${episode['nyaa:infoHash']}`} className="text-blue-500 hover:underline">   <InboxArrowDownIcon className="h-5 w-5" /></a>
-                                </div>
-                                <div>
-                                    <a href={episode.link[0]} className="text-blue-500 hover:underline"><DocumentArrowDownIcon className='h-5 w-5' /></a>
-                                </div>
+                        <td className="whitespace-nowrap py-3 pl-6 pr-3">
+                            <div className='flex justify-center gap-3'>
+
+                                <a href={`magnet:?xt=urn:btih:${episode['nyaa:infoHash']}`} className="rounded-md border p-2 hover:bg-gray-100">
+                                    <InboxArrowDownIcon className="h-5 w-5" />
+                                </a>
+
+                                <a href={episode.link[0]} className="rounded-md border p-2 hover:bg-gray-100">
+                                    <DocumentArrowDownIcon className='h-5 w-5' />
+                                </a>
+
                             </div>
                         </td>
-                        <td className="py-2 px-4 text-center">{episode['nyaa:size'][0]}</td>
-                        <td className="py-2 px-4 text-left">{formatDateTime(episode.pubDate)}</td>
-                        <td className="py-2 px-4 text-green-500 text-center">{episode['nyaa:seeders'][0]}</td>
-                        <td className="py-2 px-4 text-red-500 text-center">{episode['nyaa:leechers'][0]}</td>
-                        <td className="py-2 px-4 text-center">{episode['nyaa:downloads'][0]}</td>
+                        <td className="whitespace-nowrap px-3 py-3">{episode['nyaa:size'][0]}</td>
+                        <td className="whitespace-nowrap px-3 py-3">{formatDateToLocal(episode.pubDate)}</td>
+                        <td className="whitespace-nowrap px-3 py-3 text-green-500">{episode['nyaa:seeders'][0]}</td>
+                        <td className="whitespace-nowrap px-3 py-3 text-red-500">{episode['nyaa:leechers'][0]}</td>
+                        <td className="whitespace-nowrap px-3 py-3">{episode['nyaa:downloads'][0]}</td>
                     </tr>
                 ))
             ) : (
-                <tr>
-                    <td colSpan="9">No data available</td>
+                <tr className="w-full border-b border-gray-100 last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg text-sm" >
+
                 </tr>
             )}
         </tbody>

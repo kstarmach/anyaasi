@@ -1,14 +1,10 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import TableHeader from './TableHeader';
+
 import TableBody from './TableBody';
 import ProvidersTabs from './ProvidersTabs';
-import { CheckCircleIcon, ArrowDownCircleIcon, ArrowUpCircleIcon, ChatBubbleLeftRightIcon } from '@heroicons/react/24/solid'
+import { CheckCircleIcon, ArrowDownCircleIcon, ArrowUpCircleIcon } from '@heroicons/react/24/solid'
 
-// function parseDate(dateString) {
-//     const [day, month, year, hours, minutes] = dateString.split(/[\s-:]/);
-//     return new Date(year, month - 1, day, hours, minutes);
-// }
 
 const Table = ({ title }) => {
     const [selectedProvider, setSelectedProvider] = useState('Erai-raws');
@@ -81,34 +77,35 @@ const Table = ({ title }) => {
     }, [selectedProvider, title, sortDirections, sortColumn]);  // Include sortDirection and sortColumn in the dependencies
 
 
-    const handleSort = (columnKey) => {
-        // Toggle the sort direction for the clicked column
-        setSortDirections((prevSortDirections) => ({
-            [columnKey]: prevSortDirections[columnKey] === 'asc' ? 'desc' : 'asc',
-        }));
+    // const handleSort = (columnKey) => {
+    //     // Toggle the sort direction for the clicked column
+    //     setSortDirections((prevSortDirections) => ({
+    //         [columnKey]: prevSortDirections[columnKey] === 'asc' ? 'desc' : 'asc',
+    //     }));
 
-        setSortColumn(columnKey);
-    };
+    //     setSortColumn(columnKey);
+    // };
 
 
-    const columns = [
-        { key: 'title', label: <span className='mr-auto'>Title</span>, sortable: true },
-        { key: 'nyaa:comments', label: <ChatBubbleLeftRightIcon className="h-6 w-6" />, sortable: true },
-        { key: 'links', label: 'Links', sortable: false },
-        { key: 'nyaa:size', label: <span className='mr-auto'>Size</span>, sortable: true },
-        { key: 'pubDate', label: <span className='mr-auto'>Date</span>, sortable: true },
-        { key: 'nyaa:seeders', label: <ArrowUpCircleIcon className="h-6 w-6 m-auto" />, sortable: true },
-        { key: 'nyaa:leechers', label: <ArrowDownCircleIcon className="h-6 w-6 m-auto" />, sortable: true },
-        { key: 'nyaa:downloads', label: <CheckCircleIcon className="h-6 w-6 m-auto" />, sortable: true }
+    // const columns = [
+    //     { key: 'title', label: <span className='mr-auto'>Title</span>, sortable: true },
+    //     { key: 'nyaa:comments', label: <ChatBubbleLeftRightIcon className="h-6 w-6" />, sortable: true },
+    //     { key: 'links', label: 'Links', sortable: false },
+    //     { key: 'nyaa:size', label: <span className='mr-auto'>Size</span>, sortable: true },
+    //     { key: 'pubDate', label: <span className='mr-auto'>Date</span>, sortable: true },
+    //     { key: 'nyaa:seeders', label: <ArrowUpCircleIcon className="h-6 w-6 m-auto" />, sortable: true },
+    //     { key: 'nyaa:leechers', label: <ArrowDownCircleIcon className="h-6 w-6 m-auto" />, sortable: true },
+    //     { key: 'nyaa:downloads', label: <CheckCircleIcon className="h-6 w-6 m-auto" />, sortable: true }
 
-    ];
+    // ];
 
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     const paginatedData = rssData.slice(startIndex, endIndex);
 
     return (
-        <div>
+
+        <>
             <ProvidersTabs
                 selectedProvider={selectedProvider}
                 setSelectedProvider={setSelectedProvider}
@@ -116,17 +113,40 @@ const Table = ({ title }) => {
                 setCurrentPage={setCurrentPage}
                 totalPages={Math.ceil(rssData.length / itemsPerPage)}
             />
-            <div className="bg-white shadow-sm rounded-r-lg rounded-b-lg p-8 ">
-                <table className="w-full border-collapse table-auto ">
-                    <TableHeader
-                        columns={columns}
-                        onSort={handleSort}
-                        sortDirections={sortDirections}
-                    />
-                    <TableBody rssData={paginatedData} />
-                </table>
+            <div className=" min-w-full align-middle rounded-xl">
+                <div className="rounded-xl bg-gray-100  md:pt-0">
+
+                    <table className="hidden min-w-full text-gray-900 md:table">
+                        <thead className="rounded-lg text-left text-sm font-normal">
+                            <tr>
+                                <th scope="col" className="px-4 py-5 font-medium sm:pl-6">
+                                    Title
+                                </th>
+                                <th scope="col" className="px-3 py-5 font-medium text-center">
+                                    Links
+                                </th>
+                                <th scope="col" className="px-3 py-5 font-medium">
+                                    Size
+                                </th>
+                                <th scope="col" className="px-3 py-5 font-medium">
+                                    Date
+                                </th>
+                                <th scope="col" className="px-3 py-5 font-medium">
+                                    <ArrowUpCircleIcon className="h-5 w-5 " />
+                                </th>
+                                <th scope="col" className="px-3 py-5 font-medium">
+                                    <ArrowDownCircleIcon className="h-5 w-5 " />
+                                </th>
+                                <th scope="col" className="px-3 py-5 font-medium">
+                                    <CheckCircleIcon className="h-5 w-5 " />
+                                </th>
+                            </tr>
+                        </thead>
+                        <TableBody rssData={paginatedData} />
+                    </table>
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 

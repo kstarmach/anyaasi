@@ -15,7 +15,7 @@ const AnimeDetails = () => {
     };
 
     return (
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-8 mb-40">
             <BackButton />
             <Suspense fallback={<DescriptionSkeleton />} >
                 <DescriptionSection
@@ -23,6 +23,7 @@ const AnimeDetails = () => {
                     onTitleReceived={handleTitleReceived}
                 />
             </Suspense>
+
             <Suspense fallback={<TableSkeleton />} >
                 <Table
                     title={title}
