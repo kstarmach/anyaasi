@@ -1,9 +1,5 @@
 import { StarIcon } from "@heroicons/react/24/solid";
 import { BackButton } from "./Buttons";
-import { Title } from "./Title";
-
-const shimmer =
-    'before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/60 before:to-transparent';
 
 export function BadgesSkeleton() {
     return (
@@ -12,7 +8,7 @@ export function BadgesSkeleton() {
 }
 export function StarSkeleton() {
     return (
-        <div className="flex items-center rounded-xl bg-slate-200 p-3  h-12 w-20" >
+        <div className="flex items-center rounded-xl bg-blue-200 p-3  h-12 w-20" >
             <StarIcon className="w-8 h-8 fill-slate-400 ml-2 mr-6 " />
         </div>
     )
@@ -21,15 +17,15 @@ export function StarSkeleton() {
 export function DescriptionSkeleton() {
     return (
         <div
-            className={`${shimmer} bg-white shadow-sm rounded-xl p-8 flex gap-8`}
+            className={`leading-relaxed animate-pulse bg-white shadow-sm rounded-xl p-8 flex gap-8`}
         >
-            <div className="rounded-xl bg-slate-200 h-96 w-72" ></div>
+            <div className={` rounded-xl bg-slate-400 h-96 w-72`} ></div>
             <div className="flex-1 ">
                 <div className="flex items-center justify-center">
                     <div className="flex-grow">
                         <div className="grid grid-cols-3 gap-4">
-                            <div className="h-8  bg-slate-200 rounded  mb-4"></div>
-                            <div className="h-8  bg-slate-200 rounded  mb-4"></div>
+                            <div className="h-8  bg-slate-300 rounded  mb-4"></div>
+                            <div className="h-8  bg-slate-300 rounded  mb-4"></div>
                         </div>
                         <div className="mb-4 flex gap-4">
                             <BadgesSkeleton />
@@ -72,7 +68,7 @@ export function AnimeDetailsSkeleton() {
 
 export function CardSkeleton({ height, width }) {
     return (
-        <div className={`animate-pulse mb-16`} >
+        <div className={`leading-relaxed animate-pulse mb-16`} >
             <div
                 className="relative"
                 style={{ height, width }}
@@ -80,7 +76,7 @@ export function CardSkeleton({ height, width }) {
                 <div className="h-full w-auto">
                     <div
                         alt="Anime Cover"
-                        className="rounded-xl h-full w-full object-cover  shadow-2xl bg-slate-200"
+                        className={`rounded-xl h-full w-full object-cover  shadow-2xl bg-slate-300`}
                     />
                 </div>
             </div>
@@ -90,58 +86,55 @@ export function CardSkeleton({ height, width }) {
 
 export function PopularSkeleton() {
     return (
-        <div className=" flex flex-col gap-4">
-            <Title text={'Popular'} />
-            <div className="flex flex-wrap justify-between gap-2">
-                <CardSkeleton
-                    height={450}
-                    width={350}
-                />
-                <CardSkeleton
-                    height={450}
-                    width={350}
-                />
-                <CardSkeleton
-                    height={450}
-                    width={350}
-                />
-                <CardSkeleton
-                    height={450}
-                    width={350}
-                />
-                <CardSkeleton
-                    height={450}
-                    width={350}
-                />
-                <CardSkeleton
-                    height={450}
-                    width={350}
-                />
-                <CardSkeleton
-                    height={450}
-                    width={350}
-                />
-                <CardSkeleton
-                    height={450}
-                    width={350}
-                />
-                <CardSkeleton
-                    height={450}
-                    width={350}
-                />
-                <CardSkeleton
-                    height={450}
-                    width={350}
-                />
-                <CardSkeleton
-                    height={450}
-                    width={350}
-                />
-                <CardSkeleton
-                    height={450}
-                    width={350}
-                />
-            </div>
+        <div className={` flex flex-wrap justify-between gap-2`}>
+            <CardSkeleton
+                height={450}
+                width={350}
+            />
+            <CardSkeleton
+                height={450}
+                width={350}
+            />
+            <CardSkeleton
+                height={450}
+                width={350}
+            />
+            <CardSkeleton
+                height={450}
+                width={350}
+            />
+            <CardSkeleton
+                height={450}
+                width={350}
+            />
+            <CardSkeleton
+                height={450}
+                width={350}
+            />
+            <CardSkeleton
+                height={450}
+                width={350}
+            />
+            <CardSkeleton
+                height={450}
+                width={350}
+            />
+            <CardSkeleton
+                height={450}
+                width={350}
+            />
+            <CardSkeleton
+                height={450}
+                width={350}
+            />
+            <CardSkeleton
+                height={450}
+                width={350}
+            />
+            <CardSkeleton
+                height={450}
+                width={350}
+            />
         </div>
     )
 }
