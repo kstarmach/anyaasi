@@ -17,7 +17,7 @@ export function StarSkeleton() {
 export function DescriptionSkeleton() {
     return (
         <div
-            className={`leading-relaxed animate-pulse bg-white shadow-sm rounded-xl p-8 flex gap-8`}
+            className={`leading-relaxed animate-pulse bg-white shadow-sm rounded-xl p-8 flex flex-wrap gap-8`}
         >
             <div className={` rounded-xl bg-slate-400 h-96 w-72`} ></div>
             <div className="flex-1 ">
@@ -27,7 +27,7 @@ export function DescriptionSkeleton() {
                             <div className="h-8  bg-slate-300 rounded  mb-4"></div>
                             <div className="h-8  bg-slate-300 rounded  mb-4"></div>
                         </div>
-                        <div className="mb-4 flex gap-4">
+                        <div className="mb-4 flex flex-wrap gap-4">
                             <BadgesSkeleton />
                             <BadgesSkeleton />
                             <BadgesSkeleton />

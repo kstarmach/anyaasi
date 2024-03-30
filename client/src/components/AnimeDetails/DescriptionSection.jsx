@@ -30,13 +30,13 @@ const DescriptionSection = ({ animeId, onTitleReceived }) => {
     var onesDigit = averageScore % 10; // Get the ones digit
 
     return (
-        <div className="bg-white shadow-sm rounded-xl p-8 flex gap-8">
+        <div className="bg-white shadow-sm rounded-xl p-8 flex flex-wrap gap-8">
             <img src={coverImage.extraLarge} alt={title.userPreferred} className="rounded-xl h-96 w-72" />
             <div className="flex-1">
                 <div className="flex items-center justify-center">
                     <div className="flex-grow">
                         <h1 className="text-3xl font-semibold mb-4">{title.userPreferred}</h1>
-                        <div className="mb-4 flex gap-4">
+                        <div className="mb-4 flex flex-wrap gap-4">
                             {seasonYear && (
                                 <span className="inline-flex items-center rounded-xl bg-gray-50 px-3 py-2 font-medium text-base text-gray-400 ">
                                     {seasonYear}
