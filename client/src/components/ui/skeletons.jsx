@@ -1,5 +1,6 @@
 import { StarIcon } from "@heroicons/react/24/solid";
 import { BackButton } from "./Buttons";
+import { Title } from "./Title";
 
 const shimmer =
     'before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/60 before:to-transparent';
@@ -65,6 +66,82 @@ export function AnimeDetailsSkeleton() {
         <div className="flex flex-col gap-8">
             <BackButton />
             <DescriptionSkeleton />
+        </div>
+    )
+}
+
+export function CardSkeleton({ height, width }) {
+    return (
+        <div className={`animate-pulse mb-16`} >
+            <div
+                className="relative"
+                style={{ height, width }}
+            >
+                <div className="h-full w-auto">
+                    <div
+                        alt="Anime Cover"
+                        className="rounded-xl h-full w-full object-cover  shadow-2xl bg-slate-200"
+                    />
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export function PopularSkeleton() {
+    return (
+        <div className=" flex flex-col gap-4">
+            <Title text={'Popular'} />
+            <div className="flex flex-wrap justify-between gap-2">
+                <CardSkeleton
+                    height={450}
+                    width={350}
+                />
+                <CardSkeleton
+                    height={450}
+                    width={350}
+                />
+                <CardSkeleton
+                    height={450}
+                    width={350}
+                />
+                <CardSkeleton
+                    height={450}
+                    width={350}
+                />
+                <CardSkeleton
+                    height={450}
+                    width={350}
+                />
+                <CardSkeleton
+                    height={450}
+                    width={350}
+                />
+                <CardSkeleton
+                    height={450}
+                    width={350}
+                />
+                <CardSkeleton
+                    height={450}
+                    width={350}
+                />
+                <CardSkeleton
+                    height={450}
+                    width={350}
+                />
+                <CardSkeleton
+                    height={450}
+                    width={350}
+                />
+                <CardSkeleton
+                    height={450}
+                    width={350}
+                />
+                <CardSkeleton
+                    height={450}
+                    width={350}
+                />
+            </div>
         </div>
     )
 }
