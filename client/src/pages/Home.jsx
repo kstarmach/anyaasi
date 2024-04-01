@@ -16,14 +16,21 @@ const WatchingCarousel = ({ userId }) => {
 
   const watching = currentWatchingFilter(extractAnimeList(data));
 
+  if (watching.length > 0) {
+    return (
+      <Carousel
+        data={watching}
+        title={"Watching"}
+        height={400}
+        width={300}
+        carouselType="normal"
+      />
+    )
+  }
   return (
-    <Carousel
-      data={watching}
-      title={"Watching"}
-      height={400}
-      width={300}
-      carouselType="normal"
-    />
+    <div className="flex justify-center">
+      <h1>Nothing to find here</h1>
+    </div>
   )
 }
 

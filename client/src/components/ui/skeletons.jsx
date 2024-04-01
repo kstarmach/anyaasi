@@ -1,5 +1,7 @@
 import { ArrowUpCircleIcon, StarIcon, ArrowDownCircleIcon, CheckCircleIcon } from "@heroicons/react/24/solid";
 import { BackButton } from "./Buttons";
+import { Title } from "./Title";
+import { ChevronLeftButton, ChevronRightButton } from "./Chevrons";
 
 export function BadgesSkeleton() {
     return (
@@ -76,7 +78,7 @@ export function CardSkeleton({ height, width }) {
                 <div className="h-full w-auto">
                     <div
                         alt="Anime Cover"
-                        className={`rounded-xl h-full w-full object-cover  shadow-2xl bg-slate-300`}
+                        className={`rounded-xl h-full w-full object-cover  shadow-[rgba(0,0,5,0.1)_10px_5px_4px_0px] bg-slate-300`}
                     />
                 </div>
             </div>
@@ -141,55 +143,32 @@ export function PopularSkeleton() {
 
 export function HomeSkeleton() {
     return (
-        <div className={` flex flex-wrap justify-between gap-2`}>
-            <CardSkeleton
-                height={450}
-                width={350}
-            />
-            <CardSkeleton
-                height={450}
-                width={350}
-            />
-            <CardSkeleton
-                height={450}
-                width={350}
-            />
-            <CardSkeleton
-                height={450}
-                width={350}
-            />
-            <CardSkeleton
-                height={450}
-                width={350}
-            />
-            <CardSkeleton
-                height={450}
-                width={350}
-            />
-            <CardSkeleton
-                height={450}
-                width={350}
-            />
-            <CardSkeleton
-                height={450}
-                width={350}
-            />
-            <CardSkeleton
-                height={450}
-                width={350}
-            />
-            <CardSkeleton
-                height={450}
-                width={350}
-            />
-            <CardSkeleton
-                height={450}
-                width={350}
-            />
-            <CardSkeleton
-                height={450}
-                width={350}
-            />
+        <div className="carousel flex flex-col gap-6 ">
+            <div className='flex justify-between '>
+                <Title text={"Watching"} />
+                <div className='flex gap-4 items-center'>
+                    <ChevronLeftButton />
+
+                    <ChevronRightButton />
+                </div>
+            </div>
+
+            {/* Image container */}
+            <div className="images-container relative flex gap-4 overflow-hidden">
+                <CardSkeleton
+                    height={400}
+                    width={300}
+                />
+                <CardSkeleton
+                    height={400}
+                    width={300}
+                />
+                <CardSkeleton
+                    height={400}
+                    width={300}
+                />
+            </div>
+
         </div>
     )
 }
