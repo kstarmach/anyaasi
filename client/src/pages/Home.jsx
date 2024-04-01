@@ -9,6 +9,7 @@ import { extractAnimeList, currentWatchingFilter } from "../lib/filters";
 import { Suspense } from "react";
 import { HomeSkeleton } from "../components/ui/skeletons";
 
+
 const WatchingCarousel = ({ userId }) => {
   const { data } = useSuspenseQuery(GET_ANIME_LIST, {
     variables: { userId: userId },
@@ -16,23 +17,18 @@ const WatchingCarousel = ({ userId }) => {
 
   const watching = currentWatchingFilter(extractAnimeList(data));
 
-  if (watching.length > 0) {
-    return (
-      <Carousel
-        data={watching}
-        title={"Watching"}
-        height={400}
-        width={300}
-        carouselType="normal"
-      />
-    )
-  }
+
   return (
-    <div className="flex justify-center">
-      <h1>Nothing to find here</h1>
-    </div>
+    <Carousel
+      data={watching}
+      title={"Watching"}
+      height={400}
+      width={300}
+      carouselType="normal"
+    />
   )
 }
+
 
 const Anilist = ({ userId }) => {
   return (

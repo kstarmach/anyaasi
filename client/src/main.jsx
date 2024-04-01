@@ -12,6 +12,7 @@ import AnimeDetails from './components/AnimeDetails';
 import Login from './pages/Login.jsx';
 import Home from './pages/Home';
 import Popular from './pages/Popular';
+import NotFoundPage from './pages/NotFoundPage.jsx';
 
 
 
@@ -23,23 +24,28 @@ const router = createBrowserRouter([
         <App />
       </ApolloProvider>
     ),
+    errorElement: <NotFoundPage />,
     children: [
       {
         path: '/login',
         element: <Login />,
+        errorElement: <NotFoundPage />,
       },
       {
         path: '/',
         element: <Home />,
+        errorElement: <NotFoundPage />,
       },
       {
         path: '/popular',
         element: <Popular />,
+        errorElement: <NotFoundPage />,
       },
       {
         path: "/anime/:animeId",
         element: <AnimeDetails />,
-      },
+        errorElement: <NotFoundPage />,
+      }
     ],
   },
 ]);
