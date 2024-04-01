@@ -1,32 +1,41 @@
 import { DocumentArrowDownIcon, InboxArrowDownIcon } from '@heroicons/react/24/solid'
 import { formatDateToLocal } from '../../lib/utils'
+import { useEffect, useState } from 'react';
+import { fetchRssData } from '../../lib/data';
 
 
 
 
 
-const TableBody = ({ rssData }) => {
+const TableBody = ({ title, provider }) => {
+    const [data, setData] = useState(null);
 
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                // Replace with your data fetching logic
+                const response = await fetchRssData(provider, title);
+
+                setData(response.data);
+            } catch (error) {
+                console.error('Error fetching data: ', error);
+            }
+        };
+
+        fetchData();
+    }, [title, provider]);
 
     return (
         <tbody className="bg-white ">
-            {rssData && rssData.length > 0 ? (
-                rssData.map((episode, idx) => (
+            {data && data.length > 0 ? (
+                data.map((episode, idx) => (
                     <tr className="w-full border-b border-gray-100 last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg text-sm" key={idx}>
-                        {/* <td className="py-2 px-4">{episode.episodeNumber}</td> */}
                         <td className="relative overflow-hidden  py-3 pl-6 pr-3">
                             <a href={episode.guid[0]._} target="_blank" rel="noopener noreferrer">
                                 {episode.title[0]}
                             </a>
                         </td>
-                        {/* <td className="whitespace-nowrap py-3 pl-6 pr-3">
-                            {episode['nyaa:comments'][0] > 0 ? (
-                                <div className="flex">
-                                    <ChatBubbleLeftRightIcon className="h-5 w-5" />
-                                    <p className="ml-1">{episode['nyaa:comments'][0]}</p>
-                                </div>
-                            ) : null}
-                        </td> */}
+
 
                         <td className="whitespace-nowrap py-3 pl-6 pr-3">
                             <div className='flex justify-center gap-3'>

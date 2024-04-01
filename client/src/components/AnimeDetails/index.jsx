@@ -4,12 +4,13 @@ import DescriptionSection from './DescriptionSection';
 import Table from './Table';
 import { BackButton } from '../ui/Buttons';
 import { DescriptionSkeleton, TableSkeleton } from '../ui/skeletons';
+import ProvidersTabs from './ProvidersTabs';
 
 const AnimeDetails = () => {
     const { animeId } = useParams();
     const [title, setTitle] = useState(null); // State to hold the title
+    const [provider, setProvider] = useState('Erai-raws');
 
-    // Function to set the title received from DescriptionSection
     const handleTitleReceived = (receivedTitle) => {
         setTitle(receivedTitle);
     };
@@ -24,9 +25,15 @@ const AnimeDetails = () => {
                 />
             </Suspense>
 
+            <ProvidersTabs
+                setProvider={setProvider}
+                provider={provider}
+            />
+
             <Suspense fallback={<TableSkeleton />} >
                 <Table
                     title={title}
+                    provider={provider}
                 />
             </Suspense>
         </div>
