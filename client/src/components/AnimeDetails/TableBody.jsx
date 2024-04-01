@@ -3,22 +3,22 @@ import { formatDateToLocal } from '../../lib/utils'
 import { useEffect, useState } from 'react';
 import { fetchRssData } from '../../lib/data';
 
-
-
-
-
 const TableBody = ({ title, provider }) => {
     const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
+                setLoading(true);
                 // Replace with your data fetching logic
                 const response = await fetchRssData(provider, title);
 
                 setData(response.data);
             } catch (error) {
                 console.error('Error fetching data: ', error);
+            } finally {
+                setLoading(false);
             }
         };
 
@@ -27,7 +27,11 @@ const TableBody = ({ title, provider }) => {
 
     return (
         <tbody className="bg-white ">
-            {data && data.length > 0 ? (
+            {loading ? (
+                <tr className="w-full border-b border-gray-100 last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg text-sm">
+                    <td colSpan="7" className="py-4 text-center">Loading...</td>
+                </tr>
+            ) : data && data.length > 0 ? (
                 data.map((episode, idx) => (
                     <tr className="w-full border-b border-gray-100 last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg text-sm" key={idx}>
                         <td className="relative overflow-hidden  py-3 pl-6 pr-3">
@@ -58,8 +62,8 @@ const TableBody = ({ title, provider }) => {
                     </tr>
                 ))
             ) : (
-                <tr className="w-full border-b border-gray-100 last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg text-sm" >
-
+                <tr className="w-full border-b border-gray-100 last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg text-sm">
+                    <td colSpan="7" className="py-4 text-center">No data found</td>
                 </tr>
             )}
         </tbody>
