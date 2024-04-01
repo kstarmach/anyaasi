@@ -22,8 +22,8 @@ const Carousel = ({ data, title, height, width, carouselType }) => {
     };
 
     return (
-        <div className="carousel flex flex-col gap-6">
-            <div className='flex justify-between'>
+        <div className="carousel flex flex-col gap-6 ">
+            <div className='flex justify-between '>
                 <Title text={title} />
                 <div className='flex gap-4 items-center'>
                     <ChevronLeftButton onClickHandler={() => scroll("left")} />
@@ -33,7 +33,7 @@ const Carousel = ({ data, title, height, width, carouselType }) => {
             </div>
 
             {/* Image container */}
-            <div className="images-container relative flex gap-10 overflow-hidden " ref={sliderRef}>
+            <div className="images-container relative flex gap-4 overflow-hidden " ref={sliderRef}>
                 {data.map((entry, index) => {
                     let coverImage;
 

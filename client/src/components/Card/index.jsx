@@ -16,7 +16,7 @@ function Card({ entry, height, width, coverImage }) {
                         <img
                             src={coverImage}
                             alt="Anime Cover"
-                            className="rounded-xl h-full w-full object-cover  shadow-2xl"
+                            className="rounded-xl h-full w-full object-cover   inset-20  rounded-lg shadow-[rgba(0,0,5,0.3)_10px_5px_4px_0px]"
                         />
                         {nextAiringEpisode && nextAiringEpisode.episode > 0 && (
                             <BadgeIndicator

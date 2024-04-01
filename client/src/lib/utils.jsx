@@ -59,7 +59,28 @@ export const generatePagination = (currentPage, totalPages) => {
     ];
 };
 
+export const scroll = (container, direction) => {
+    const imageWidth = 300; // Width of one image
+    const padding = 20; // Padding added to the images-container
 
+    const maxScrollLeft =
+        container.scrollWidth - container.clientWidth + padding * 2;
+
+    if (direction === "left" && container.scrollLeft > 0) {
+        container.scrollLeft -= imageWidth + padding;
+    } else if (direction === "right" && container.scrollLeft < maxScrollLeft) {
+        container.scrollLeft += imageWidth + padding;
+    }
+};
+
+
+export const getCoverImage = (entry, carouselType = "normal") => {
+    if (carouselType === "normal") {
+        return entry.coverImage.extraLarge;
+    } else if (carouselType === "wide") {
+        return entry.bannerImage;
+    }
+};
 
 // const [rssData, setRssData] = useState([]);
 // const [sortDirections, setSortDirections] = useState({ pubDate: 'desc' });

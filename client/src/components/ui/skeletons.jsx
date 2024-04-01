@@ -139,6 +139,61 @@ export function PopularSkeleton() {
     )
 }
 
+export function HomeSkeleton() {
+    return (
+        <div className={` flex flex-wrap justify-between gap-2`}>
+            <CardSkeleton
+                height={450}
+                width={350}
+            />
+            <CardSkeleton
+                height={450}
+                width={350}
+            />
+            <CardSkeleton
+                height={450}
+                width={350}
+            />
+            <CardSkeleton
+                height={450}
+                width={350}
+            />
+            <CardSkeleton
+                height={450}
+                width={350}
+            />
+            <CardSkeleton
+                height={450}
+                width={350}
+            />
+            <CardSkeleton
+                height={450}
+                width={350}
+            />
+            <CardSkeleton
+                height={450}
+                width={350}
+            />
+            <CardSkeleton
+                height={450}
+                width={350}
+            />
+            <CardSkeleton
+                height={450}
+                width={350}
+            />
+            <CardSkeleton
+                height={450}
+                width={350}
+            />
+            <CardSkeleton
+                height={450}
+                width={350}
+            />
+        </div>
+    )
+}
+
 
 export function TableRowSkeleton() {
     return (
