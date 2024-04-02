@@ -20,7 +20,7 @@ export const SignInButton = () => {
     return (
         <NavLink
             to={`login`}
-            className="bg-indigo-600 hover:bg-indigo-500 text-white  rounded-xl px-3 py-2 flex items-center justify-center  font-semibold "
+            className="shadow-[rgba(0,0,5,0.1)_10px_5px_4px_0px] bg-indigo-600 hover:bg-indigo-500 text-white  rounded-xl px-3 py-2 flex items-center justify-center  font-semibold "
             aria-current="page"
         >
             Sign in

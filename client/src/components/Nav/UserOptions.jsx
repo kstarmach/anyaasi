@@ -4,6 +4,7 @@ import { useUserContext } from '../../UserContext';
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { SignInButton } from '../ui/Buttons';
+import { UserAvatar } from '../ui/UserAvatar';
 
 const UserOptions = () => {
     const { user, setUser } = useUserContext();
@@ -23,11 +24,7 @@ const UserOptions = () => {
         <Menu as="div" className="relative ">
             <div>
                 <Menu.Button className="flex w-full justify-center ">
-                    <img
-                        className="h-12 w-auto rounded-full shadow-[rgba(0,0,5,0.1)_10px_5px_4px_0px]"
-                        src={user.avatar}
-                        alt="user avatar"
-                    />
+                    <UserAvatar avatar={user.avatar} />
                 </Menu.Button>
             </div>
 
