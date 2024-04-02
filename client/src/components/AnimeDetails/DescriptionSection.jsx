@@ -30,7 +30,7 @@ const DescriptionSection = ({ animeId, onTitleReceived }) => {
     var onesDigit = averageScore % 10; // Get the ones digit
 
     return (
-        <div className="bg-white shadow-sm rounded-xl p-8 flex flex-wrap gap-8">
+        <div className="bg-white shadow-lg rounded-xl p-8 flex flex-wrap gap-8 ">
             <img src={coverImage.extraLarge} alt={title.userPreferred} className="rounded-xl h-96 w-72" />
             <div className="flex-1">
                 <div className="flex items-center justify-center">
@@ -50,7 +50,7 @@ const DescriptionSection = ({ animeId, onTitleReceived }) => {
 
                         </div>
                     </div>
-                    <div className='flex items-center text-white bg-blue-500 rounded-full p-2'>
+                    <div className='shadow-[rgba(0,0,5,0.1)_10px_5px_4px_0px] flex items-center text-white bg-blue-500 rounded-full p-2 '>
                         <StarIcon className="w-8 h-8 fill-yellow-300 mx-2" />
                         <h3 className="mr-2 text-lg font-bold">
                             {tensDigit},{onesDigit}

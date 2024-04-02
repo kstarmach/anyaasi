@@ -5,7 +5,7 @@ import { CheckCircleIcon, ArrowDownCircleIcon, ArrowUpCircleIcon } from '@heroic
 
 const Table = ({ title, provider }) => {
     return (
-        <div className=" min-w-full align-middle rounded-xl">
+        <div className=" min-w-full align-middle rounded-xl shadow-lg">
             <div className="rounded-xl bg-gray-100  md:pt-0">
 
                 <table className="hidden min-w-full text-gray-900 md:table">

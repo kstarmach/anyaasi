@@ -17,9 +17,9 @@ function ProvidersTabs({ setProvider }) {
                             className={({ selected }) =>
                                 classNames(
                                     'w-full rounded-lg py-2.5 text-sm font-medium leading-5 px-10',
-                                    'ring-white/60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2',
+                                    'ring-white/60  focus:outline-none ',
                                     selected
-                                        ? 'bg-white text-blue-700 shadow'
+                                        ? 'bg-white text-blue-700 shadow-[rgba(0,0,5,0.1)_10px_5px_4px_0px]'
                                         : 'text-gray-300 hover:bg-gray-400 hover:text-white'
                                 )
                             }
