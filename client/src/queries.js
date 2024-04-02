@@ -79,16 +79,19 @@ query($q: String){
       title {
         userPreferred
       }
-      startDate {
-        year
-        month
-        day
-      }
-      coverImage{
+      coverImage {
+        extraLarge
+        medium
         large
       }
+      bannerImage
+      episodes
+      nextAiringEpisode {
+        episode
+        timeUntilAiring
+      }
       averageScore
-      format
+      genres
     }
   }
 }`

@@ -13,6 +13,7 @@ import Login from './pages/Login.jsx';
 import Home from './pages/Home';
 import Popular from './pages/Popular';
 import NotFoundPage from './pages/NotFoundPage.jsx';
+import Search from './pages/Search.jsx';
 
 
 
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
         path: "/anime/:animeId",
         element: <AnimeDetails />,
         errorElement: <NotFoundPage />,
+      },
+      {
+        path: "/search",
+        element: <Search />
       }
     ],
   },
