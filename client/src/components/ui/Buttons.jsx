@@ -8,7 +8,7 @@ export const BackButton = () => {
 
     return (
         <button
-            className='bg-white rounded-full p-2 self-start max-w-max'
+            className='bg-white rounded-full p-2 self-start max-w-max shadow-[rgba(0,0,5,0.1)_10px_5px_4px_0px]'
             onClick={handleGoBack}
         >
             <ArrowLongLeftIcon className="h-5 w-5" />

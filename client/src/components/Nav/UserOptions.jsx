@@ -24,7 +24,7 @@ const UserOptions = () => {
             <div>
                 <Menu.Button className="flex w-full justify-center ">
                     <img
-                        className="h-12 w-auto rounded-full"
+                        className="h-12 w-auto rounded-full shadow-[rgba(0,0,5,0.1)_10px_5px_4px_0px]"
                         src={user.avatar}
                         alt="user avatar"
                     />
