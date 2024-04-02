@@ -2,6 +2,7 @@ import { DocumentArrowDownIcon, InboxArrowDownIcon } from '@heroicons/react/24/s
 import { formatDateToLocal } from '../../lib/utils'
 import { useEffect, useState } from 'react';
 import { fetchRssData } from '../../lib/data';
+import Spinner from '../ui/Spinner';
 
 const TableBody = ({ title, provider }) => {
     const [data, setData] = useState(null);
@@ -29,7 +30,7 @@ const TableBody = ({ title, provider }) => {
         <tbody className="bg-white ">
             {loading ? (
                 <tr className="w-full border-b border-gray-100 last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg text-sm">
-                    <td colSpan="7" className="py-4 text-center">Loading...</td>
+                    <td colSpan="7" className="py-4 text-center"><Spinner /></td>
                 </tr>
             ) : data && data.length > 0 ? (
                 data.map((episode, idx) => (
