@@ -141,7 +141,7 @@ export function PopularSkeleton() {
     )
 }
 
-export function HomeSkeleton() {
+export function WatchingSkeleton() {
     return (
         <div className="carousel flex flex-col gap-6 ">
             <div className='flex justify-between '>
@@ -166,6 +166,37 @@ export function HomeSkeleton() {
                 <CardSkeleton
                     height={400}
                     width={300}
+                />
+            </div>
+
+        </div>
+    )
+}
+export function RecentSkeleton() {
+    return (
+        <div className="carousel flex flex-col gap-6 ">
+            <div className='flex justify-between '>
+                <Title text={"Recently Added"} />
+                <div className='flex gap-4 items-center'>
+                    <ChevronLeftButton />
+
+                    <ChevronRightButton />
+                </div>
+            </div>
+
+            {/* Image container */}
+            <div className="images-container relative flex gap-4 overflow-hidden">
+                <CardSkeleton
+                    height={300}
+                    width={500}
+                />
+                <CardSkeleton
+                    height={300}
+                    width={500}
+                />
+                <CardSkeleton
+                    height={300}
+                    width={500}
                 />
             </div>
 
