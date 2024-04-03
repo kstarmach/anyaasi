@@ -5,7 +5,7 @@ var parseString = require('xml2js').parseString;
 rssRouter.get('/:u', async (req, res) => {
     const quality = '1080p'
     const romaji = req.query.romaji;
-    console.log(romaji);
+
     const english = req.query.english;
     const u = req.params.u; // submitter
     //const q = req.query.q; // query
@@ -30,7 +30,6 @@ rssRouter.get('/:u', async (req, res) => {
         url = `https://nyaa.si/?page=rss&u=${u}&q=${romaji}+${quality}&c=${c}&f=${f}`;
     }
 
-    console.log(url);
     const response = await axios.get(url);
     if (response.status === 200) {
         // Parse the XML data using xml2js
