@@ -52,7 +52,8 @@ query($id: Int) {
     Media(id:$id)
       {
         title {
-          userPreferred
+          romaji
+          english
         }
         episodes
         coverImage {

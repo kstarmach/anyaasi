@@ -8,7 +8,7 @@ import ProvidersTabs from './ProvidersTabs';
 
 const AnimeDetails = () => {
     const { animeId } = useParams();
-    const [title, setTitle] = useState(null); // State to hold the title
+    const [title, setTitle] = useState([]); // State to hold the title
     const [provider, setProvider] = useState('Erai-raws');
 
     const handleTitleReceived = (receivedTitle) => {

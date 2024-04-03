@@ -4,6 +4,7 @@ import { CheckCircleIcon, ArrowDownCircleIcon, ArrowUpCircleIcon } from '@heroic
 
 
 const Table = ({ title, provider }) => {
+
     return (
         <div className=" min-w-full align-middle rounded-xl shadow-lg">
             <div className="rounded-xl bg-gray-100  md:pt-0">
@@ -35,7 +36,7 @@ const Table = ({ title, provider }) => {
                         </tr>
                     </thead>
                     {title !== null ?
-                        <TableBody title={title} provider={provider} />
+                        <TableBody romaji={title.romaji} english={title.english} provider={provider} />
                         : ''}
                 </table>
             </div>

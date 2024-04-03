@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { fetchRssData } from '../../lib/data';
 import Spinner from '../ui/Spinner';
 
-const TableBody = ({ title, provider }) => {
+const TableBody = ({ provider, romaji, english }) => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -13,7 +13,7 @@ const TableBody = ({ title, provider }) => {
             try {
                 setLoading(true);
                 // Replace with your data fetching logic
-                const response = await fetchRssData(provider, title);
+                const response = await fetchRssData(provider, romaji, english);
 
                 setData(response.data);
             } catch (error) {
@@ -24,7 +24,7 @@ const TableBody = ({ title, provider }) => {
         };
 
         fetchData();
-    }, [title, provider]);
+    }, [romaji, english, provider]);
 
     return (
         <tbody className="bg-white ">

@@ -13,7 +13,7 @@ const DescriptionSection = ({ animeId, onTitleReceived }) => {
     useEffect(() => {
         if (data && data.Media && data.Media.title) {
             // Call the callback function with the title data
-            onTitleReceived(data.Media.title.userPreferred);
+            onTitleReceived(data.Media.title);
         }
     }, [data, onTitleReceived]);
 
@@ -31,11 +31,11 @@ const DescriptionSection = ({ animeId, onTitleReceived }) => {
 
     return (
         <div className="bg-white shadow-lg rounded-xl p-8 flex flex-wrap gap-8 ">
-            <img src={coverImage.extraLarge} alt={title.userPreferred} className="rounded-xl h-96 w-72" />
+            <img src={coverImage.extraLarge} alt={title.romaji} className="rounded-xl h-96 w-72" />
             <div className="flex-1">
                 <div className="flex items-center justify-center">
                     <div className="flex-grow">
-                        <h1 className="text-3xl font-semibold mb-4">{title.userPreferred}</h1>
+                        <h1 className="text-3xl font-semibold mb-4">{title.romaji}</h1>
                         <div className="mb-4 flex flex-wrap gap-4">
                             {seasonYear && (
                                 <span className="inline-flex items-center rounded-xl bg-gray-50 px-3 py-2 font-medium text-base text-gray-400 ">

@@ -5,11 +5,11 @@ function classNames(...classes) {
 }
 
 function ProvidersTabs({ setProvider }) {
-    const providers = ['Erai-raws', 'SubsPlease'];
+    const providers = ['Erai-raws', 'SubsPlease', 'ToonsHub', 'Judas', 'EMBER', 'Anime Time', 'SanKyuu', 'ASW'];
     return (
-        <div className=" px-2  sm:px-0 ">
+        <div className=" px-2  sm:px-0 hidden md:block ">
             <Tab.Group className='flex justify-start'>
-                <Tab.List className="flex space-x-1 rounded-xl bg-gray-100 p-1">
+                <Tab.List className="flex flex-wrap xl:flex-nowrap space-x-1 rounded-xl bg-gray-100 p-1">
                     {providers.map(provider => (
                         <Tab
                             onClick={() => setProvider(provider)}
