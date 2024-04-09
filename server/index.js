@@ -13,7 +13,7 @@ app.use(express.json());
 
 app.use('/rss/', rssRouter);
 app.use('/anilist/', anilistRouter);
-app.use('/myanimelist/', malRouter);
+// app.use('/myanimelist/', malRouter);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
