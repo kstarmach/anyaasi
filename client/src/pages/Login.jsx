@@ -5,7 +5,7 @@ const Login = () => {
         <div className="flex flex-col lg:flex-row  items-center justify-center  h-[60dvh]">
             <div className="w-full lg:w-1/2 flex flex-col gap-12 items-center justify-center lg:px-2 xl:px-0 text-center">
                 <p className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-wider text-gray-300 mt-2">Pick your account </p>
-                <p className="text-lg md:text-xl lg:text-2xl text-gray-500 "> Or dive into popular anime by searching titles in the top right corner.</p>
+                <p className="text-lg md:text-xl lg:text-2xl text-gray-500 "> Or dive straight into popular anime or search for titles using the navigation bar.</p>
                 <Anilist />
             </div>
             <div className="hidden lg:inline-flex w-1/2  flex lg:items-end justify-center p-4">
