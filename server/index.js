@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const rssRouter = require('./controllers/rss.js');
-const malRouter = require('./controllers/myanimelist.js');
+// const malRouter = require('./controllers/myanimelist.js');
 const anilistRouter = require('./controllers/anilist.js');
 
 const app = express();
