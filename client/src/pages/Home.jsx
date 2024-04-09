@@ -47,7 +47,7 @@ const RecentCarousel = ({ userId }) => {
         title={"Recently Added"}
         height={300}
         width={500}
-        carouselType="normal"
+        carouselType="wide"
       />
     )
   }
