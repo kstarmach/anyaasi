@@ -8,31 +8,34 @@ import Login from './Login';
 import { extractAnimeList, currentWatchingFilter, recentlyAddedFilter } from "../lib/filters";
 import { Suspense } from "react";
 import { RecentSkeleton, WatchingSkeleton } from "../components/ui/skeletons";
+import EmptyList from "./EmptyList";
 
 
 const WatchingCarousel = ({ userId }) => {
   const { data } = useSuspenseQuery(GET_ANIME_LIST, {
     variables: { userId: userId },
   });
+  if (data.MediaListCollection.lists.length <= 0) return <EmptyList />
+  const result = currentWatchingFilter(extractAnimeList(data));
 
-  const watching = currentWatchingFilter(extractAnimeList(data));
-
-
-  return (
-    <Carousel
-      data={watching}
-      title={"Watching"}
-      height={400}
-      width={300}
-      carouselType="normal"
-    />
-  )
+  if (result.length > 0) {
+    return (
+      <Carousel
+        data={result}
+        title={"Watching"}
+        height={400}
+        width={300}
+        carouselType="normal"
+      />
+    )
+  }
 }
 
 const RecentCarousel = ({ userId }) => {
   const { data } = useSuspenseQuery(GET_ANIME_LIST, {
     variables: { userId: userId },
   });
+  if (data.MediaListCollection.lists.length <= 0) return '';
 
   const result = recentlyAddedFilter(extractAnimeList(data));
   if (result.length > 0) {
@@ -48,7 +51,8 @@ const RecentCarousel = ({ userId }) => {
       />
     )
   }
-  return '';
+  return ''
+
 }
 
 
