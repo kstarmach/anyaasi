@@ -74,7 +74,7 @@ query($id: Int) {
 
 export const SEARCH_ANIME = gql`
 query($q: String){
-  Page(page: 0, perPage: 5) {
+  Page(page: 0, perPage: 12) {
     media(search: $q, sort:POPULARITY_DESC, type:ANIME) {
       id
       title {

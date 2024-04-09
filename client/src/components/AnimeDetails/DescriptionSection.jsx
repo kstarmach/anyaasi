@@ -31,7 +31,7 @@ const DescriptionSection = ({ animeId, onTitleReceived }) => {
 
     return (
         <div className="bg-white shadow-lg rounded-xl p-8 flex flex-wrap gap-8 ">
-            <img src={coverImage.extraLarge} alt={title.romaji} className="rounded-xl h-96 w-72" />
+            <a href={`https://anilist.co/anime/${animeId}`} target="_blank" rel="noreferrer"><img src={coverImage.extraLarge} alt={title.romaji} className="rounded-xl h-96 w-72" /></a>
             <div className="flex-1">
                 <div className="flex items-center justify-center">
                     <div className="flex-grow">
