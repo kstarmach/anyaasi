@@ -14,10 +14,10 @@ const TableBody = ({ provider, romaji, english }) => {
                 setLoading(true);
                 // Replace with your data fetching logic
                 const response = await fetchRssData(provider, romaji, english);
-
                 setData(response.data);
             } catch (error) {
                 console.error('Error fetching data: ', error);
+                setData(null);
             } finally {
                 setLoading(false);
             }
