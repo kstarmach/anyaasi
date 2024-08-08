@@ -35,20 +35,15 @@ const Carousel = ({ data, title, height, width, carouselType }) => {
             {/* Image container */}
             <div className="images-container relative flex gap-4 overflow-hidden " ref={sliderRef}>
                 {data.map((entry, index) => {
-                    let coverImage;
+                    let coverImage = entry.coverImage.extraLarge;
 
-                    if (carouselType === "normal") {
-                        coverImage = entry.coverImage.extraLarge;
-                        // coverImage = entry.media.coverImage.extraLarge;
-                    } else if (carouselType === "wide") {
-                        //coverImage = entry.media.bannerImage;
+                    if (carouselType === "wide" && entry.bannerImage) {
                         coverImage = entry.bannerImage;
                     }
 
                     return (
                         <Card
                             entry={entry}
-                            //key={`${entry.media.id}-${index}`}
                             key={`${entry.id}-${index}`}
                             height={height}
                             width={width}
