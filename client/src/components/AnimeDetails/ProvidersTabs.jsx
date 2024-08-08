@@ -1,4 +1,4 @@
-import { Tab } from '@headlessui/react'
+import { Tab, TabGroup, TabList } from '@headlessui/react'
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -8,8 +8,8 @@ function ProvidersTabs({ setProvider }) {
     const providers = ['Erai-raws', 'SubsPlease', 'ToonsHub', 'Judas', 'EMBER', 'Anime Time', 'SanKyuu', 'ASW'];
     return (
         <div className=" px-2  sm:px-0 hidden md:block ">
-            <Tab.Group className='flex justify-start'>
-                <Tab.List className="flex flex-wrap xl:flex-nowrap space-x-1 rounded-xl bg-gray-100 p-1">
+            <TabGroup className=''>
+                <TabList className="flex flex-wrap xl:flex-nowrap space-x-1 rounded-xl bg-gray-100 p-1">
                     {providers.map(provider => (
                         <Tab
                             onClick={() => setProvider(provider)}
@@ -27,9 +27,8 @@ function ProvidersTabs({ setProvider }) {
                             {provider}
                         </Tab>
                     ))}
-                </Tab.List>
-
-            </Tab.Group>
+                </TabList>
+            </TabGroup>
 
         </div>
     )
