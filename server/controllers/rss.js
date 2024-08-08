@@ -28,9 +28,11 @@ rssRouter.get('/:u', async (req, res) => {
         url = `https://nyaa.si/?page=rss&u=${u}&q=${romaji}+${quality}&c=${c}&f=${f}`;
     }
 
+
+
     try {
         const response = await axios.get(url);
-        console.log(url);
+        // console.log(url);
         if (response.status === 200) {
             parseString(response.data, (err, result) => {
                 if (err) {
@@ -53,7 +55,7 @@ rssRouter.get('/:u', async (req, res) => {
     async function retryWithEnglishQuery() {
         const englishUrl = `https://nyaa.si/?page=rss&u=${u}&q=${english}+${quality}&c=${c}&f=${f}`;
         try {
-            console.log(englishUrl);
+            // console.log(englishUrl);
             const response = await axios.get(englishUrl);
             if (response.status === 200) {
                 parseString(response.data, (err, result) => {

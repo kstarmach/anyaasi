@@ -11,19 +11,21 @@ const TableBody = ({ provider, romaji, english }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                setLoading(true);
-                // Replace with your data fetching logic
+                setLoading(true); // Indicate data is loading
                 const response = await fetchRssData(provider, romaji, english);
-                setData(response.data);
+                setData(response.data); // Update data state with fetched data
             } catch (error) {
-                console.error('Error fetching data: ', error);
-                setData(null);
+                console.error('Error fetching data:', error);
+                setData(null); // Set data to null on error
             } finally {
-                setLoading(false);
+                setLoading(false); // Indicate data fetching is complete
             }
         };
 
-        fetchData();
+        // Only fetch data if romaji or english is defined
+        if (romaji || english) {
+            fetchData();
+        }
     }, [romaji, english, provider]);
 
     return (
