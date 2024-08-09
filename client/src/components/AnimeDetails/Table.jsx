@@ -6,11 +6,11 @@ import { CheckCircleIcon, ArrowDownCircleIcon, ArrowUpCircleIcon } from '@heroic
 const Table = ({ title, provider }) => {
 
     return (
-        <div className=" min-w-full align-middle rounded-xl shadow-lg">
-            <div className="rounded-xl bg-gray-100  md:pt-0">
+        <div className=" min-w-full align-middle rounded-xl shadow-lg mb-20">
+            <div className="rounded-xl bg-gray-100  md:pt-0 dark:bg-indigo-500">
 
-                <table className="hidden min-w-full text-gray-900 md:table">
-                    <thead className="rounded-lg text-left text-sm font-normal">
+                <table className="hidden min-w-full text-gray-900 md:table  dark:text-slate-300">
+                    <thead className="rounded-lg text-left text-sm font-normal ">
                         <tr>
                             <th scope="col" className="px-4 py-5 font-medium sm:pl-6">
                                 Title

@@ -16,7 +16,7 @@ const AnimeDetails = () => {
     };
 
     return (
-        <div className="flex flex-col gap-8 mb-40">
+        <div className="flex flex-col gap-8">
             <BackButton />
             <Suspense fallback={<DescriptionSkeleton />} >
                 <DescriptionSection

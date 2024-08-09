@@ -16,7 +16,7 @@ const UserData = ({ data, handleSignIn }) => {
             <button
                 type="button"
                 onClick={handleSignIn}
-                className="px-3 py-2 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-[rgba(0,0,5,0.1)_10px_5px_4px_0px] hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="shadow-[rgba(0,0,5,0.1)_10px_5px_4px_0px] bg-orange-600 hover:bg-orange-500 text-white  rounded-xl px-3 py-2 flex items-center justify-center  font-semibold "
             >
                 Sign In
             </button>

@@ -9,7 +9,7 @@ function ProvidersTabs({ setProvider }) {
     return (
         <div className=" px-2  sm:px-0 hidden md:block ">
             <TabGroup className=''>
-                <TabList className="flex flex-wrap xl:flex-nowrap space-x-1 rounded-xl bg-gray-100 p-1">
+                <TabList className="flex flex-wrap xl:flex-nowrap  rounded-xl bg-gray-100 p-1 dark:bg-indigo-900">
                     {providers.map(provider => (
                         <Tab
                             onClick={() => setProvider(provider)}
@@ -19,8 +19,8 @@ function ProvidersTabs({ setProvider }) {
                                     'w-full rounded-lg py-2.5 text-sm font-medium leading-5 px-10',
                                     'ring-white/60  focus:outline-none ',
                                     selected
-                                        ? 'bg-white text-blue-700 shadow-[rgba(0,0,5,0.1)_10px_5px_4px_0px]'
-                                        : 'text-gray-300 hover:bg-gray-400 hover:text-white'
+                                        ? 'bg-white text-blue-700 shadow-[rgba(0,0,5,0.1)_10px_5px_4px_0px] dark:bg-orange-600 dark:text-slate-100'
+                                        : 'text-gray-300 hover:bg-gray-400 hover:text-white dark:hover:bg-indigo-400'
                                 )
                             }
                         >

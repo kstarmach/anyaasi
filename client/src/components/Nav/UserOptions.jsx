@@ -2,7 +2,7 @@ import { ArrowRightStartOnRectangleIcon } from '@heroicons/react/24/solid';
 
 import { useUserContext } from '../../UserContext';
 import { Fragment } from 'react'
-import { Menu, Transition } from '@headlessui/react'
+import { Menu, MenuButton, MenuItem, MenuItems, Transition } from '@headlessui/react'
 import { SignInButton } from '../ui/Buttons';
 import { UserAvatar } from '../ui/UserAvatar';
 
@@ -23,9 +23,9 @@ const UserOptions = () => {
 
         <Menu as="div" className="relative ">
             <div>
-                <Menu.Button className="flex w-full justify-center ">
+                <MenuButton className="flex w-full justify-center ">
                     <UserAvatar avatar={user.avatar} />
-                </Menu.Button>
+                </MenuButton>
             </div>
 
             <Transition
@@ -37,15 +37,15 @@ const UserOptions = () => {
                 leaveFrom="transform opacity-100 scale-100"
                 leaveTo="transform opacity-0 scale-95"
             >
-                <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-[rgba(0,0,5,0.1)_10px_5px_4px_0px] focus:outline-none">
+                <MenuItems className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-[rgba(0,0,5,0.1)_10px_5px_4px_0px] focus:outline-none dark:bg-indigo-300 dark:text-slate-100" >
                     <div className="py-1">
-                        <Menu.Item>
+                        <MenuItem>
                             <span className='block w-full px-4 py-2 text-left text-sm '> Signed in as <span className='text-indigo-600'> {user.name}</span></span>
-                        </Menu.Item>
+                        </MenuItem>
 
                         <hr />
 
-                        <Menu.Item>
+                        <MenuItem>
                             <button
                                 type="submit"
                                 className='block w-full px-4 py-2 text-left text-sm flex justify-between'
@@ -54,10 +54,10 @@ const UserOptions = () => {
                                 Sign out
                                 <ArrowRightStartOnRectangleIcon className='w-5 h-5 mr-2' />
                             </button>
-                        </Menu.Item>
+                        </MenuItem>
 
                     </div>
-                </Menu.Items>
+                </MenuItems>
             </Transition>
         </Menu >
 

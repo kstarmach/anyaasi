@@ -54,12 +54,12 @@ const Search = () => {
             <BackButton />
             <form onSubmit={handleSubmit}>
                 <div className="flex justify-center mb-10">
-                    <div className="flex items-center bg-white rounded-full p-3 shadow-[rgba(0,0,5,0.1)_10px_5px_4px_0px]">
-                        <MagnifyingGlassIcon className="h-8 w-auto mx-2  text-slate-400" />
+                    <div className="flex items-center bg-white rounded-full p-3 shadow-[rgba(0,0,5,0.1)_10px_5px_4px_0px] dark:bg-indigo-300 ">
+                        <MagnifyingGlassIcon className="h-8 w-auto mx-2  text-slate-400 dark:text-slate-200" />
                         <input
                             type='text'
                             placeholder='Search...'
-                            className='!outline-none text-3xl mx-2'
+                            className='!outline-none text-3xl mx-2 dark:bg-indigo-300 dark:text-slate-100  dark:placeholder:text-slate-200'
                             value={searchValue}
                             onChange={(event) => setSearchValue(event.target.value)}
                         />

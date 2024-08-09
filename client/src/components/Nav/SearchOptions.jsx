@@ -15,12 +15,12 @@ const SearchOption = () => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <div className="flex items-center bg-white rounded-full p-3 shadow-[rgba(0,0,5,0.1)_10px_5px_4px_0px]">
-                <MagnifyingGlassIcon className="h-5 w-auto mx-2 text-slate-400" />
+            <div className="flex items-center bg-white rounded-full p-3 shadow-[rgba(0,0,5,0.1)_10px_5px_4px_0px] dark:bg-indigo-300 ">
+                <MagnifyingGlassIcon className="h-5 w-auto mx-2 text-slate-400 dark:text-slate-200 " />
                 <input
                     type='text'
                     placeholder='Search...'
-                    className='!outline-none w-40'
+                    className='!outline-none w-40 dark:bg-indigo-300 dark:text-slate-100  dark:placeholder:text-slate-200'
                     value={searchQuery}
                     onChange={(event) => setSearchQuery(event.target.value)}
                 />

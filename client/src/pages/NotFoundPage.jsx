@@ -8,7 +8,7 @@ const NotFoundPage = () => {
                 <p className="text-7xl md:text-8xl lg:text-9xl font-bold tracking-wider text-gray-300">404</p>
                 <p className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-wider text-gray-300 mt-2">Page Not Found</p>
                 <p className="text-lg md:text-xl lg:text-2xl text-gray-500 my-12">Sorry, the page you are looking for could not be found.</p>
-                <Link to="/" className="bg-indigo-600 hover:bg-indigo-500 text-white  rounded-xl px-3 py-2 flex items-center justify-center  font-semibold " title="Return Home">
+                <Link to="/" className="bg-orange-600 hover:bg-orange-500 text-white  rounded-xl px-3 py-2 flex items-center justify-center  font-semibold " title="Return Home">
                     <ArrowLeftIcon className='h-5 w-5' />
                     <span>Return Home</span>
                 </Link>

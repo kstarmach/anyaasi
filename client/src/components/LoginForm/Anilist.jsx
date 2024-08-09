@@ -4,14 +4,14 @@ import UserResult from "./UserResult";
 
 const AnilistForm = ({ handleForm, handleInputChange }) => {
     return (
-        <form className="flex flex-col gap-4" onSubmit={handleForm}>
+        <form className="flex flex-col gap-4 dark:text-slate-200" onSubmit={handleForm}>
             <input
                 id="username"
                 name="username"
                 autoComplete='username'
                 placeholder='Anilist.co username...'
                 required
-                className="flex items-center bg-white rounded-full p-3 shadow-[rgba(0,0,5,0.1)_10px_5px_4px_0px]"
+                className="flex items-center bg-white rounded-full p-3 shadow-[rgba(0,0,5,0.1)_10px_5px_4px_0px] dark:bg-indigo-300 dark:placeholder:text-slate-200"
                 onChange={handleInputChange}
             />
         </form>
@@ -36,8 +36,8 @@ const Anilist = () => {
     return (
         <div className="flex flex-col gap-10">
             <img
-                className="mx-auto h-20 w-auto grow rounded-xl shadow-[rgba(0,0,5,0.1)_10px_5px_4px_0px]"
-                src="AniList_logo.svg.png"
+                className="mx-auto h-20 w-auto grow rounded-xl shadow-[rgba(0,0,5,0.1)_10px_5px_4px_0px]  bg-indigo-900"
+                src="AniList_Dark.svg"
                 alt="Anilist logo"
             />
             <AnilistForm handleForm={handleForm} handleInputChange={handleInputChange} />
