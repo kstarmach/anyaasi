@@ -1,0 +1,14 @@
+services:
+  client:
+    build: ./client
+    command: npm run dev
+    ports:
+      - "8000:8000"
+    environment:
+      SERVER_URI: http://server:3000
+
+  server:
+    build: ./server
+    command: node index.js
+    ports:
+      - "3000:3000"
